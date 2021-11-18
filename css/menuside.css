@@ -1,0 +1,35 @@
+body { 
+	font-family: 'Open Sans', sans-serif; 
+	background-position: center center; 
+	background-repeat: no-repeat; 
+	background-attachment: fixed; 
+	background-size: cover;
+	margin: 0; 
+	background-color: #ccd6fe;
+	}
+	.form-inline { 
+		display: inline-block; 
+	} 
+		.navbar-header.col { 
+			padding: 0 !important; 
+		} 
+		.navbar { 
+			font-size: 14px; 
+			background: #fff; 
+			padding-left: 16px; 
+			padding-right: 16px; 
+			border-bottom: 1px solid #d6d6d6; 
+			box-shadow: 0 0 4px rgba(0,0,0,.1); 
+		}
+		.navbar .navbar-brand { 
+			color: #555; 
+			padding-left: 0; 
+			font-size: 20px; 
+			padding-right: 50px; 
+			font-family: 'Raleway', sans-serif;
+			text-transform: uppercase; 
+			} 
+		.navbar .navbar-brand b { 
+			font-weight: bold; 
+			color: #032c55; 
+		}
