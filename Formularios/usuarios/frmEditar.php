@@ -188,10 +188,10 @@
 <form name="frmEditar" action="" method="post">
 	<div class="container">
 		<div class="table-wrapper">
- 			<div class="table-title">
- 				<div class="form-row">
- 					<div class="col-md-8">
- 						<h2>Editar Usuario</h2>
+ 		   <div class="table-title">
+ 			   <div class="form-row">
+ 				   <div class="col-md-8">
+ 					    <h2>Editar Usuario</h2>
  					</div>
  					<div class="col-md-4">
 						 <button type="button" class="btn btn-danger"

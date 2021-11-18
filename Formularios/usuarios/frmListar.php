@@ -253,8 +253,8 @@
 		 			<td>
 					 <a href="#" class="view" onClick="ReestablecerPassword('<?php
 					echo $Fila['IdUsuario']; ?>');" title="Reestablecer Password"><i class="materialicons">&#xe0da;</i></a>
-					 <a href="index.php?mod=usua&form=ed&id=<?php echo
-					$Fila['IdUsuario']; ?>" class="edit"><i class="material-icons" datatoggle="tooltip" title="Editar">&#xE254;</i></a>
+					 <a href="index.php?mod=usu&form=ed&id=<?php echo
+					$Fila['id_usuario']; ?>" class="edit"><i class="material-icons" datatoggle="tooltip" title="Editar">&#xE254;</i></a>
 					 <a href="#" class="delete" onClick="Eliminar('<?php echo
 					$Fila['IdUsuario']; ?>');"><i class="material-icons" data-toggle="tooltip"
 					title="Eliminar">&#xE872;</i></a>

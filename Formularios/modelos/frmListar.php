@@ -251,8 +251,8 @@ $Obj_Paginador->ConfPaginador();
               foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
                 ?>
                 <tr>
-                  <td><?php echo $Fila['nombre_modelo']; ?></td>
-                  <td><?php echo $Fila['id_marca']; ?></td>
+                  <td><?php echo $Fila['NombreModelo']; ?></td>
+                  <td><?php echo $Fila['NombreMarca']; ?></td>
                   <td><?php echo $Fila['estado']; ?></td>
                   <td>
                     <a href="index.php?mod=model&form=de&id=<?php echo $Fila['id_modelo'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>

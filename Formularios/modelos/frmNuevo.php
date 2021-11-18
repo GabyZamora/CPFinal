@@ -210,7 +210,7 @@ $Datos_Marcas = $Obj_Marcas->ListarTodoCombos();
            foreach ( $DatosMarcas as $FilaMarca ) {
            ?>
            <option value="<?php echo $FilaMarca['id_marca']; ?>"><?php echo
-          $FilaMarca['nombre_marca']; ?></option>
+          $FilaMarca['NombreMarca']; ?></option>
            <?php
            }
            ?>
