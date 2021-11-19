@@ -11,7 +11,7 @@
 		$Cadena = "SELECT * FROM usuarios WHERE
 		 (nombre_usuario LIKE '%".$paBuscar."%' OR Usuario LIKE
 		'%".$paBuscar."%')
-		 AND Estado = '1'";
+		 AND Estado = 'ACTIVO'";
 		return $Cadena; 
 		}
 
@@ -19,7 +19,7 @@
 		$Cadena = "SELECT COUNT(id_usuario) FROM usuarios WHERE
 		 (nombre_usuario LIKE '%".$paBuscar."%' OR Usuario LIKE
 		'%".$paBuscar."%')
-		 AND estado = '1'";
+		 AND estado = 'ACTIVO'";
 		return mysqli_fetch_row($this->EjecutarQuery( $Cadena ));
 		//Retorna el número de filas que tiene la consulta
 		}

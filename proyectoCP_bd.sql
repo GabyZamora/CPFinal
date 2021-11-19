@@ -1,26 +1,20 @@
 CREATE DATABASE autos_cp;
 USE autos_cp;
 
-CREATE TABLE clientes(
-id_cliente INT UNSIGNED NOT NULL AUTO_INCREMENT,
-nombre_cliente VARCHAR(50) NOT NULL,
-apellidos_cliente VARCHAR(50) NOT NULL,
-direccion_cliente VARCHAR(200) NOT NULL,
-id_departamento INT UNSIGNED NOT NULL,
-id_municipio INT UNSIGNED NOT NULL,
-telefono_cliente VARCHAR(10) NOT NULL,
-correo_cliente VARCHAR(30) NOT NULL,
-nombre_factura VARCHAR(50) NOT NULL,
-nit_cliente VARCHAR(20) NOT NULL,
-nrc_cliente VARCHAR(20) NOT NULL,
-giro_nrc VARCHAR(20) NOT NULL,
-fecIngreso_cliente DATETIME DEFAULT CURRENT_TIMESTAMP,
-fechModificaacion_cliente DATETIME DEFAULT CURRENT_TIMESTAMP,
-estado INT(11) NOT NULL DEFAULT '1',
-PRIMARY KEY(id_cliente),
-CONSTRAINT FK_DEP_CLI FOREIGN KEY(id_departamento) REFERENCES departamentos(id_departamento) ON UPDATE CASCADE,
-CONSTRAINT FK_MUN_CLI FOREIGN KEY(id_municipio) REFERENCES municipios(id_municipio) ON UPDATE CASCADE
+CREATE TABLE usuarios(
+id_usuario INT UNSIGNED AUTO_INCREMENT NOT NULL, 
+nombre_usuario VARCHAR(255) NULL,
+Usuario VARCHAR(20) NOT NULL,
+PASSWORD VARCHAR(100) NULL,
+estado VARCHAR(10) NOT NULL,
+PRIMARY KEY(id_usuario)
 );
+
+INSERT INTO usuarios(id_usuario, nombre_usuario, Usuario, PASSWORD, estado)
+VALUES
+(0, 'Administrador', 'admin', 'admin', 'ACTIVO');
+
+SELECT * FROM usuarios;
 
 CREATE TABLE departamentos(
 id_departamento INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -53,7 +47,7 @@ codigo VARCHAR(5) NOT NULL,
 PRIMARY KEY(id_municipio),
 CONSTRAINT FK_MUN_DEP FOREIGN KEY(id_departamento) REFERENCES departamentos(id_departamento) ON UPDATE CASCADE
 );
-DROP TABLE municipios;
+
 INSERT INTO municipios (id_municipio, id_departamento, nombre_municipio, codigo) VALUES
 (1, 1, 'AHUACHAPAN', '0101'),
 (2, 1, 'APANECA', '0102'),
@@ -320,53 +314,25 @@ INSERT INTO municipios (id_municipio, id_departamento, nombre_municipio, codigo)
 
 SELECT nombre_municipio FROM municipios WHERE id_departamento=5;
 
-CREATE TABLE vehiculos(
-id_vehiculo INT UNSIGNED NOT NULL AUTO_INCREMENT,
-id_cliente INT UNSIGNED NOT NULL,
-id_marca INT UNSIGNED NOT NULL,
-id_modelo INT UNSIGNED NOT NULL,
-tipo_vehiculo VARCHAR(10) NOT NULL,
-color_vehiculo VARCHAR(10) NOT NULL,
-anio_vehiculo VARCHAR(10) NOT NULL,
-vin_vehiculo VARCHAR(20) NOT NULL,
-numero_motor_vehiculo VARCHAR(20) NOT NULL,
-observaciones_vehiculo VARCHAR(200) NOT NULL,
-PRIMARY KEY(id_vehiculo),
-CONSTRAINT FK_MARC_ID FOREIGN KEY(id_marca) REFERENCES marca_aut(id_marca) ON UPDATE CASCADE,
-CONSTRAINT FK_MOD_ID FOREIGN KEY(id_modelo) REFERENCES modelo_aut(id_modelo) ON UPDATE CASCADE,
-CONSTRAINT FK_CLI_ID FOREIGN KEY(id_cliente) REFERENCES clientes(id_cliente) ON UPDATE CASCADE
-);
-
-CREATE TABLE articulos(
-id_articulo INT UNSIGNED NOT NULL AUTO_INCREMENT,
-nombre_articulo VARCHAR(100) NOT NULL,
-id_categoria_art INT UNSIGNED NOT NULL,
-id_proveedor INT UNSIGNED NOT NULL,
-id_marca_art INT UNSIGNED NOT NULL,
-descripcion TEXT NULL,
-PRIMARY KEY(id_articulo),
-CONSTRAINT FK_ART_CAT FOREIGN KEY(id_categoria_art) REFERENCES categoria_art(id_categoria_art) ON UPDATE CASCADE,
-CONSTRAINT FK_ART_PRO FOREIGN KEY(id_proveedor) REFERENCES proveedores(id_proveedor) ON UPDATE CASCADE,
-CONSTRAINT FK_ART_MAR FOREIGN KEY(id_marca_art) REFERENCES marca_art(id_marca_art) ON UPDATE CASCADE
-);
-
-CREATE TABLE usuarios(
-id_usuario INT UNSIGNED AUTO_INCREMENT NOT NULL, 
-nombre_usuario VARCHAR(255) NULL,
-Usuario VARCHAR(20) NOT NULL,
-PASSWORD VARCHAR(100) NULL,
-estado INT(11) NOT NULL DEFAULT '1',
-PRIMARY KEY(id_usuario)
-);
-
-
-CREATE TABLE servicios(
-id_servicio INT UNSIGNED NOT NULL AUTO_INCREMENT,
-nombre_servicio VARCHAR(200) NOT NULL,
-detalles TEXT NULL,
-id_categoria INT UNSIGNED NOT NULL,
-PRIMARY KEY(id_servicio),
-CONSTRAINT FK_SERV_CAT FOREIGN KEY(id_categoria) REFERENCES categorias_serv(id_categoria) ON UPDATE CASCADE
+CREATE TABLE clientes(
+id_cliente INT UNSIGNED NOT NULL AUTO_INCREMENT,
+nombre_cliente VARCHAR(50) NOT NULL,
+apellidos_cliente VARCHAR(50) NOT NULL,
+direccion_cliente VARCHAR(200) NOT NULL,
+id_departamento INT UNSIGNED NOT NULL,
+id_municipio INT UNSIGNED NOT NULL,
+telefono_cliente VARCHAR(10) NOT NULL,
+correo_cliente VARCHAR(30) NOT NULL,
+nombre_factura VARCHAR(50) NOT NULL,
+nit_cliente VARCHAR(20) NOT NULL,
+nrc_cliente VARCHAR(20) NOT NULL,
+giro_nrc VARCHAR(20) NOT NULL,
+fecIngreso_cliente DATETIME DEFAULT CURRENT_TIMESTAMP,
+fechModificaacion_cliente DATETIME DEFAULT CURRENT_TIMESTAMP,
+estado VARCHAR(10) NOT NULL,
+PRIMARY KEY(id_cliente),
+CONSTRAINT FK_DEP_CLI FOREIGN KEY(id_departamento) REFERENCES departamentos(id_departamento) ON UPDATE CASCADE,
+CONSTRAINT FK_MUN_CLI FOREIGN KEY(id_municipio) REFERENCES municipios(id_municipio) ON UPDATE CASCADE
 );
 
 CREATE TABLE proveedores(
@@ -380,21 +346,62 @@ direccion_proveedor VARCHAR(100) NOT NULL,
 telefono1_proveedor VARCHAR(15) NOT NULL,
 telefono2_proveedor VARCHAR(15) NOT NULL,
 telefono3_proveedor VARCHAR(15) NOT NULL,
-estado INT(11) NOT NULL DEFAULT '1',
+estado VARCHAR(10) NOT NULL,
 PRIMARY KEY (id_proveedor)
+);
+
+CREATE TABLE categoria_art(
+id_categoria_art INT UNSIGNED NOT NULL AUTO_INCREMENT,
+nombre_categoria_art VARCHAR(50) UNIQUE NOT NULL,
+descripcion_categoria_art VARCHAR(200) NOT NULL,
+estado VARCHAR(10) NOT NULL,
+PRIMARY KEY(id_categoria_art)
+);
+
+CREATE TABLE marca_art(
+id_marca_art INT UNSIGNED NOT NULL AUTO_INCREMENT,
+nombreMarca VARCHAR(100) UNIQUE NOT NULL,
+estado VARCHAR(10) NOT NULL,
+PRIMARY KEY(id_marca_art)
+);
+
+CREATE TABLE articulos(
+id_articulo INT UNSIGNED NOT NULL AUTO_INCREMENT,
+nombre_articulo VARCHAR(100) NOT NULL,
+id_categoria_art INT UNSIGNED NOT NULL,
+id_proveedor INT UNSIGNED NOT NULL,
+id_marca_art INT UNSIGNED NOT NULL,
+descripcion TEXT NULL,
+estado VARCHAR(10) NOT NULL,
+PRIMARY KEY(id_articulo),
+CONSTRAINT FK_ART_CAT FOREIGN KEY(id_categoria_art) REFERENCES categoria_art(id_categoria_art) ON UPDATE CASCADE,
+CONSTRAINT FK_ART_PRO FOREIGN KEY(id_proveedor) REFERENCES proveedores(id_proveedor) ON UPDATE CASCADE,
+CONSTRAINT FK_ART_MAR FOREIGN KEY(id_marca_art) REFERENCES marca_art(id_marca_art) ON UPDATE CASCADE
 );
 
 CREATE TABLE categorias_serv(
 id_categoria INT UNSIGNED NOT NULL AUTO_INCREMENT,
 nombre_categoria VARCHAR(100) NOT NULL,
 descripcion TEXT NULL,
+estado VARCHAR(10) NOT NULL,
 PRIMARY KEY(id_categoria)
 );
+
+CREATE TABLE servicios(
+id_servicio INT UNSIGNED NOT NULL AUTO_INCREMENT,
+nombre_servicio VARCHAR(200) NOT NULL,
+detalles TEXT NULL,
+estado VARCHAR(10) NOT NULL,
+id_categoria INT UNSIGNED NOT NULL,
+PRIMARY KEY(id_servicio),
+CONSTRAINT FK_SERV_CAT FOREIGN KEY(id_categoria) REFERENCES categorias_serv(id_categoria) ON UPDATE CASCADE
+);
+
 
 CREATE TABLE marca_aut(
 id_marca INT UNSIGNED NOT NULL AUTO_INCREMENT,
 nombre_marca VARCHAR(100) NOT NULL,
-estado INT(11) NOT NULL DEFAULT '1',
+estado VARCHAR(10) NOT NULL,
 PRIMARY KEY(id_marca)
 );
 
@@ -489,10 +496,11 @@ CREATE TABLE modelo_aut(
 id_modelo INT UNSIGNED NOT NULL AUTO_INCREMENT,
 id_marca INT UNSIGNED NOT NULL,
 nombre_modelo VARCHAR(100) NOT NULL,
-estado int(11) NOT NULL DEFAULT '1',
+estado VARCHAR(10) NOT NULL,
 PRIMARY KEY(id_modelo),
 CONSTRAINT FK_MAR_MOD FOREIGN KEY (id_marca) REFERENCES marca_aut(id_marca) ON UPDATE CASCADE
 );
+
 INSERT INTO modelo_aut (id_modelo, id_marca, nombre_modelo, estado) VALUES
 (1, 1, 'Legend ', 1),
 (2, 1, 'Integra ', 1),
@@ -595,35 +603,24 @@ INSERT INTO modelo_aut (id_modelo, id_marca, nombre_modelo, estado) VALUES
 (99, 8, '525', 1),
 (100, 8, '530', 1);
 
-
-CREATE TABLE categoria_art(
-id_categoria_art INT UNSIGNED NOT NULL AUTO_INCREMENT,
-nombre_categoria_art VARCHAR(50) UNIQUE NOT NULL,
-descripcion_categoria_art VARCHAR(200) NOT NULL,
-PRIMARY KEY(id_categoria_art)
-);
-
-CREATE TABLE marca_art(
-id_marca_art INT UNSIGNED NOT NULL AUTO_INCREMENT,
-nombreMarca VARCHAR(100) UNIQUE NOT NULL,
-estado int(11) NOT NULL DEFAULT '1',
-PRIMARY KEY(id_marca_art)
-);
-
-CREATE TABLE orden_trabajo(
-id_orden_trabajo INT UNSIGNED NOT NULL AUTO_INCREMENT,
-lista_de_verificacion VARCHAR(10) NOT NULL,
-falla_del_vehiculo VARCHAR(10) NOT NULL,
+CREATE TABLE vehiculos(
+id_vehiculo INT UNSIGNED NOT NULL AUTO_INCREMENT,
 id_cliente INT UNSIGNED NOT NULL,
-id_estado_del_vehiculo INT UNSIGNED NOT NULL,
-id_cotizacion INT UNSIGNED NOT NULL,
-id_servicio INT UNSIGNED NOT NULL, 
-PRIMARY KEY(id_orden_trabajo),
-CONSTRAINT FK_CLIE_OR FOREIGN KEY(id_cliente) REFERENCES clientes(id_cliente)ON UPDATE CASCADE,
-CONSTRAINT FK_ESTA_OR FOREIGN KEY(id_estado_del_vehiculo) REFERENCES estado_del_vehiculo(id_estado_del_vehiculo)ON UPDATE CASCADE,
-CONSTRAINT FK_COTI_OR FOREIGN KEY(id_cotizacion) REFERENCES cotizacion(id_cotizacion)ON UPDATE CASCADE,
-CONSTRAINT FK_SER_OR FOREIGN KEY(id_servicio) REFERENCES servicios(id_servicio)ON UPDATE CASCADE
+id_marca INT UNSIGNED NOT NULL,
+id_modelo INT UNSIGNED NOT NULL,
+tipo_vehiculo VARCHAR(10) NOT NULL,
+color_vehiculo VARCHAR(10) NOT NULL,
+anio_vehiculo VARCHAR(10) NOT NULL,
+vin_vehiculo VARCHAR(20) NOT NULL,
+numero_motor_vehiculo VARCHAR(20) NOT NULL,
+observaciones_vehiculo VARCHAR(200) NOT NULL,
+estado VARCHAR(10) NOT NULL,
+PRIMARY KEY(id_vehiculo),
+CONSTRAINT FK_MARC_ID FOREIGN KEY(id_marca) REFERENCES marca_aut(id_marca) ON UPDATE CASCADE,
+CONSTRAINT FK_MOD_ID FOREIGN KEY(id_modelo) REFERENCES modelo_aut(id_modelo) ON UPDATE CASCADE,
+CONSTRAINT FK_CLI_ID FOREIGN KEY(id_cliente) REFERENCES clientes(id_cliente) ON UPDATE CASCADE
 );
+
 
 CREATE TABLE estado_del_vehiculo(
 id_estado_del_vehiculo INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -644,7 +641,23 @@ precio_se VARCHAR(10) NOT NULL,
 id_articulo INT UNSIGNED NOT NULL, 
 cantidad_ar VARCHAR(10) NOT NULL,
 precio_ar VARCHAR(10) NOT NULL,
+estado VARCHAR(10) NOT NULL,
 PRIMARY KEY(id_cotizacion),
 CONSTRAINT FK_SER_COT FOREIGN KEY(id_servicio) REFERENCES servicios(id_servicio) ON UPDATE CASCADE,
 CONSTRAINT FK_ART_COT FOREIGN KEY(id_articulo) REFERENCES articulos(id_articulo) ON UPDATE CASCADE
+);
+
+CREATE TABLE orden_trabajo(
+id_orden_trabajo INT UNSIGNED NOT NULL AUTO_INCREMENT,
+lista_de_verificacion VARCHAR(10) NOT NULL,
+falla_del_vehiculo VARCHAR(10) NOT NULL,
+id_cliente INT UNSIGNED NOT NULL,
+id_estado_del_vehiculo INT UNSIGNED NOT NULL,
+id_cotizacion INT UNSIGNED NOT NULL,
+id_servicio INT UNSIGNED NOT NULL, 
+PRIMARY KEY(id_orden_trabajo),
+CONSTRAINT FK_CLIE_OR FOREIGN KEY(id_cliente) REFERENCES clientes(id_cliente)ON UPDATE CASCADE,
+CONSTRAINT FK_ESTA_OR FOREIGN KEY(id_estado_del_vehiculo) REFERENCES estado_del_vehiculo(id_estado_del_vehiculo)ON UPDATE CASCADE,
+CONSTRAINT FK_COTI_OR FOREIGN KEY(id_cotizacion) REFERENCES cotizacion(id_cotizacion)ON UPDATE CASCADE,
+CONSTRAINT FK_SER_OR FOREIGN KEY(id_servicio) REFERENCES servicios(id_servicio)ON UPDATE CASCADE
 );
