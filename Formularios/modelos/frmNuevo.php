@@ -1,11 +1,11 @@
 <?php
 require_once 'datos/datos.php';
-require_once 'negocio/marcas.php';
-$Obj_Marcas = new Marcas();
-$Datos_Marcas = $Obj_Marcas->ListarTodoCombos();
+require_once 'negocio/marcasautos.php';
+$Obj_Marcas_Autos = new Marcas_Autos();
+$DatosMarcas = $Obj_Marcas_Autos->ListarTodoCombos();
 ?>
 
-<!-- CSS -->
+<!-- CSS --> 
 <head>
 <link rel="stylesheet" href="css/iconfont/material-icons.css">
 <link rel="stylesheet" href="css/bootstrap-4.3.1.min.css">
@@ -32,6 +32,7 @@ $Datos_Marcas = $Obj_Marcas->ListarTodoCombos();
 			left: 0;
 			top: 70px;
 			background-color: white;
+			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -179,56 +180,55 @@ $Datos_Marcas = $Obj_Marcas->ListarTodoCombos();
 	</script>
 
 <form name="frmNuevo" action="" method="post">
-  <div class="container">
-    <div class="table-wrapper">
-      <div class="table-title">
-        <div class="form-row">
-          <div class="col-md-8">
-            <h2>Nuevo Modelo</h2>
-           </div>
-          <div class="col-md-4">
-            <button type="button" class="btn btn-danger"
-            onClick="location.replace('index.php?mod=model&form=li');"><i class="material-icons">&#xe5c9;</i><span>Cancelar</span></button>
-            <button type="button" class="btn btn-success" onClick="ValidarNuevo();"><i
-              class="material-icons">&#xe161;</i><span>Guardar</span></button>
-            </div>
-          </div>
-        </div>
+<div class="container">
+<div class="table-wrapper">
+	<div class="table-title">
+	<div class="form-row">
+		<div class="col-md-8">
+		<h2>Nuevo Modelo</h2>
+		</div>
+		<div class="col-md-4">
+		<button type="button" class="btn btn-danger"
+		onClick="location.replace('index.php?mod=model&form=li');"><i class="material-icons">&#xe5c9;</i><span>Cancelar</span></button>
+		<button type="button" class="btn btn-success" onClick="ValidarNuevo();"><i class="material-icons">&#xe161;</i><span>Guardar</span></button>
+		</div>
+	</div>
+	</div>
 
         <div class="form-row">
         <div class="form-group col-md-8">
         <label>Modelo: </label>
         <input type="text" class="form-control" id="txtModelo" name="txtModelo">
         </div>
-      </div>
-<!-- -------------------------- Fila 1 -------------------------- -->
-     <div class="form-group col-md-6">
-          <label>Marca: </label>
-          <select id="cbxMarca" name="cbxMarca" class="form-control">
-           <option value="">Seleccione...</option>
-           <?php
-           foreach ( $DatosMarcas as $FilaMarca ) {
-           ?>
-           <option value="<?php echo $FilaMarca['id_marca']; ?>"><?php echo
-          $FilaMarca['NombreMarca']; ?></option>
-           <?php
-           }
-           ?>
-          </select>
         </div>
-  
-<!-- --------------------------Fila2----------------------------- -->
-
-      <div class="form-group col-md-4">
-        <label>Estado: </label>
-        <select id="cbxEstado" name="cbxEstado" class="form-control">
-          <option value="">Seleccione...</option>
-          <option value=""></option>
-          <option value=""></option>
-        </select>
-      </div>
-    </div> <!-- Cierre del Div table-wrapper -->
-  </div> <!-- Cierre del Div container -->
+		<!-- -------------------------- Fila 1 -------------------------- -->
+		<div class="form-row">
+		<div class="form-group col-md-6">
+		<label>Marca: </label>
+		<select id="cbxMarca" name="cbxMarca" class="form-control">
+		<option value="">Seleccione...</option>
+		<?php
+		foreach ( $DatosMarcas as $Fila ) {
+		?>
+		<option value="<?php echo $Fila['id_marca']; ?>"><?php echo
+		$Fila['nombre_marca']; ?></option>
+		<?php
+		}
+		?>
+		</select>
+	</div>
+	<!-- --------------------------Fila2----------------------------- -->
+	<div class="form-group col-md-4">
+	<label>Estado: </label>
+	<select id="cbxEstado" name="cbxEstado" class="form-control">
+		<option value="">Seleccione...</option>
+		<option value="">Activo</option>
+		<option value="">Inactivo</option>
+	</select>
+	</div>
+	</div>
+</div> <!-- Cierre del Div table-wrapper -->
+</div> <!-- Cierre del Div container -->
 </form>
 
 <script type="text/javascript">

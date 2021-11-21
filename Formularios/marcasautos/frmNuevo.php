@@ -194,7 +194,6 @@
         <label>Marca: </label>
         <input type="text" class="form-control" id="txtMarca" name="txtMarca">
         </div>
-      </div>
   
 <!-- --------------------------Fila2----------------------------- -->
 
@@ -202,10 +201,11 @@
         <label>Estado: </label>
         <select id="cbxEstado" name="cbxEstado" class="form-control">
           <option value="">Seleccione...</option>
-          <option value="">0</option>
-          <option value="">1</option>
+          <option value="">Activo</option>
+          <option value="">Inactivo</option>
         </select>
       </div>
+	</div>
     </div> <!-- Cierre del Div table-wrapper -->
   </div> <!-- Cierre del Div container -->
 </form>

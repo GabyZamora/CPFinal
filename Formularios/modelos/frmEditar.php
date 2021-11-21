@@ -3,13 +3,17 @@
 require_once 'datos/datos.php';
 //Llamamos a la capa de negocio
 require_once 'negocio/modelo.php';
+require_once 'negocio/marcasautos.php';
 //Instanciamos las clases de la capa de negocio
 $Obj_Modelo = new Modelo();
+$Obj_Marcas_Autos = new Marcas_Autos();
 //Cargamos el registro solicitado
 $DatosModelo = $Obj_Modelo->BuscarPorId( $_GET['id'] );
+
+$DatosMarcas = $Obj_Marcas_Autos->ListarTodoCombos();
 //Recuperamos el registro obtenido en una variable fila
 foreach ( $DatosModelo as $Fila ) {
-$DatosModelo = $Fila;
+	$DatosModelo = $Fila;
 }
 ?>
 <!-- CSS -->
@@ -122,7 +126,7 @@ $DatosModelo = $Fila;
 
 		
 	</style>
-</head>
+
 <body>
 	<nav class="navbar navbar-default navbar-expand-lg navbar-light"> 
 		<div class="navbar-header d-flex col"> 
@@ -209,11 +213,17 @@ $DatosModelo = $Fila;
         </div>
         <div class="form-group col-md-8">
           <label>Marca: </label>
-          <select id="cbxMarca" name="cbxMarca" class="form-control">
-          <option value="">Seleccione...</option>
-          <option value=""></option>
-          <option value=""></option>
-          </select>
+		  <select id="cbxMarca" name="cbxMarca" class="form-control">
+		<option value="">Seleccione...</option>
+		<?php
+		foreach ( $DatosMarcas as $Fila ) {
+		?>
+		<option value="<?php echo $Fila['id_marca']; ?>"><?php echo
+		$Fila['nombre_marca']; ?></option>
+		<?php
+		}
+		?>
+		</select>
         </div>
     </div> <!-- Cierre del Div table-wrapper -->
   </div> <!-- Cierre del Div container -->
@@ -221,7 +231,7 @@ $DatosModelo = $Fila;
 <script type="text/javascript">
   function ValidarActualizar(){
     if ( !document.getElementById('txtModelo').value ) {
-    alert('Ingrese el nombre de la marca');
+    alert('Ingrese el nombre del modelo');
     }
     else if ( !document.getElementById('cbxMarca').value ){
     alert('Ingrese el nombre de la marca');

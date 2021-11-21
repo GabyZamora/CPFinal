@@ -46,5 +46,13 @@ class Marcas_Autos extends Datos {
         '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
     }
+
+    public function ListarTodoCombos() {
+        $Cadena = "SELECT * FROM marca_aut
+        WHERE
+        estado = 'ACTIVO'
+        ORDER BY nombre_marca ASC";
+        return $this->EjecutarQuery( $Cadena );
+      }
 }
 ?>

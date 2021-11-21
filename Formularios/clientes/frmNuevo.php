@@ -1,10 +1,15 @@
+<?php
+require_once 'datos/datos.php';
+?>
+
 <!-- CSS -->
 <head>
 <link rel="stylesheet" href="css/iconfont/material-icons.css">
 <link rel="stylesheet" href="css/bootstrap-4.3.1.min.css">
 <link rel="stylesheet" href="css/formularios.css">
 <link href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+			  crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="css/iconfont/material-icons.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap-3.3.7.min.css"> 
@@ -19,7 +24,7 @@
 
 		}
 		.sidebar{
-			position: absolute;
+			position: fixed;
 			width: 250px;
 			height: 100%;
 			left: 0;
@@ -210,8 +215,20 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <label>Departamento: </label>
 <select id="cbxDepa" name="cbxDepa" class="form-control">
 <option value="">Seleccione...</option>
-<option value=""></option>
-<option value=""></option>
+<option value="1">AHUACHAPAN</option>
+<option value="2">SANTA ANA</option>
+<option value="3">SONSONATE</option>
+<option value="4">CHALATENANGO</option>
+<option value="5">LA LIBERTAD</option>
+<option value="6">SAN SALVADOR</option>
+<option value="7">CUSCATLAN</option>
+<option value="8">LA PAZ</option>
+<option value="9">CABAÑAS</option>
+<option value="10">SAN VICENTE</option>
+<option value="11">USULUTAN</option>
+<option value="12">SAN MIGUEL</option>
+<option value="13">MORAZAN</option>
+<option value="14">LA UNION</option>
 </select>
 </div>
 </div>
@@ -221,8 +238,7 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <label>Municipio: </label>
 <select id="cbxMunicipio" name="cbxMunicipio" class="form-control">
 <option value="">Seleccione...</option>
-<option value=""></option>
-<option value=""></option>
+
 </select>
 </div>
 <div class="form-group col-md-4">
