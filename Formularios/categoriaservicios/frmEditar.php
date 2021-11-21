@@ -35,7 +35,7 @@ $DatosCategoria_Servicio = $Fila;
 
 		}
 		.sidebar{
-			position: fixed;
+			position: absolute;
 			width: 250px;
 			height: 100%;
 			left: 0;

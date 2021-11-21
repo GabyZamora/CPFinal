@@ -19,12 +19,13 @@
 
 		}
 		.sidebar{
-			position: fixed;
+			position: absolute;
 			width: 250px;
 			height: 100%;
 			left: 0;
 			top: 70px;
 			background-color: white;
+			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -169,6 +170,7 @@
 		$('.ser-btn').click(function(){
 			$('nav ul .ser-show').toggleClass("show");
 		});
+
 	</script>
 
 <form name="frmNuevo" action="" method="post">

@@ -44,12 +44,13 @@ $Obj_Paginador->ConfPaginador();
 
 		}
 		.sidebar{
-			position: fixed;
+			position: absolute;
 			width: 250px;
 			height: 100%;
 			left: 0;
 			top: 60px;
 			background-color: white;
+			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -227,7 +228,7 @@ $Obj_Paginador->ConfPaginador();
             <button type="button" class="btn btn-danger" data-toggle="modal"
             onClick="location.replace('index.php?mod=menu');">
             <i class="material-icons">&#xe879;</i><span>Cerrar</span></button>
-              <button type="button" class="btn btn-success" onclick="location.replace('index.php?mod=model&form=nu');">
+              <button type="button" class="btn btn-success" onClick="location.replace('index.php?mod=model&form=nu');">
                 <i class="material-icons">&#xe148;</i><span>Agregar Nuevo</span></button>
               </div>
             </div>
@@ -255,7 +256,6 @@ $Obj_Paginador->ConfPaginador();
                   <td><?php echo $Fila['NombreMarca']; ?></td>
                   <td><?php echo $Fila['estado']; ?></td>
                   <td>
-                    <a href="index.php?mod=model&form=de&id=<?php echo $Fila['id_modelo'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
                     <a href="index.php?mod=model&form=ed&id=<?php echo $Fila['id_modelo'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"
                       title="Editar">&#xE254;</i></a>
                       <a href="#" class="delete" onclick="Eliminar('<?php echo $Fila['id_modelo']; ?>');"><i class="material-icons" data-toggle="tooltip"

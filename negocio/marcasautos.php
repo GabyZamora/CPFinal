@@ -6,19 +6,19 @@ class Marcas_Autos extends Datos {
 //Métodos
     public function ListarTodos( $paBuscar ) {
         $Cadena = "SELECT * FROM marca_aut WHERE
-        (nombre_marca LIKE '%".$paBuscar."%') AND estado = '1'";
+        (nombre_marca LIKE '%".$paBuscar."%') AND estado = 'ACTIVO'";
         return $Cadena; 
     }
 
     public function CantTotalRegistros( $paBuscar ) {
         $Cadena = "SELECT COUNT(id_marca) FROM marca_aut  WHERE
-        (nombre_marca LIKE '%".$paBuscar."%' OR nombre_marca LIKE '%".$paBuscar."%') AND estado = '1'";
+        (nombre_marca LIKE '%".$paBuscar."%' OR nombre_marca LIKE '%".$paBuscar."%') AND estado = 'ACTIVO'";
         return mysqli_fetch_row($this->EjecutarQuery( $Cadena ));
 
     } //Retorna el número de filas que tiene la consulta
 
     public function ListarTodoReporte() {
-        $Cadena = "SELECT * FROM marca_aut  WHERE estado = '1'";
+        $Cadena = "SELECT * FROM marca_aut  WHERE estado = 'ACTIVO'";
         return $this->EjecutarQuery( $Cadena );
     }
     public function BuscarPorId( $paId ) {
@@ -42,7 +42,7 @@ class Marcas_Autos extends Datos {
         return $this->EjecutarQuery( $Cadena );
     }
     public function Eliminar( $paId ) {
-        $Cadena = "UPDATE marca_aut SET Estado = '1' WHERE id_marca  =
+        $Cadena = "UPDATE marca_aut SET Estado = 'ACTIVO' WHERE id_marca  =
         '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
     }

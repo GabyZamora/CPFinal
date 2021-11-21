@@ -39,6 +39,7 @@ $DatosProveedor = $Fila;
 			left: 0;
 			top: 70px;
 			background-color: white;
+			overflow: auto;
 		}
 
 		#sidemenu #profile{

@@ -46,12 +46,13 @@ $Obj_Paginador->ConfPaginador();
 
 		}
 		.sidebar{
-			position: fixed;
+			position: absolute;
 			width: 250px;
 			height: 100%;
 			left: 0;
 			top: 70px;
 			background-color: white;
+			overflow: auto;
 		}
 
 		#sidemenu #profile{

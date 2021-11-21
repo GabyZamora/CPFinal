@@ -3,6 +3,7 @@ class Modelo extends Datos {
   //Atributos, corresponden a cada uno de los campos de la tabla de clientes
   public $nombre_modelo;
   public $id_marca;
+  public $Estado;
   
   //Métodos
   public function ListarTodos( $paBuscar ) {
@@ -14,7 +15,7 @@ class Modelo extends Datos {
     FROM modelo_aut
     INNER JOIN marca_aut ON modelo_aut.id_marca = marca_aut.id_marca
     WHERE (modelo_aut.nombre_modelo LIKE '%".$paBuscar."%')
-    AND modelo_aut.estado='1' ";
+    AND modelo_aut.estado  ='ACTIVO'";
     return $Cadena; //Acá no se ejecuta la cadena, porque se hace en la clase del paginador
   }
   public function CantTotalRegistros( $paBuscar ) {
@@ -22,7 +23,7 @@ class Modelo extends Datos {
     INNER JOIN marca_aut ON modelo_aut.id_marca = marca_aut.id_marca 
     WHERE
     (modelo_aut.nombre_modelo LIKE '%".$paBuscar."%')
-    AND modelo_aut.estado = '1' ";
+    AND modelo_aut.estado = 'ACTIVO'";
     return mysqli_fetch_row($this->EjecutarQuery( $Cadena ));
   } //Retorna el número de filas que tiene la consulta
 
@@ -34,7 +35,7 @@ class Modelo extends Datos {
     marca_aut.nombre_marca AS NombreMarca
     FROM modelo_aut
     INNER JOIN marca_aut ON modelo_aut.id_marca = marca_aut.id_marca
-    WHERE modelo_aut.estado = '1' ";
+    WHERE modelo_aut.estado  = 'ACTIVO'";
     return $this->EjecutarQuery( $Cadena );
   }
   public function BuscarPorId( $paId ) {
@@ -46,7 +47,7 @@ class Modelo extends Datos {
     FROM modelo_aut
     INNER JOIN marca_aut ON modelo_aut.id_marca = marca_aut.id_marca
     WHERE
-    modelo_aut.modelo_id = '".$paId."' ";
+    modelo_aut.id_modelo = '".$paId."' ";
     return $this->EjecutarQuery( $Cadena );
     }
     public function Agregar() {
@@ -57,18 +58,19 @@ class Modelo extends Datos {
       VALUES (
         '".addslashes($this->Modelo)."',
         '".addslashes($this->Marca)."',
-        '1' )";
+        '".addslashes($this->Estado)."'";
         return $this->EjecutarQuery( $Cadena );
       }
       public function Actualizar( $paId ) {
         $Cadena = "UPDATE modelo_aut SET
         nombre_modelo = '".addslashes($this->Modelo)."',
         id_marca = '".addslashes($this->Marca)."',
+        estado = '".addslashes($this->Estado)."'
         WHERE id_modelo".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
       }
       public function Eliminar( $paId ) {
-        $Cadena = "UPDATE modelo_aut SET estado = '1' WHERE id_modelo =
+        $Cadena = "UPDATE modelo_aut SET estado = 'ACTIVO' WHERE id_modelo =
         '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
       }

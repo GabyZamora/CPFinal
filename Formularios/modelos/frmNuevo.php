@@ -32,6 +32,7 @@ $Datos_Marcas = $Obj_Marcas->ListarTodoCombos();
 			left: 0;
 			top: 70px;
 			background-color: white;
+			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -177,7 +178,7 @@ $Datos_Marcas = $Obj_Marcas->ListarTodoCombos();
 			$('nav ul .ser-show').toggleClass("show");
 		});
 	</script>
-
+</head>
 <form name="frmNuevo" action="" method="post">
   <div class="container">
     <div class="table-wrapper">
@@ -223,8 +224,8 @@ $Datos_Marcas = $Obj_Marcas->ListarTodoCombos();
         <label>Estado: </label>
         <select id="cbxEstado" name="cbxEstado" class="form-control">
           <option value="">Seleccione...</option>
-          <option value=""></option>
-          <option value=""></option>
+          <option value="">Activo</option>
+          <option value="">Inactivo</option>
         </select>
       </div>
     </div> <!-- Cierre del Div table-wrapper -->
