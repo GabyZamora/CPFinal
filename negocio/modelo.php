@@ -44,7 +44,10 @@ class Modelo extends Datos {
     modelo_aut.id_modelo,
     modelo_aut.nombre_modelo AS NombreModelo,
     modelo_aut.id_marca,
-    marca_aut.nombre_marca AS NombreMarca
+    marca_aut.nombre_marca AS NombreMarca,
+    modelo_aut.fechaIngreso_modelo_aut AS FechaIngreso,
+    modelo_aut.fechaModificacion_modelo_aut AS FechaModificacion,
+    modelo_aut.estado
     FROM modelo_aut
     INNER JOIN marca_aut ON modelo_aut.id_marca = marca_aut.id_marca
     WHERE
@@ -72,14 +75,6 @@ class Modelo extends Datos {
       public function Eliminar( $paId ) {
         $Cadena = "UPDATE modelo_aut SET estado = 'INACTIVO' WHERE id_modelo =
         '".$paId."' ";
-        return $this->EjecutarQuery( $Cadena );
-      }
-
-      public function ListarTodoCombos() {
-        $Cadena = "SELECT * FROM modelo_aut
-        WHERE
-        estado = 'ACTIVO'
-        ORDER BY nombre_modelo ASC";
         return $this->EjecutarQuery( $Cadena );
       }
     }
