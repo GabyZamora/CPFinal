@@ -27,7 +27,7 @@ switch ( @$_GET['form'] ) {
   break;
 
   case 'de':
-  $Form = 'Formularios/modelos/frmDetalles.php';
+  $Form = 'Formularios/modelos/frmDetalle.php';
   $FormValid = true;
   break;
 

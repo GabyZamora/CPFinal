@@ -8,7 +8,6 @@
 	//Asignación de atributos de la clase de la capa de negocio
 	$Obj_Modelo->Modelo = $_POST['txtModelo'];
 	$Obj_Modelo->Marca = $_POST['cbxMarca'];
-	$Obj_Modelo->Estado = $_POST['cbxEstado'];
 	//Ejecutamos el mantenimiento de actualizar
 	if( $Obj_Modelo->Actualizar( $_POST['hidId'] ) ) {
 	//Si se ejecuta, redireccionamos al formulario de listar con mensaje update

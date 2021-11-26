@@ -12,7 +12,7 @@ $Obj_Modelo = new Modelo();
 $Obj_Paginador->Cadena = $Obj_Modelo->ListarTodos( addslashes( @$_POST['txtBuscar'] ) );
 $Obj_Paginador->CantTotalReg = $Obj_Modelo->CantTotalRegistros( addslashes( @$_POST['txtBuscar']
 ) );
-$Obj_Paginador->FilasPorPagina = 40; //Define la cantidad de registros mostrados por página
+$Obj_Paginador->FilasPorPagina = 20; //Define la cantidad de registros mostrados por página
 $Obj_Paginador->NumPagina = @$_GET['np']; //Define la página solicitada al paginador
 $Obj_Paginador->EnlaceListar = "mod=model&form=li"; //Define el enlace al modulo y formulario listar de ese módulo
 //Aplicamos la configuración al paginador
@@ -48,7 +48,7 @@ $Obj_Paginador->ConfPaginador();
 			width: 250px;
 			height: 100%;
 			left: 0;
-			top: 60px;
+			top: 70px;
 			background-color: white;
 			overflow: auto;
 		}
