@@ -49,6 +49,7 @@ $Obj_Paginador->ConfPaginador();
 			left: 0;
 			top: 70px;
 			background-color: white;
+			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -157,7 +158,7 @@ $Obj_Paginador->ConfPaginador();
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">
-						<li><a href="#">Gestión de Vehículos</a></li>
+						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
 					</ul>
@@ -253,9 +254,9 @@ $Obj_Paginador->ConfPaginador();
               foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
                 ?>
                 <tr>
-                  <td><?php echo $Fila['NombreCliente']; ?></td>
-                  <td><?php echo $Fila['ApellidoCliente']; ?></td>
-                  <td><?php echo $Fila['Direccion']; ?></td>
+                  <td><?php echo $Fila['nombre_cliente']; ?></td>
+                  <td><?php echo $Fila['apellidos_cliente']; ?></td>
+                  <td><?php echo $Fila['direccion_cliente']; ?></td>
                   <td><?php echo $Fila['telefono_cliente']; ?></td>
                   <td><?php echo $Fila['correo_cliente']; ?></td>
                   <td><?php echo $Fila['nit_cliente']; ?></td>

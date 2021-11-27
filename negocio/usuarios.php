@@ -1,10 +1,10 @@
 <?php
 	class Usuarios extends Datos {
 		//Atributos
-		public $NombreCompleto;
+		public $NombreUsuario;
 		public $Usuario;
 		public $Password;
-		 public $TipoCuenta;
+		public $TipoCuenta;
 
 		//Métodos
 		public function ListarTodos( $paBuscar ) {
@@ -34,13 +34,13 @@
 		$Cadena = "INSERT INTO usuarios (
 		nombre_usuario,
 		Usuario,
-		Password,
+		PASSWORD,
 		Estado )
 		VALUES (
 		'".addslashes($this->NombreUsuario)."',
 		'".addslashes($this->Usuario)."',
 		'".addslashes(md5($this->Password))."',
-		'1' ) ";
+		'ACTIVO' ) ";
 		return $this->EjecutarQuery( $Cadena );
 		}
 
@@ -53,20 +53,20 @@
 
 		 public function ReestablecerPassword( $paId ) {
 		$Cadena = "UPDATE usuarios SET
-		Password = '".addslashes(md5('admin'))."'
+		PASSWORD = '".addslashes(md5('admin'))."'
 		WHERE id_usuario = '".$paId."' ";
 		return $this->EjecutarQuery( $Cadena );
 		}
 
 		public function Eliminar( $paId ) {
-		$Cadena = "UPDATE usuarios SET Estado = '0' WHERE
+		$Cadena = "UPDATE usuarios SET estado = 'ACTIVO' WHERE
 		id_usuario = '".$paId."' ";
 		return $this->EjecutarQuery( $Cadena );
 		}
 
 		 public function ValidarLogin( $paUsua, $paPass ) {
 		$Cadena = "SELECT * FROM usuarios WHERE Usuario =
-		'".$paUsua."' AND Password = '".$paPass."' ";
+		'".$paUsua."' AND PASSWORD = '".$paPass."' ";
 		return $this->EjecutarQuery( $Cadena );
 		}
 		
@@ -77,7 +77,7 @@
 		}
 		 public function CambiarPassword( $paId ) {
 		$Cadena = "UPDATE usuarios SET
-		Password = '".addslashes(md5($this->Password))."'
+		PASSWORD = '".addslashes(md5($this->Password))."'
 		WHERE id_usuario = '".$paId."' ";
 		return $this->EjecutarQuery( $Cadena );
 		}

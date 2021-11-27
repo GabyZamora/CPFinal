@@ -29,6 +29,9 @@ switch( @$_GET["mod"] ){
   case 'model':
       $Modulo = 'Formularios/modelos/index.php';
   break;
+  case 'veh':
+    $Modulo = 'Formularios/vehiculos/index.php';
+  break;
   default:
   $Modulo = 'login.php';
   break;

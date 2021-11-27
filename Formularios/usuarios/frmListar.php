@@ -159,7 +159,7 @@
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">
-						<li><a href="#">Gestión de Vehículos</a></li>
+						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
 					</ul>
@@ -238,7 +238,7 @@
 	 	<table class="table table-striped table-hover">
 	 		<thead>
 	 			<tr>
-	 				<th>Nombre Completo</th>
+	 				<th>NombreUsuario</th>
 	 				<th>Usuario</th>
 					 <th>Acciones</th>
 	 			</tr>
@@ -253,11 +253,11 @@
 		 			<td><?php echo $Fila['Usuario']; ?></td>
 		 			<td>
 					 <a href="#" class="view" onClick="ReestablecerPassword('<?php
-					echo $Fila['IdUsuario']; ?>');" title="Reestablecer Password"><i class="materialicons">&#xe0da;</i></a>
+					echo $Fila['usuario_id']; ?>');" title="Reestablecer Password"><i class="materialicons">&#xe0da;</i></a>
 					 <a href="index.php?mod=usu&form=ed&id=<?php echo
 					$Fila['id_usuario']; ?>" class="edit"><i class="material-icons" datatoggle="tooltip" title="Editar">&#xE254;</i></a>
-					 <a href="#" class="delete" onClick="Eliminar('<?php echo
-					$Fila['IdUsuario']; ?>');"><i class="material-icons" data-toggle="tooltip"
+					 <a href="#" class="delete" onclick="Eliminar('<?php echo
+					$Fila['usuario_id']; ?>');"><i class="material-icons" data-toggle="tooltip"
 					title="Eliminar">&#xE872;</i></a>
 					</td>
 			 	</tr>
@@ -271,14 +271,14 @@
 <script type="text/javascript">
 	function Eliminar( paId ){
 		if( confirm('¿Confirma eliminar este registro?') ){
-		window.location.replace('index.php?mod=usua&form=el&id=' +
+		window.location.replace('index.php?mod=usu&form=el&id=' +
 		paId);
 		}
 	}
 	//Función para reestablecer el password de la cuenta
 	function ReestablecerPassword( paId ){
 		if( confirm('¿Confirma reestablecer el password de esta cuenta?') ){
-		window.location.replace('index.php?mod=usua&form=rp&id=' +
+		window.location.replace('index.php?mod=usu&form=rp&id=' +
 		paId);
 		}
 	}

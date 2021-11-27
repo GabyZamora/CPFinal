@@ -3,34 +3,33 @@
 require_once('datos/datos.php');
 //Llamamos a la capa de negocio
 require_once('negocio/paginador.php');
-require_once('negocio/cat_articulo.php');
+require_once('negocio/vehiculos.php');
 //Instanciamos las clases de la capa de negocio
 $Obj_Paginador = new Paginador();
-$Obj_Cat_Articulo = new Cat_Articulo();
+$Obj_Vehiculos = new Vehiculos();
 
 
-$Obj_Paginador->Cadena = $Obj_Cat_Articulo->ListarTodos( addslashes( @$_POST['txtBuscar'] ) );
-$Obj_Paginador->CantTotalReg = $Obj_Cat_Articulo->CantTotalRegistros( addslashes( @$_POST['txtBuscar']
+$Obj_Paginador->Cadena = $Obj_Vehiculos->ListarTodos( addslashes( @$_POST['txtBuscar'] ) );
+$Obj_Paginador->CantTotalReg = $Obj_Vehiculos->CantTotalRegistros( addslashes( @$_POST['txtBuscar']
 ) );
 $Obj_Paginador->FilasPorPagina = 5; 
 $Obj_Paginador->NumPagina = @$_GET['np']; 
-$Obj_Paginador->EnlaceListar = "mod=catar&form=li"; 
+$Obj_Paginador->EnlaceListar = "mod=clie&form=li"; 
 $Obj_Paginador->ConfPaginador();
 
 ?>
+<head>
 <!-- CSS -->
-  <head>
-  <link rel="stylesheet" href="css/iconfont/material-icons.css">
-  <link rel="stylesheet" href="css/bootstrap-4.3.1.min.css">
-  <link rel="stylesheet" href="css/formularios.css">
+<link rel="stylesheet" href="css/iconfont/material-icons.css">
+<link rel="stylesheet" href="css/bootstrap-4.3.1.min.css">
+<link rel="stylesheet" href="css/formularios.css">
 <!-- JS -->
-  <script src="js/jquery-3.4.0.min.js"></script>
-  <script src="js/bootstrap-4.3.1.min.js"></script>
+<script src="js/jquery-3.4.0.min.js"></script>
+<script src="js/bootstrap-4.3.1.min.js"></script>
 
 
-  <link href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-	<link rel="stylesheet" href="css/iconfont/material-icons.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap-3.3.7.min.css"> 
 	<script src="https://kit.fontawesome.com/b1f3afb15c.js" crossorigin="anonymous"></script>
@@ -152,7 +151,7 @@ $Obj_Paginador->ConfPaginador();
 			<ul>
 				<li><a href="index.php?mod=menu"><span class="fas fa-home"></span>Inicio</a></li>
 				<li><a href="index.php?mod=usu&form=li"><span class="fas fa-user"></span> Usuarios</a></li>
-				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span> Clientes</a></li>
+				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span>Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
 				<li>
 					<a href="#" class="vehi-btn">Vehículos
@@ -202,7 +201,8 @@ $Obj_Paginador->ConfPaginador();
     <div class="table-title">
       <div class="form-row">
         <div class="col-md-4">
-          <a href="index.php?mod=catar&form=li" class="a-titulo-form"><h2>Categorías de artículos</h2></a>
+          <a href="indx.php?mod=veh&form=li" class="a-titulo-form"><h2>Gestión de
+            <b>Vehiculos</b></h2></a>
           </div>
           <div class="col-md-3">
             <div class="input-group">
@@ -223,9 +223,9 @@ $Obj_Paginador->ConfPaginador();
             <button type="button" class="btn btn-danger" data-toggle="modal"
             onClick="location.replace('index.php?mod=menu');">
             <i class="material-icons">&#xe879;</i><span>Cerrar</span></button>
-            <button type="button" class="btn btn-info" onclick="window.open('reportes/generalCatar.php','ReporteGenclientes', 'width=1000,height=600');">
+            <button type="button" class="btn btn-info" onclick="window.open('reportes/generalVehiculos.php','ReporteGenVehiculos', 'width=1000,height=600');">
               <i class="material-icons">&#xe8ad;</i><span>Imprimir</span></button>
-              <button type="button" class="btn btn-success" onclick="location.replace('index.php?mod=catar&form=nu');">
+              <button type="button" class="btn btn-success" onclick="location.replace('index.php?mod=veh&form=nu');">
                 <i class="material-icons">&#xe148;</i><span>Agregar Nuevo</span></button>
               </div>
             </div>
@@ -238,10 +238,11 @@ $Obj_Paginador->ConfPaginador();
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>Nombre</th>
-                <th>Descripión</th>
-                <th>Fecha de Ingreso</th>
-                <th>Fecha de Modificación</th>
+                <th>Nombre Cliente</th>
+                <th>Nombre Marca</th>
+                <th>Nombre Modelo</th>
+                <th>Placa</th>
+                <th>Tipo Vehiculo</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -251,15 +252,16 @@ $Obj_Paginador->ConfPaginador();
               foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
                 ?>
                 <tr>
-                  <td><?php echo $Fila['nombre_categoria_art']; ?></td>
-                  <td><?php echo $Fila['descripcion_categoria_art']; ?></td>
-                  <td><?php echo $Fila['fecIngreso_categoria_art']; ?></td>
-                  <td><?php echo $Fila['fechModificacion_categoria_art']; ?></td>
+                  <td><?php echo $Fila['NombreCliente'+'ApellidoCliente']; ?></td>
+                  <td><?php echo $Fila['NombreMarca']; ?></td>
+                  <td><?php echo $Fila['NombreModelo']; ?></td>
+                  <td><?php echo $Fila['placa']; ?></td>
+                  <td><?php echo $Fila['tipo_vehiculo']; ?></td>
                   <td>
-                    <a href="index.php?mod=catar&form=de&id=<?php echo $Fila['id_categoria_art'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
-                    <a href="index.php?mod=clie&form=ed&id=<?php echo $Fila['id_categoria_art'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"
+                    <a href="indx.php?mod=veh&form=de&id=<?php echo $Fila['id_vehiculo'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
+                    <a href="indx.php?mod=veh&form=ed&id=<?php echo $Fila['id_vehiculo'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"
                       title="Editar">&#xE254;</i></a>
-                      <a href="#" class="delete" onclick="Eliminar('<?php echo $Fila['id_categoria_art']; ?>');"><i class="material-icons" data-toggle="tooltip"
+                      <a href="#" class="delete" onclick="Eliminar('<?php echo $Fila['id_vehiculo']; ?>');"><i class="material-icons" data-toggle="tooltip"
                         title="Eliminar">&#xE872;</i></a>
                       </td>
                     </tr>
@@ -273,7 +275,7 @@ $Obj_Paginador->ConfPaginador();
 <script type="text/javascript">
     function Eliminar(paId){
         if(confirm('¿Confirma eliminar este registro?')){
-            window.location.replace('index.php?mod=catar&form=el&id=' + paId);
+            window.location.replace('indx.php?mod=veh&form=el&id=' + paId);
         }
     }
 </script>

@@ -147,7 +147,7 @@ $DatosModelo = $Fila;
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">
-						<li><a href="#">Gestión de Vehículos</a></li>
+						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
 					</ul>
@@ -223,6 +223,14 @@ $DatosModelo = $Fila;
            ?>
           </select>
         </div>
+		<div class="form-group col-md-4">
+        <label>Estado: </label>
+        <select id="cbxEstado" name="cbxEstado" class="form-control">
+          <option value="">Seleccione...</option>
+          <option value="">Activo</option>
+          <option value="">Inactivo</option>
+        </select>
+		</div>
     </div> <!-- Cierre del Div table-wrapper -->
   </div> <!-- Cierre del Div container -->
 </form>

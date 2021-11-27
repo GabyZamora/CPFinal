@@ -52,7 +52,7 @@ class Proveedor extends datos {
                 fechaModificacion_proveedor;
                 estado )
             VALUES (
-     '".addslashes($this->Nombre)."',
+        '".addslashes($this->Nombre)."',
         '".addslashes($this->Apellido)."',
         '".addslashes($this->Genero)."',
         '".addslashes($this->DUI)."',
@@ -90,4 +90,4 @@ class Proveedor extends datos {
         return $this->EjecutarQuery( $Cadena );
     }
  }
- ?>
+?>

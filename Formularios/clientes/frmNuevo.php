@@ -32,12 +32,13 @@ $DatosMunicipios = $Obj_Municipios->ListarTodoCombos();
 
 		}
 		.sidebar{
-			position: fixed;
+			position: absolute;
 			width: 250px;
 			height: 100%;
 			left: 0;
 			top: 70px;
 			background-color: white;
+			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -146,7 +147,7 @@ $DatosMunicipios = $Obj_Municipios->ListarTodoCombos();
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">
-						<li><a href="#">Gestión de Vehículos</a></li>
+						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
 					</ul>
@@ -256,7 +257,7 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <div class="form-row">
 <div class="form-group col-md-4">
 <label>Teléfono: </label>
-<input type="tel" class="form-control" id="txtTelefono" name="txtTelefono">
+<input type="text" class="form-control" id="txtTelefono" name="txtTelefono">
 </div>
 <div class="form-group col-md-4">
 <label>Correo: </label>
@@ -355,9 +356,6 @@ alert('Ingrese número de nit del cliente');
 }
 else if ( !document.getElementById('txtNRC').value ) {
 alert('');
-}
-else if ( !document.getElementById('cbxEstado').value ) {
-alert('Seleccione estado');
 }
 else {
 document.forms.frmNuevo.action = 'index.php?mod=clie&form=ag ';

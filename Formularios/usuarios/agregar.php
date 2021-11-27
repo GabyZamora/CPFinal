@@ -6,18 +6,18 @@
 	//Instanciamos la clase de la capa de negocio
 	$Obj_Usuarios = new Usuarios();
 	//Asignación de atributos a la clase de la capa de negocio
-	$Obj_Usuarios->NombreCompleto = $_POST['txtNombreC'];
+	$Obj_Usuarios->NombreUsuario = $_POST['txtNombreC'];
 	$Obj_Usuarios->Usuario = $_POST['txtUsuario'];
 	$Obj_Usuarios->Password = $_POST['txtPassword'];
 	//Ejecutamos el mantenimiento de agregar
 	if( $Obj_Usuarios->Agregar() ) {
 	 //Si se ejecuta, redireccionamos al formulario de listar con mensaje succes
-	 echo 
+	echo 
 	"<script>location.replace('index.php?mod=usu&form=li&m=success');</script>";
 	}
 	else {
 	 //Si no se ejecuta, redireccionamos al formulario de listar con mensaje de error
-	 echo
-	"<script>location.replace('index.php?mod=usua&form=li&m=error');</script>";
+	echo
+	"<script>location.replace('index.php?mod=usu&form=li&m=error');</script>";
 	}
 ?>

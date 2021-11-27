@@ -8,12 +8,12 @@
 	//Ejecutamos el mantenimiento de eliminar
 	if( $Obj_Usuarios->Eliminar( $_GET['id'] ) ) {
 	 //Si se ejecuta, redireccionamos al formulario de listar con mensaje success
-	 echo
+	echo
 	"<script>location.replace('index.php?mod=usu&form=li&m=delete');</script>";
 	}
 	else {
 	 //Si no se ejecuta, redireccionamos al formulario de listar con mensaje de error
-	 echo
-	"<script>location.replace('index.php?mod=usua&form=li&m=error');</script>";
+	echo
+	"<script>location.replace('index.php?mod=usu&form=li&m=error');</script>";
 	}
 ?>

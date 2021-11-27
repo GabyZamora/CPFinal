@@ -9,11 +9,11 @@
 	if( $Obj_Usuarios->ReestablecerPassword( $_GET['id'] ) ) {
 	 //Si se ejecuta, redireccionamos al formulario de listar con mensaje success
 	 echo
-	"<script>location.replace('index.php?mod=usua&form=li&m=update');</script>";
+	"<script>location.replace('index.php?mod=usu&form=li&m=update');</script>";
 	}
 	else {
 	 //Si no se ejecuta, redireccionamos al formulario de listar con mensaje de error
 	 echo
-     "<script>location.replace('index.php?mod=usua&form=li&m=error');</script>";
+     "<script>location.replace('index.php?mod=usu&form=li&m=error');</script>";
 	}
 ?>

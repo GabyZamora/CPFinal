@@ -18,19 +18,19 @@ class Clientes extends Datos {
   public function ListarTodos( $paBuscar ) {
     $Cadena = "SELECT * FROM clientes WHERE
     (nombre_cliente LIKE '%".$paBuscar."%' OR direccion_cliente LIKE '%".$paBuscar."%')
-    AND estado = '1'";
+    AND estado = 'ACTIVO'";
     return $Cadena; //Acá no se ejecuta la cadena, porque se hace en la clase del paginador
   }
   public function CantTotalRegistros( $paBuscar ) {
     $Cadena = "SELECT COUNT(id_cliente) FROM clientes WHERE
     (nombre_cliente LIKE '%".$paBuscar."%' OR direccion_cliente LIKE '%".$paBuscar."%')
-    AND estado = '1'";
+    AND estado = 'ACTIVO'";
     return mysqli_fetch_row($this->EjecutarQuery( $Cadena ));
   } //Retorna el número de filas que tiene la consulta
 
   public function ListarTodoReporte() {
     $Cadena = "SELECT * FROM clientes WHERE
-    estado = '1'";
+    estado = 'ACTIVO'";
     return $this->EjecutarQuery( $Cadena );
   }
   public function BuscarPorId( $paId ) {
@@ -63,7 +63,7 @@ class Clientes extends Datos {
         '".addslashes($this->NIT)."',
         '".addslashes($this->NRC)."',
         '".addslashes($this->GiroNrc)."',
-        '1' )";
+        'ACTIVO' )";
         return $this->EjecutarQuery( $Cadena );
       }
       public function Actualizar( $paId ) {
@@ -83,8 +83,15 @@ class Clientes extends Datos {
         return $this->EjecutarQuery( $Cadena );
       }
       public function Eliminar( $paId ) {
-        $Cadena = "UPDATE clientes SET estado = '1' WHERE id_cliente =
+        $Cadena = "UPDATE clientes SET estado = 'INACTIVO' WHERE id_cliente =
         '".$paId."' ";
+        return $this->EjecutarQuery( $Cadena );
+      }
+      public function ListarTodoCombos() {
+        $Cadena = "SELECT * FROM clientes
+        WHERE
+        estado = 'ACTIVO'
+        ORDER BY nombre_cliente ASC";
         return $this->EjecutarQuery( $Cadena );
       }
     }

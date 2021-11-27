@@ -42,7 +42,7 @@ class Municipios  extends Datos {
     municipios.id_departamento,
     departamentos.nombre_departamento AS Departamento
     FROM departamentos
-     INNER JOIN municipios ON municipios.id_departamento = departamentos.id_departamento
+    INNER JOIN municipios ON municipios.id_departamento = departamentos.id_departamento
     WHERE
     municipios.id_municipio = '".$paId."' ";
     return $this->EjecutarQuery( $Cadena );

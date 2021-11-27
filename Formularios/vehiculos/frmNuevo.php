@@ -1,24 +1,24 @@
 <?php
-//Llamamos a la capa de datos
 require_once 'datos/datos.php';
-//Llamamos a la capa de negocio
-require_once 'negocio/clientes.php';
-//Instanciamos las clases de la capa de negocio
-$Obj_Clientes = new Clientes();
-//Cargamos el registro solicitado
-$DatosCliente = $Obj_Clientes->BuscarPorId( $_GET['id'] );
-//Recuperamos el registro obtenido en una variable fila
-foreach ( $DatosCliente as $Fila ) {
-$DatosCliente = $Fila;
-}
+require_once 'negocio/marcasautos.php';
+require_once 'negocio/modelo.php';
+
+$Obj_Cliente = new Cliente();
+$DatosCliente = $Obj_Cliente->ListarTodoCombos();
+$Obj_Modelo = new Modelo();
+$Datos_Modelo = $Obj_Modelo->ListarTodoCombos();
+$Obj_Marcas_Autos = new Marcas_Autos();
+$Datos_Marcas_Autos = $Obj_Marcas_Autos->ListarTodoCombos();
 ?>
+
 <!-- CSS -->
 <head>
 <link rel="stylesheet" href="css/iconfont/material-icons.css">
 <link rel="stylesheet" href="css/bootstrap-4.3.1.min.css">
 <link rel="stylesheet" href="css/formularios.css">
 <link href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+			  crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="css/iconfont/material-icons.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap-3.3.7.min.css"> 
@@ -184,20 +184,21 @@ $DatosCliente = $Fila;
 		$('.ser-btn').click(function(){
 			$('nav ul .ser-show').toggleClass("show");
 		});
+
 	</script>
 
-<form name="frmEditar" action="" method="post">
+<form name="frmNuevo" action="" method="post">
 <div class="container">
 <div class="table-wrapper">
 <div class="table-title">
 <div class="form-row">
 <div class="col-md-8">
-<h2>Editar Cliente</h2>
+<h2>Nuevo Vehiculo</h2>
 </div>
 <div class="col-md-4">
 <button type="button" class="btn btn-danger"
-onClick="location.replace('index.php?mod=clie&form=li');"><i class="material-icons">&#xe5c9;</i><span>Cancelar</span></button>
-<button type="button" class="btn btn-success" onClick="ValidarEditar();"><i
+onClick="location.replace('index.php?mod=veh&form=li');"><i class="material-icons">&#xe5c9;</i><span>Cancelar</span></button>
+<button type="button" class="btn btn-success" onClick="ValidarNuevo();"><i
 class="material-icons">&#xe161;</i><span>Guardar</span></button>
 </div>
 </div>
@@ -205,66 +206,89 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <!-- -------------------------- Fila 1 -------------------------- -->
 <div class="form-row">
 <div class="form-group col-md-8">
-<label>Nombre: </label>
-<input type="text" class="form-control" id="txtNombre" name="txtNombre">
+<label>Nombre Cliente: </label>
+<select id="cbxCliente" name="cbxCliente" class="form-control">
+           <option value="">Seleccione...</option>
+           <?php
+           foreach ( $DatosClientes as $FilaCliente ) {
+           ?>
+           <option value="<?php echo $FilaCliente['id_cliente']; ?>"><?php echo
+          $FilaCliente['nombre_cliente'+'apellidos_cliente']; ?></option>
+           <?php
+           }
+           ?>
+          </select>
 </div>
-<div class="form-group col-md-4">
-<label>Apellidos: </label>
-<input type="text" class="form-control" id="txtApellido" name="txtApellido">
+<div class="form-group col-md-6">
+          <label>Marca: </label>
+          <select id="cbxMarca" name="cbxMarca" class="form-control">
+           <option value="">Seleccione...</option>
+           <?php
+           foreach ( $Datos_Marcas_Autos as $FilaMarca ) {
+           ?>
+           <option value="<?php echo $FilaMarca['id_marca']; ?>"><?php echo
+          $FilaMarca['nombre_marca']; ?></option>
+           <?php
+           }
+           ?>
+          </select>
 </div>
 </div>
 <!-- -------------------------- Fila 2 -------------------------- -->
 <div class="form-row">
+<div class="form-group col-md-6">
+          <label>Modelo: </label>
+          <select id="cbxModelo" name="cbxModelo" class="form-control">
+           <option value="">Seleccione...</option>
+           <?php
+           foreach ( $DatosModelo as $FilaModelo ) {
+           ?>
+           <option value="<?php echo $FilaModelo['id_modelo']; ?>"><?php echo
+          $FilaModelo['nombre_modelo']; ?></option>
+           <?php
+           }
+           ?>
+          </select>
+        </div>
 <div class="form-group col-md-8">
-<label>Dirección: </label>
-<input type="text" class="form-control" id="txtDireccion" name="txtDireccion">
-</div>
-<div class="form-group col-md-4">
-<label>Departamento: </label>
-<select id="cbxDepa" name="cbxDepa" class="form-control">
-<option value="">Seleccione...</option>
-<option value=""></option>
-<option value=""></option>
-</select>
+<label>Placa: </label>
+<input type="text" class="form-control" id="txtPlaca" name="txtPlaca">
 </div>
 </div>
 <!-- -------------------------- Fila 3 -------------------------- -->
 <div class="form-row">
 <div class="form-group col-md-4">
-<label>Municipio: </label>
-<select id="cbxMunicipio" name="cbxMunicipio" class="form-control">
-<option value="">Seleccione...</option>
-<option value=""></option>
-<option value=""></option>
-</select>
+<label>Tipo Vehículo: </label>
+<input type="text" class="form-control" id="txtTipoVeh" name="txtTipoVeh">
 </div>
 <div class="form-group col-md-4">
-<label>Teléfono: </label>
-<input type="tel" class="form-control" id="txtTelefono" name="txtTelefono">
+<label>Color Vehículo: </label>
+<input type="text" class="form-control" id="txtColorVeh" name="txtColorVeh">
 </div>
 <div class="form-group col-md-4">
-<label>Correo: </label>
-<input type="text" class="form-control" id="txtCorreo" name="txtCorreo">
+<label>Año de Vehiculo: </label>
+<input type="text" class="form-control" id="txtAnio" name="txtAnio">
 </div>
 </div>
 
 <!-- --------------------------Fila 4 ----------------------------- -->
 <div class="form-row">
 <div class="form-group col-md-4">
-<label>Factura: </label>
-<input type="text" class="form-control" id="txtFactura" name="txtFactura">
+<label>Vin Vehiculo </label>
+<input type="text" class="form-control" id="txtVin" name="txtVin">
 </div>
 <div class="form-group col-md-4">
-<label>NIT: </label>
-<input type="tel" class="form-control" id="txtNIT" name="txtNIT">
+<label>Número de Motor: </label>
+<input type="text" class="form-control" id="txtMotor" name="txtMotor">
 </div>
+
 </div>
 
 <!-- --------------------------Fila 5----------------------------- -->
 <div class="form-row">
 <div class="form-group col-md-4">
-<label>NRC: </label>
-<input type="tel" class="form-control" id="txtNRC" name="txtNRC">
+<label>Observaciones Vehiculo: </label>
+<input type="text" class="form-control" id="txtObservacion" name="txtObservacion">
 </div>
 <div class="form-group col-md-4">
 <label>Estado: </label>
@@ -275,45 +299,47 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 </select>
 </div>
 </div>
+
+<!-- Cierres de div iniciales -->
 </div> <!-- Cierre del Div table-wrapper -->
 </div> <!-- Cierre del Div container -->
 </form>
 <!-- -------------------- Validaciones de ingreso de datos -------------------- -->
 <script type="text/javascript">
-function ValidarEditar(){
+function ValidarNuevo(){
 if ( !document.getElementById('txtNombre').value ) {
-alert('Ingrese el nombre del cliente');
+alert('Seleccione el nombre del cliente');
 }
-else if ( !document.getElementById('txtApellido').value ) {
-alert('Ingrese los apellidos del cliente');
+else if ( !document.getElementById('cbxMarca').value ) {
+alert('Seleccione la marca del vehículo');
 }
-else if ( !document.getElementById('txtDireccion').value ) {
-alert('Ingrese la dirección del cliente');
+else if ( !document.getElementById('cbxModelo').value ) {
+alert('Seleccione el modelo del vehículo');
 }
-else if ( !document.getElementById('cbxDepa').value ) {
-alert('Seleccione un departamento');
+else if ( !document.getElementById('txtTipoVeh').value ) {
+alert('Ingrese tipo de vehículo');
 }
-else if ( !document.getElementById('cbxMunicipio').value ) {
-alert('Selecione un municipio');
+else if ( !document.getElementById('txtColorVeh').value ) {
+alert('Ingrese el color del vehículo');
 }
-else if ( !document.getElementById('txtTelefono').value ) {
-alert('Ingrese número de teléfono');
+else if ( !document.getElementById('txtAnio').value ) {
+alert('Ingrese el año del vehículo');
 }
-else if ( !document.getElementById('txtCorreo').value ) {
-alert('Ingrese correo electrónico del cliente');
+else if ( !document.getElementById('txtVin').value ) {
+alert('Ingrese el VIN del vehículo');
 }
-else if ( !document.getElementById('txtNIT').value ) {
-alert('Ingrese número de nit del cliente');
+else if ( !document.getElementById('txtMotor').value ) {
+alert('Ingrese el número de motor');
 }
-else if ( !document.getElementById('txtNRC').value ) {
-alert('');
+else if ( !document.getElementById('txtObservacion').value ) {
+alert('Ingrese las observaciones del vehículo');
 }
 else if ( !document.getElementById('cbxEstado').value ) {
 alert('Seleccione estado');
 }
 else {
-document.forms.frmEditar.action = 'index.php?mod=clie&form=ac';
-document.forms.frmEditar.submit();
+document.forms.frmNuevo.action = 'index.php?mod=veh&form=ag';
+document.forms.frmNuevo.submit();
 }
 }
 </script>

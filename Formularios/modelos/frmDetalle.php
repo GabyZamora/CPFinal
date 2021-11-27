@@ -143,7 +143,7 @@ $DatosModelo = $Fila;
 				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span> Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
 				<li>
-					<a href="#" class="vehi-btn">Vehículos
+					<a href="index.php?mod=veh&form=li" class="vehi-btn">Vehículos
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">

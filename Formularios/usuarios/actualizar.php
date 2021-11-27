@@ -10,12 +10,11 @@
 	//Ejecutamos el mantenimiento de actualizar
 	if( $Obj_Usuarios->Actualizar( $_POST['hidId'] ) ) {
 	 //Si se ejecuta, redireccionamos al formulario de listar con mensaje update
-	 echo
-	"<script>location.replace('index.php?mod=usu&form=li&m=update');</script>";
+	echo "<script>location.replace('index.php?mod=usu&form=li&m=update');</script>";
 	}
 	else {
 	 //Si no se ejecuta, redireccionamos al formulario de listar con mensaje de error
-	 echo
-	"<script>location.replace('index.php?mod=usua&form=li&m=error');</script>";
+	echo
+	"<script>location.replace('index.php?mod=usu&form=li&m=error');</script>";
 	}
 ?>

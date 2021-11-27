@@ -10,7 +10,7 @@
 	$Obj_Modelo->Modelo = $_POST['txtModelo'];
 	$Obj_Modelo->Marca = $_POST['cbxMarca'];
 	//Ejecutamos el mantenimiento de actualizar
-	if( $Obj_Proveedor->Actualizar( $_POST['hidId'] ) ) {
+	if( $Obj_Modelo->Actualizar( $_POST['hidId'] ) ) {
 	//Si se ejecuta, redireccionamos al formulario de listar con mensaje update
 	echo "<script>location.replace('index.php?mod=model&form=li&m=update');</script>";
 	}

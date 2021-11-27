@@ -53,6 +53,6 @@ class Marcas_Autos extends Datos {
         estado = 'ACTIVO'
         ORDER BY nombre_marca ASC";
         return $this->EjecutarQuery( $Cadena );
-      }
+    }
 }
 ?>
