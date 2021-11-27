@@ -49,7 +49,6 @@ $Obj_Paginador->ConfPaginador();
 			left: 0;
 			top: 70px;
 			background-color: white;
-			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -254,9 +253,10 @@ $Obj_Paginador->ConfPaginador();
               foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
                 ?>
                 <tr>
-                  <td><?php echo $Fila['nombre_cliente']; ?></td>
-                  <td><?php echo $Fila['apellidos_cliente']; ?></td>
-                  <td><?php echo $Fila['direccion_cliente']; ?></td>
+                  <td><?php echo $Fila['NombreCliente']; ?></td>
+                  <td><?php echo $Fila['ApellidoCliente']; ?></td>
+                  <td><?php echo $Fila['Direccion']; ?></td>
+                  <td><?php echo $Fila['telefono_cliente']; ?></td>
                   <td><?php echo $Fila['correo_cliente']; ?></td>
                   <td><?php echo $Fila['nit_cliente']; ?></td>
                   <td><?php echo $Fila['nrc_cliente']; ?></td>

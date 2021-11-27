@@ -1,15 +1,23 @@
 <?php
+//Llamamos a la capa de datos
 require_once 'datos/datos.php';
+//Llamamos a la capa de negocio
+require_once 'negocio/departamentos.php';
+require_once 'negocio/municipios.php';
+//Instanciamos las clases de la capa de negocio
+$Obj_Departamentos = new Departamentos();
+$Obj_Municipios = new Municipios();
+//Recuperamos los registros de las categorías y las marcas
+$DatosDepartamentos = $Obj_Departamentos->ListarTodoCombos();
+$DatosMunicipios = $Obj_Municipios->ListarTodoCombos();
 ?>
-
 <!-- CSS -->
 <head>
 <link rel="stylesheet" href="css/iconfont/material-icons.css">
 <link rel="stylesheet" href="css/bootstrap-4.3.1.min.css">
 <link rel="stylesheet" href="css/formularios.css">
 <link href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-			  crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<link rel="stylesheet" href="css/iconfont/material-icons.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap-3.3.7.min.css"> 
@@ -30,7 +38,6 @@ require_once 'datos/datos.php';
 			left: 0;
 			top: 70px;
 			background-color: white;
-			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -132,7 +139,7 @@ require_once 'datos/datos.php';
 			<ul>
 				<li><a href="index.php?mod=menu"><span class="fas fa-home"></span>Inicio</a></li>
 				<li><a href="index.php?mod=usu&form=li"><span class="fas fa-user"></span> Usuarios</a></li>
-				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span> Clientes</a></li>
+				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-caret-down"></span> Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
 				<li>
 					<a href="#" class="vehi-btn">Vehículos
@@ -175,7 +182,6 @@ require_once 'datos/datos.php';
 		$('.ser-btn').click(function(){
 			$('nav ul .ser-show').toggleClass("show");
 		});
-
 	</script>
 
 <form name="frmNuevo" action="" method="post">
@@ -211,36 +217,43 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <label>Dirección: </label>
 <input type="text" class="form-control" id="txtDireccion" name="txtDireccion">
 </div>
-<div class="form-group col-md-4">
+</div>
+
+
+<!-- -------------------------- Fila 3 -------------------------- -->
+<div class="form-row">
+	<div class="form-group col-md-4">
 <label>Departamento: </label>
 <select id="cbxDepa" name="cbxDepa" class="form-control">
 <option value="">Seleccione...</option>
-<option value="1">AHUACHAPAN</option>
-<option value="2">SANTA ANA</option>
-<option value="3">SONSONATE</option>
-<option value="4">CHALATENANGO</option>
-<option value="5">LA LIBERTAD</option>
-<option value="6">SAN SALVADOR</option>
-<option value="7">CUSCATLAN</option>
-<option value="8">LA PAZ</option>
-<option value="9">CABAÑAS</option>
-<option value="10">SAN VICENTE</option>
-<option value="11">USULUTAN</option>
-<option value="12">SAN MIGUEL</option>
-<option value="13">MORAZAN</option>
-<option value="14">LA UNION</option>
+              <?php
+              foreach ( $DatosDepartamentos as $FilaDepartamento ) {
+                ?>
+                <option value="<?php echo $FilaDepartamento['id_departamento']; ?>"><?php echo
+                $FilaDepartamento['nombre_departamento']; ?></option>
+                <?php
+              }
+              ?>
 </select>
 </div>
-</div>
-<!-- -------------------------- Fila 3 -------------------------- -->
-<div class="form-row">
 <div class="form-group col-md-4">
-<label>Municipio: </label>
+<label>Municipio:</label>
 <select id="cbxMunicipio" name="cbxMunicipio" class="form-control">
-<option value="">Seleccione...</option>
-
+	<option value="">Seleccione...</option>
+              <?php
+              foreach ( $DatosMunicipios as $FilaMunicipio ) {
+                ?>
+                <option value="<?php echo $FilaMunicipio['id_municipio']; ?>"><?php echo
+                $FilaMunicipio['nombre_municipio']; ?></option>
+                <?php
+              }
+              ?>
 </select>
 </div>
+</div>
+
+<!-- --------------------------Fila 4 ----------------------------- -->
+<div class="form-row">
 <div class="form-group col-md-4">
 <label>Teléfono: </label>
 <input type="tel" class="form-control" id="txtTelefono" name="txtTelefono">
@@ -251,7 +264,7 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 </div>
 </div>
 
-<!-- --------------------------Fila 4 ----------------------------- -->
+<!-- --------------------------Fila 5 ----------------------------- -->
 <div class="form-row">
 <div class="form-group col-md-4">
 <label>Factura: </label>
@@ -274,8 +287,8 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <label>Estado: </label>
 <select id="cbxEstado" name="cbxEstado" class="form-control">
 <option value="">Seleccione...</option>
-<option value=""></option>
-<option value=""></option>
+<option value="">ACTIVO</option>
+<option value="">INACTIVO</option>
 </select>
 </div>
 </div>
@@ -284,6 +297,35 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 </div> <!-- Cierre del Div table-wrapper -->
 </div> <!-- Cierre del Div container -->
 </form>
+
+
+<!-- FUNCION PARA LOS SELECT DEPARTAMENTO Y MUNICIPIO 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#cbxDepa').val();
+		recargarLista();
+
+		$('#cbxDepa').change(function(){
+			recargarLista();
+		});
+	})
+</script>
+
+<script type="text/javascript">
+	function recargarLista(){
+		$.ajax({
+			type:"POST",
+			url:"datosdepa.php",
+			data:"departamento=" + $('#cbxDepa').val(),
+			success:function(r){
+				$('#selectcbxMunicipio').html(r);
+			}
+		});
+	}
+</script>
+
+--> 
+
 <!-- -------------------- Validaciones de ingreso de datos -------------------- -->
 <script type="text/javascript">
 function ValidarNuevo(){
@@ -318,8 +360,9 @@ else if ( !document.getElementById('cbxEstado').value ) {
 alert('Seleccione estado');
 }
 else {
-document.forms.frmNuevo.action = 'index.php?mod=clie&form=ag';
+document.forms.frmNuevo.action = 'index.php?mod=clie&form=ag ';
 document.forms.frmNuevo.submit();
 }
 }
 </script>
+

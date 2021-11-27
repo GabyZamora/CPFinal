@@ -33,13 +33,12 @@ $DatosCliente = $Fila;
 
 		}
 		.sidebar{
-			position: absolute;
+			position: fixed;
 			width: 250px;
 			height: 100%;
 			left: 0;
 			top: 70px;
 			background-color: white;
-			overflow: auto;
 		}
 
 		#sidemenu #profile{
