@@ -1,7 +1,8 @@
 <?php
-require_once 'datos/datos.php';
-require_once 'negocio/marcasautos.php';
-require_once 'negocio/modelo.php';
+require_once ('datos/datos.php');
+require_once ('negocio/marcasautos.php');
+require_once ('negocio/modelo.php');
+require_once ('negocio/clientes.php');
 
 $Obj_Cliente = new Cliente();
 $DatosCliente = $Obj_Cliente->ListarTodoCombos();
@@ -213,7 +214,7 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
            foreach ( $DatosClientes as $FilaCliente ) {
            ?>
            <option value="<?php echo $FilaCliente['id_cliente']; ?>"><?php echo
-          $FilaCliente['nombre_cliente'+'apellidos_cliente']; ?></option>
+          $FilaCliente['nombre_cliente']; ?></option>
            <?php
            }
            ?>

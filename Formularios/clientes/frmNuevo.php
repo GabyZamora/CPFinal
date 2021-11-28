@@ -23,6 +23,18 @@ $DatosMunicipios = $Obj_Municipios->ListarTodoCombos();
 	<link rel="stylesheet" href="css/bootstrap-3.3.7.min.css"> 
 	<script src="https://kit.fontawesome.com/b1f3afb15c.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="css/menuside.css">
+	<script language="javascript">
+	$(document).ready(function () {
+		$("#cbxDepartamento").change(function () {
+			$("#cbxDepartamento option:selected").each(function () {
+				id_departamento = $(this).val();
+				$.post("negocio/municipios.php", { id_departamento: id_departamento}, function(data){
+					$("#cbxMunicipios").html(data);
+				});
+			});
+		})
+	});
+</script>
 	<style type="text/css">
 				*{
 			margin: 0;
@@ -300,32 +312,8 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 </form>
 
 
-<!-- FUNCION PARA LOS SELECT DEPARTAMENTO Y MUNICIPIO 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#cbxDepa').val();
-		recargarLista();
 
-		$('#cbxDepa').change(function(){
-			recargarLista();
-		});
-	})
-</script>
 
-<script type="text/javascript">
-	function recargarLista(){
-		$.ajax({
-			type:"POST",
-			url:"datosdepa.php",
-			data:"departamento=" + $('#cbxDepa').val(),
-			success:function(r){
-				$('#selectcbxMunicipio').html(r);
-			}
-		});
-	}
-</script>
-
---> 
 
 <!-- -------------------- Validaciones de ingreso de datos -------------------- -->
 <script type="text/javascript">

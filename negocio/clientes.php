@@ -13,7 +13,6 @@ class Clientes extends Datos {
   public $nrc_cliente;
   public $giro_nrc;
 
-
   //Métodos
   public function ListarTodos( $paBuscar ) {
     $Cadena = "SELECT * FROM clientes WHERE
@@ -27,6 +26,7 @@ class Clientes extends Datos {
     AND estado = 'ACTIVO'";
     return mysqli_fetch_row($this->EjecutarQuery( $Cadena ));
   } //Retorna el número de filas que tiene la consulta
+
 
   public function ListarTodoReporte() {
     $Cadena = "SELECT * FROM clientes WHERE
