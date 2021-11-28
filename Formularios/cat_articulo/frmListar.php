@@ -12,7 +12,7 @@ $Obj_Cat_Articulo = new Cat_Articulo();
 $Obj_Paginador->Cadena = $Obj_Cat_Articulo->ListarTodos( addslashes( @$_POST['txtBuscar'] ) );
 $Obj_Paginador->CantTotalReg = $Obj_Cat_Articulo->CantTotalRegistros( addslashes( @$_POST['txtBuscar']
 ) );
-$Obj_Paginador->FilasPorPagina = 5; 
+$Obj_Paginador->FilasPorPagina = 30; 
 $Obj_Paginador->NumPagina = @$_GET['np']; 
 $Obj_Paginador->EnlaceListar = "mod=catar&form=li"; 
 $Obj_Paginador->ConfPaginador();
@@ -223,8 +223,6 @@ $Obj_Paginador->ConfPaginador();
             <button type="button" class="btn btn-danger" data-toggle="modal"
             onClick="location.replace('index.php?mod=menu');">
             <i class="material-icons">&#xe879;</i><span>Cerrar</span></button>
-            <button type="button" class="btn btn-info" onclick="window.open('reportes/generalCatar.php','ReporteGenclientes', 'width=1000,height=600');">
-              <i class="material-icons">&#xe8ad;</i><span>Imprimir</span></button>
               <button type="button" class="btn btn-success" onclick="location.replace('index.php?mod=catar&form=nu');">
                 <i class="material-icons">&#xe148;</i><span>Agregar Nuevo</span></button>
               </div>
@@ -240,8 +238,6 @@ $Obj_Paginador->ConfPaginador();
               <tr>
                 <th>Nombre</th>
                 <th>Descripión</th>
-                <th>Fecha de Ingreso</th>
-                <th>Fecha de Modificación</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -253,11 +249,9 @@ $Obj_Paginador->ConfPaginador();
                 <tr>
                   <td><?php echo $Fila['nombre_categoria_art']; ?></td>
                   <td><?php echo $Fila['descripcion_categoria_art']; ?></td>
-                  <td><?php echo $Fila['fecIngreso_categoria_art']; ?></td>
-                  <td><?php echo $Fila['fechModificacion_categoria_art']; ?></td>
                   <td>
                     <a href="index.php?mod=catar&form=de&id=<?php echo $Fila['id_categoria_art'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
-                    <a href="index.php?mod=clie&form=ed&id=<?php echo $Fila['id_categoria_art'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"
+                    <a href="index.php?mod=catar&form=ed&id=<?php echo $Fila['id_categoria_art'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"
                       title="Editar">&#xE254;</i></a>
                       <a href="#" class="delete" onclick="Eliminar('<?php echo $Fila['id_categoria_art']; ?>');"><i class="material-icons" data-toggle="tooltip"
                         title="Eliminar">&#xE872;</i></a>

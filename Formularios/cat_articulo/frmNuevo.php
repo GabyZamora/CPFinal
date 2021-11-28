@@ -137,6 +137,7 @@
 						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
+						<li><a href="index.php?mod=estveh&form=li">Marcas</a></li>
 					</ul>
 				</li>
 				<li>
@@ -191,13 +192,21 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <!-- -------------------------- Fila 1 -------------------------- -->
 <div class="form-row">
 			<div class="form-group col-md-8">
-				<label>Nombre: </label>
+				<label>Nombre de la Categoría de Artículo: </label>
 				<input type="text" class="form-control" id="txtNombre" name="txtNombre" >
 			</div>
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-8">
 				<label>Descripción: </label>
 				<input type="text" class="form-control" id="txtDescripcion" name="txtDescripcion" >
 			</div>
+			<div class="form-group col-md-8">
+<label>Estado: </label>
+<select id="cbxEstado" name="cbxEstado" class="form-control">
+<option value="">Seleccione...</option>
+<option value="">ACTIVO</option>
+<option value="">INACTIVO</option>
+</select>
+</div>
 		</div>
 
 <!-- Cierres de div iniciales -->
