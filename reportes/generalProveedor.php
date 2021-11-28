@@ -72,17 +72,15 @@ $DatosProveedor = $Obj_Proveedor->ListarTodoReporte();
       <table width="100%" class="table table-bordered">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Genero</th>
+            <th scope="col">Nombre Comercial</th>
+            <th scope="col">Nombre del Proveedor</th>
+            <th scope="col">Giro</th>
             <th scope="col">DUI</th>
             <th scope="col">NIT</th>
             <th scope="col">Dirrecion</th>
             <th scope="col">Telefono1</th>
             <th scope="col">Telefono2</th>
             <th scope="col">Telefono3</th>
-            <th scope="col">Fecha de ingreso</th>
-            <th scope="col">Fecha de modificacion</th>
             <th scope="col">Estado</th>
           </tr>
         </thead>
@@ -91,18 +89,16 @@ $DatosProveedor = $Obj_Proveedor->ListarTodoReporte();
           foreach ( $DatosProveedor as $Fila ) {
             ?>
             <tr>
-              <td><?php echo $Fila['Nombre']; ?></td>
-              <td><?php echo $Fila['Apellido']; ?></td>
-              <td><?php echo $Fila['Genero']; ?></td>
-              <td><?php echo $Fila['DUI']; ?></td>
-              <td><?php echo $Fila['NIT']; ?></td>
-              <td><?php echo $Fila['Direccion']; ?></td>
-              <td><?php echo $Fila['Telefono1']; ?></td>
-              <td><?php echo $Fila['Telefono2']; ?></td>
-              <td><?php echo $Fila['Telefono3']; ?></td>
-              <td><?php echo $Fila['Fecha_Ingreso']; ?></td>
-              <td><?php echo $Fila['Fecha_Modificacion']; ?></td>
-              <td><?php echo $Fila['Estado']; ?></td>
+              <td><?php echo $Fila['nombre_comercial_proveedor']; ?></td>
+              <td><?php echo $Fila['nombre_propietario_proveedor']; ?></td>
+              <td><?php echo $Fila['giro_proveedor']; ?></td>
+              <td><?php echo $Fila['DUI_proveedor']; ?></td>
+              <td><?php echo $Fila['NIT_proveedor']; ?></td>
+              <td><?php echo $Fila['direccion_proveedor']; ?></td>
+              <td><?php echo $Fila['telefono1_proveedor']; ?></td>
+              <td><?php echo $Fila['telefono2_proveedor']; ?></td>
+              <td><?php echo $Fila['telefono3_proveedor']; ?></td>
+              <td><?php echo $Fila['estado']; ?></td>
             </tr>
             <?php
           }
