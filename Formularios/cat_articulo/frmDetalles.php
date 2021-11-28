@@ -27,7 +27,6 @@ $Datos_Catar = $Fila;
 					<h2>Detalles de las categorías de artículos</h2>
 				</div>
 				<div class="col-md-4">
-					<button type="button" class="btn btn-info" onclick="window.open('reportes/detalleCatar.php?id=<?php echo $_GET['id'] ?>', 'ReporteDetCatar', 'width=1000,height=600');"><i class="material-icons">&#xe8ad;</i><span>Imprimir</span></button>
 					<button type="button" class="btn btn-success" onClick="location.replace('index.php?mod=catar&form=li');"><i class="material-icons">&#xe5c4;</i><span>Regresar</span></button>
 				</div>
 			</div>
@@ -35,20 +34,27 @@ $Datos_Catar = $Fila;
 <!-- -------------------------- Fila 1 -------------------------- -->
 		<div class="form-row">
 			<div class="form-group col-md-8">
-				<label>Nombre: </label>
+				<label>Nombre de la Categoria de Artículo: </label>
 				<input type="text" class="form-control" id="txtNombre" name="txtNombre" readonly value="<?php echo $Fila['nombre_categoria_art']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Descripción: </label>
 				<input type="text" class="form-control" id="txtDescripcion" name="txtDescripcion" readonly value="<?php echo $Fila['descripcion_categoria_art']; ?>">
 			</div>
+		</div>
 			<div class="form-group col-md-8">
 				<label>Fecha de Ingreso: </label>
-				<input type="text" class="form-control" id="txtFecha_Ingreso" name="txtFecha_Ingreso" readonly value="<?php echo $Fila['fecIngreso_categoria_art']; ?>">
+				<input type="text" class="form-control" id="txtFecha_Ingreso" name="txtFecha_Ingreso" readonly value="<?php echo $Fila['fechaIngreso_categoria_art']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Fecha de Modificación: </label>
-				<input type="text" class="form-control" id="txtFecha_Modificacion" name="txtFecha_Modificacion" readonly value="<?php echo $Fila['fechModificacion_categoria_art']; ?>">
+				<input type="text" class="form-control" id="txtFecha_Modificacion" name="txtFecha_Modificacion" readonly value="<?php echo $Fila['fechaModificacion_categoria_art']; ?>">
+			</div>
+
+			<div class="form-row">
+			<div class="form-group col-md-8">
+				<label>Estado: </label>
+				<input type="text" class="form-control" id="txtEstado" name="txtEstado" readonly value="<?php echo $Fila['estado']; ?>">
 			</div>
 		</div>
 

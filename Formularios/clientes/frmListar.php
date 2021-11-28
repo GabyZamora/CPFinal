@@ -4,6 +4,14 @@ require_once('datos/datos.php');
 //Llamamos a la capa de negocio
 require_once('negocio/paginador.php');
 require_once('negocio/clientes.php');
+require_once('negocio/departamentos.php');
+require_once ('negocio/municipios.php');
+//Instanciamos las clases de la capa de negocio
+$Obj_Departamentos = new Departamentos();
+$Obj_Municipios = new Municipios();
+//Recuperamos los registros de las categorías y las marcas
+$DatosDepartamentos = $Obj_Departamentos->ListarTodoCombos();
+$DatosMunicipios = $Obj_Municipios->ListarTodoCombos();
 //Instanciamos las clases de la capa de negocio
 $Obj_Paginador = new Paginador();
 $Obj_Clientes = new Clientes();
@@ -12,7 +20,7 @@ $Obj_Clientes = new Clientes();
 $Obj_Paginador->Cadena = $Obj_Clientes->ListarTodos( addslashes( @$_POST['txtBuscar'] ) );
 $Obj_Paginador->CantTotalReg = $Obj_Clientes->CantTotalRegistros( addslashes( @$_POST['txtBuscar']
 ) );
-$Obj_Paginador->FilasPorPagina = 5; 
+$Obj_Paginador->FilasPorPagina = 30; 
 $Obj_Paginador->NumPagina = @$_GET['np']; 
 $Obj_Paginador->EnlaceListar = "mod=clie&form=li"; 
 $Obj_Paginador->ConfPaginador();
@@ -223,7 +231,7 @@ $Obj_Paginador->ConfPaginador();
             <button type="button" class="btn btn-danger" data-toggle="modal"
             onClick="location.replace('index.php?mod=menu');">
             <i class="material-icons">&#xe879;</i><span>Cerrar</span></button>
-            <button type="button" class="btn btn-info" onclick="window.open('reportes/generalClientes.php','ReporteGenclientes', 'width=1000,height=600');">
+            <button type="button" class="btn btn-info" onclick="window.open('reportes/generalCliente.php','ReporteGenclientes', 'width=1000,height=600');">
               <i class="material-icons">&#xe8ad;</i><span>Imprimir</span></button>
               <button type="button" class="btn btn-success" onclick="location.replace('index.php?mod=clie&form=nu');">
                 <i class="material-icons">&#xe148;</i><span>Agregar Nuevo</span></button>
@@ -254,9 +262,9 @@ $Obj_Paginador->ConfPaginador();
               foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
                 ?>
                 <tr>
-                  <td><?php echo $Fila['nombre_cliente']; ?></td>
-                  <td><?php echo $Fila['apellidos_cliente']; ?></td>
-                  <td><?php echo $Fila['direccion_cliente']; ?></td>
+                  <td><?php echo $Fila['Nombre']; ?></td>
+                  <td><?php echo $Fila['Apellido']; ?></td>
+                  <td><?php echo $Fila['Direccion']; ?></td>
                   <td><?php echo $Fila['telefono_cliente']; ?></td>
                   <td><?php echo $Fila['correo_cliente']; ?></td>
                   <td><?php echo $Fila['nit_cliente']; ?></td>

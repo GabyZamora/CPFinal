@@ -204,34 +204,38 @@ $DatosCliente = $Fila;
 		</div>
 <!-- -------------------------- Fila 1 -------------------------- -->
 		<div class="form-row">
-			<div class="form-group col-md-8">
+			<div class="form-group col-md-4">
 				<label>Nombre: </label>
-				<input type="text" class="form-control" id="txtNombre" name="txtNombreC" readonly value="<?php echo $Fila['nombre_cliente']; ?>">
+				<input type="text" class="form-control" id="txtNombre" name="txtNombreC" readonly value="<?php echo $Fila['Nombre']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Apellido: </label>
-				<input type="text" class="form-control" id="txtApellido" name="txtApellido" readonly value="<?php echo $Fila['apellidos_cliente']; ?>">
+				<input type="text" class="form-control" id="txtApellido" name="txtApellido" readonly value="<?php echo $Fila['Apellido']; ?>">
+			</div>
+			<div class="form-group col-md-4">
+				<label>Estado: </label>
+				<input type="text" class="form-control" id="txtEstado" name="txtEstado" readonly value="<?php echo $Fila['estado']; ?>">
 			</div>
 		</div>
 <!-- -------------------------- Fila 2 -------------------------- -->
 		<div class="form-row">
-			<div class="form-group col-md-8">
+			<div class="form-group col-md-4">
 				<label>Dirección: </label>
-				<input type="text" class="form-control" id="txtDireccion" name="txtDireccion" readonly value="<?php echo $Fila['direccion_cliente']; ?>">
+				<input type="text" class="form-control" id="txtDireccion" name="txtDireccion" readonly value="<?php echo $Fila['Direccion']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Departamento: </label>
-				<input type="text" class="form-control" id="txtDepa" name="txtDepa" readonly value="<?php echo $Fila['id_departamento']; ?>">
+				<input type="text" class="form-control" id="txtDepa" name="txtDepa" readonly value="<?php echo $Fila['Departamento']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Municipio: </label>
-				<input type="text" class="form-control" id="txtMunicipio" name="txtMunicipio" readonly value="<?php echo $Fila['id_municipio']; ?>">
+				<input type="text" class="form-control" id="txtMunicipio" name="txtMunicipio" readonly value="<?php echo $Fila['Municipio']; ?>">
 			</div>
 		</div>
 <!-- -------------------------- Fila 3 -------------------------- -->
 		<div class="form-row">
 			<div class="form-group col-md-4">
-				<label>Telefóno: </label>
+				<label>Teléfono: </label>
 				<input type="tel" class="form-control" id="txtTelefono" name="txtTelefono" readonly value="<?php echo $Fila['telefono_cliente']; ?>">
 			</div>
 			<div class="form-group col-md-4">
@@ -252,22 +256,15 @@ $DatosCliente = $Fila;
 			</div>
 			<div class="form-group col-md-4">
 				<label>Fecha de Ingreso: </label>
-				<input type="text" class="form-control" id="txtFechIngreso" name="txtFechIngreso" readonly value="<?php echo $Fila['fecIngreso_cliente']; ?>">
+				<input type="text" class="form-control" id="txtFechIngreso" name="txtFechaIngreso" readonly value="<?php echo $Fila['fechaIngreso_cliente']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Fecha de Modificación: </label>
-				<input type="text" class="form-control" id="txtFechModificacon" name="txtFechModificacion" readonly value="<?php echo $Fila['fechModificacion_cliente']; ?>">
+				<input type="text" class="form-control" id="txtFechaModificacon" name="txtFechModificacion" readonly value="<?php echo $Fila['fechaModificacion_cliente']; ?>">
 			</div>
 		</div>
 
-<!-- -------------------------- Fila 5 -------------------------- -->
 
-		<div class="form-row">
-			<div class="form-group col-md-4">
-				<label>Estado: </label>
-				<input type="text" class="form-control" id="txtEstado" name="txtEstado" readonly value="<?php echo $Fila['estado']; ?>">
-			</div>
-		</div>
 
 
 <!-- Cierre de los primeros 2 div --->

@@ -14,7 +14,7 @@
 $Obj_Paginador->Cadena = $Obj_Marcas_Articulos->ListarTodos( addslashes( @$_POST['txtBuscar'] ) );
 $Obj_Paginador->CantTotalReg = $Obj_Marcas_Articulos->CantTotalRegistros( addslashes( @$_POST['txtBuscar']
 ) );
-$Obj_Paginador->FilasPorPagina = 5; //Define la cantidad de registros mostrados por página
+$Obj_Paginador->FilasPorPagina = 30; //Define la cantidad de registros mostrados por página
 $Obj_Paginador->NumPagina = @$_GET['np']; //Define la página solicitada al paginador
 $Obj_Paginador->EnlaceListar = "mod=marcaarti&form=li"; //Define el enlace al modulo y formulario listar de ese módulo
 //Aplicamos la configuración al paginador
@@ -52,7 +52,6 @@ $Obj_Paginador->ConfPaginador();
 			left: 0;
 			top: 70px;
 			background-color: white;
-			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -161,7 +160,7 @@ $Obj_Paginador->ConfPaginador();
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">
-						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
+						<li><a href="#">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
 					</ul>
@@ -230,8 +229,6 @@ $Obj_Paginador->ConfPaginador();
             <button type="button" class="btn btn-danger" data-toggle="modal"
             onClick="location.replace('index.php?mod=menu');">
             <i class="material-icons">&#xe879;</i><span>Cerrar</span></button>
-            <button type="button" class="btn btn-info" onclick="window.open('reportes/GeneralMarcaArticulo.php','ReporteGenMarcaArticulo', 'width=1000,height=600');">
-              <i class="material-icons">&#xe8ad;</i><span>Imprimir</span></button>
               <button type="button" class="btn btn-success" onclick="location.replace('index.php?mod=marcaarti&form=nu');">
                 <i class="material-icons">&#xe148;</i><span>Agregar Nuevo</span></button>
               </div>
@@ -246,8 +243,7 @@ $Obj_Paginador->ConfPaginador();
             <thead>
               <tr>
                 <th>Nombre de Marca de articulo</th>
-                <th>Fecha de ingreso</th>
-                <th>Fecha de modificación</th>
+                <th>Estado</th>
               </tr>
             </thead>
             <tbody>
@@ -256,9 +252,8 @@ $Obj_Paginador->ConfPaginador();
               foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
                 ?>
                 <tr>
-                  <td><?php echo $Fila['Nombre de Marca']; ?></td>
-                  <td><?php echo $Fila['Fecha de ingreso']; ?></td>
-                  <td><?php echo $Fila['Fecha de modificacion']; ?></td>
+                  <td><?php echo $Fila['nombreMarca']; ?></td>
+                  <td><?php echo $Fila['estado']; ?></td>
                   <td>
                     <a href="index.php?mod=marcaarti&form=de&id=<?php echo $Fila['id_marca_art'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
                     <a href="index.php?mod=marcaarti&form=ed&id=<?php echo $Fila['id_marca_art'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"

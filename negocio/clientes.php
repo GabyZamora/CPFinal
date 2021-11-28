@@ -14,29 +14,91 @@ class Clientes extends Datos {
   public $giro_nrc;
 
   //Métodos
-  public function ListarTodos( $paBuscar ) {
-    $Cadena = "SELECT * FROM clientes WHERE
-    (nombre_cliente LIKE '%".$paBuscar."%' OR direccion_cliente LIKE '%".$paBuscar."%')
-    AND estado = 'ACTIVO'";
+   public function ListarTodos( $paBuscar ) {
+    $Cadena = "SELECT
+    clientes.id_cliente,
+    clientes.nombre_cliente AS NombreCliente,
+    clientes.apellidos_cliente AS ApellidoCliente,
+    clientes.direccion_cliente AS Direccion,
+    clientes.id_departamento,
+    departamentos.nombre_departamento AS Departamento,
+    clientes.id_municipio,
+    municipios.nombre_municipio AS Municipio,
+    clientes.telefono_cliente,
+    clientes.correo_cliente,
+    clientes.nombre_factura,
+    clientes.nit_cliente,
+    clientes.nrc_cliente,
+    clientes.giro_nrc
+    FROM
+    clientes
+    INNER JOIN departamentos ON clientes.id_departamento = departamentos.id_departamento
+    INNER JOIN municipios ON clientes.id_municipio =
+    municipios.id_municipio
+    WHERE
+    (clientes.id_cliente LIKE '%".$paBuscar."%') ";
     return $Cadena; //Acá no se ejecuta la cadena, porque se hace en la clase del paginador
   }
   public function CantTotalRegistros( $paBuscar ) {
-    $Cadena = "SELECT COUNT(id_cliente) FROM clientes WHERE
-    (nombre_cliente LIKE '%".$paBuscar."%' OR direccion_cliente LIKE '%".$paBuscar."%')
-    AND estado = 'ACTIVO'";
+    $Cadena = "SELECT COUNT(id_cliente)
+    FROM
+    clientes
+    INNER JOIN departamentos ON clientes.id_departamento = departamentos.id_departamento
+    INNER JOIN municipios ON clientes.id_municipio =
+    municipios.id_municipio
+    WHERE
+    (clientes.id_cliente LIKE '%".$paBuscar."%') ";
     return mysqli_fetch_row($this->EjecutarQuery( $Cadena ));
-  } //Retorna el número de filas que tiene la consulta
-
-
+  }
+  
   public function ListarTodoReporte() {
-    $Cadena = "SELECT * FROM clientes WHERE
-    estado = 'ACTIVO'";
+    $Cadena = "SELECT
+    clientes.id_cliente,
+    clientes.nombre_cliente AS NombreCliente,
+    clientes.apellidos_cliente AS ApellidoCliente,
+    clientes.direccion_cliente,
+    clientes.id_departamento,
+    departamentos.nombre_departamento AS Departamento,
+    clientes.id_municipio,
+    municipios.nombre_municipio AS Municipio,
+    clientes.telefono_cliente,
+    clientes.nombre_factura,
+    clientes.nit_cliente,
+    clientes.nrc_cliente,
+    clientes.giro_nrc
+    FROM
+    clientes
+    INNER JOIN departamentos ON clientes.id_departamento = departamentos.id_departamento
+    INNER JOIN municipios ON clientes.id_municipio =
+    municipios.id_municipio
+    WHERE
+    clientes.id_cliente=' ' ";
     return $this->EjecutarQuery( $Cadena );
   }
   public function BuscarPorId( $paId ) {
-    $Cadena = "SELECT * FROM clientes WHERE id_cliente = '".$paId."' ";
+    $Cadena = "SELECT
+    clientes.id_cliente,
+    clientes.nombre_cliente AS NombreCliente,
+    clientes.apellidos_cliente AS ApellidoCliente,
+    clientes.direccion_cliente,
+    clientes.id_departamento,
+    departamentos.nombre_departamento AS Departamento,
+    clientes.id_municipio,
+    municipios.nombre_municipio AS Municipio,
+    clientes.telefono_cliente,
+    clientes.nombre_factura,
+    clientes.nit_cliente,
+    clientes.nrc_cliente,
+    clientes.giro_nrc
+    FROM
+    clientes
+    INNER JOIN departamentos ON clientes.id_departamento = departamentos.id_departamento
+    INNER JOIN municipios ON clientes.id_municipio =
+    municipios.id_municipio
+    WHERE
+    clientes.id_cliente='".$paId."' ";
     return $this->EjecutarQuery( $Cadena );
-    }
+  }
     public function Agregar() {
     $Cadena = "INSERT INTO clientes (
           nombre_cliente,
@@ -63,7 +125,7 @@ class Clientes extends Datos {
         '".addslashes($this->NIT)."',
         '".addslashes($this->NRC)."',
         '".addslashes($this->GiroNrc)."',
-        'ACTIVO' )";
+        '1' )";
         return $this->EjecutarQuery( $Cadena );
       }
       public function Actualizar( $paId ) {
@@ -83,18 +145,11 @@ class Clientes extends Datos {
         return $this->EjecutarQuery( $Cadena );
       }
       public function Eliminar( $paId ) {
-        $Cadena = "UPDATE clientes SET estado = 'INACTIVO' WHERE id_cliente =
+        $Cadena = "UPDATE clientes SET estado = '1' WHERE id_cliente =
         '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
       }
-      public function ListarTodoCombos() {
-        $Cadena = "SELECT * FROM clientes
-        WHERE
-        estado = 'ACTIVO'
-        ORDER BY nombre_cliente ASC";
-        return $this->EjecutarQuery( $Cadena );
-      }
-    }
+  }
     ?>
 
 

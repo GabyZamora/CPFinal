@@ -8,6 +8,7 @@ $Obj_Cat_Articulo = new Cat_Articulo();
 //Asignación de atributos de la clase de la capa de negocio
 $Obj_Cat_Articulo->Nombre = $_POST['txtNombre'];
 $Obj_Cat_Articulo->Descripcion = $_POST['txtDescripcion'];
+$Obj_Cat_Articulo->Estado = $_POST['cbxEstado'];
 //Ejecutamos el mantenimiento de actualizar
 if( $Obj_Cat_Articulo->Actualizar( $_POST['hidId'] ) ) {
 //Si se ejecuta, redireccionamos al formulario de listar con mensaje update

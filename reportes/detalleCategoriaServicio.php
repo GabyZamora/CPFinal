@@ -2,19 +2,19 @@
 //Llamamos a la capa de datos
 require_once '../datos/datos.php';
 //Llamamos a la capa de negocio
-require_once '../negocio/proveedor.php';
+require_once '../negocio/categoriaservicios.php';
 //Instanciamos las clases de la capa de negocio
-$Obj_Proveedor = new Proveedor();
+$Obj_Categoria_Servicio = new Categoria_Servicio();
 //Cargamos el registro solicitado
-$DatosProveedor = $Obj_Proveedor->BuscarPorId( $_GET['id'] );
+$DatosCategoria_Servicio = $Obj_Categoria_Servicio->BuscarPorId( $_GET['id'] );
 //Recuperamos el registro obtenido en una variable fila
-foreach ( $DatosProveedor as $Fila ) {
-  $DatosProveedor = $Fila;
+foreach ( $DatosCategoria_Servicio as $Fila ) {
+  $DatosCategoria_Servicio = $Fila;
 }
 ?>
 <html lang="es">
 <head>
-  <title>Detalle del Proveeedor</title>
+  <title>Detalle de Categoria de Servicios</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../css/iconfont/material-icons.css">
@@ -72,52 +72,16 @@ foreach ( $DatosProveedor as $Fila ) {
           </div>
         </div>
       </div>
-      <h3>Detalle de Proveedor</h3>
+      <h3>Detalle de Categoria de Servicios</h3>
       <table width="100%" class="table table-borderless ">
         <tbody>
           <tr>
-            <td width="20%"><strong>Nombre Comercial:</strong></td>
-            <td colspan="3"><?php echo $Fila['nombre_comercial_proveedor']; ?></td>
+            <td width="20%"><strong>Nombre de Categoria de Servicio:</strong></td>
+            <td colspan="3"><?php echo $Fila['nombre_categoria']; ?></td>
           </tr>
           <tr>
-            <td><strong>Nombre del Proveedor</strong></td>
-            <td width="41%"><?php echo $Fila['nombre_propietario_proveedor']; ?></td>
-          </tr>
-          <tr>
-            <td><strong>Giro</strong></td>
-            <td width="41%"><?php echo $Fila['giro_proveedor']; ?></td>
-          </tr>
-          <tr>
-            <td><strong>DUI</strong></td>
-            <td width="41%"><?php echo $Fila['DUI_proveedor']; ?></td>
-          </tr>
-           <tr>
-            <td><strong>NIT</strong></td>
-            <td width="41%"><?php echo $Fila['NIT_proveedor']; ?></td>
-          </tr>
-           <tr>
-            <td><strong>Direccion</strong></td>
-            <td width="41%"><?php echo $Fila['direccion_proveedor']; ?></td>
-          </tr>
-           <tr>
-            <td><strong>Telefono 1</strong></td>
-            <td width="41%"><?php echo $Fila['telefono1_proveedor']; ?></td>
-          </tr>
-          <tr>
-            <td><strong>Telefono 2</strong></td>
-            <td width="41%"><?php echo $Fila['telefono2_proveedor']; ?></td>
-          </tr>
-          <tr>
-            <td><strong>Telefono 3</strong></td>
-            <td width="41%"><?php echo $Fila['telefono3_proveedor']; ?></td>
-          </tr>
-          <tr>
-            <td><strong>Fecha de ingreso</strong></td>
-            <td width="41%"><?php echo $Fila['fechaIngreso_proveedor']; ?></td>
-          </tr>
-          <tr>
-            <td><strong>Fecha de modificacion</strong></td>
-            <td width="41%"><?php echo $Fila['fechaModificacion_proveedor']; ?></td>
+            <td><strong>Descripcion</strong></td>
+            <td width="41%"><?php echo $Fila['descripcion']; ?></td>
           </tr>
           <tr>
             <td><strong>Estado</strong></td>

@@ -25,7 +25,6 @@
 			left: 0;
 			top: 70px;
 			background-color: white;
-			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -134,7 +133,7 @@
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">
-						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
+						<li><a href="#">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
 					</ul>
@@ -192,38 +191,33 @@
     <div class="form-row">
         <div class="form-group col-md-8">
           <label>Nombre de marca: </label>
-          <input type="text" class="form-control" id="txtNombreMarca">
+          <input type="text" class="form-control" id="txtNombreMarca"name="txtNombreMarca">
         </div>          
     </div>
-     <div class="form-row">
-        <div class="form-group col-md-8">
-          <label>Fecha de Ingreso: </label>
-          <input type="text" class="form-control" id="txtFecha_Ingreso">
-        </div>
-      </div> <!-- Cierre del Div table-wrapper -->
-      <div class="form-row">
-        <div class="form-group col-md-8">
-          <label>Fecha de Modificacion: </label>
-          <input type="text" class="form-control" id="txtFecha_Modificacion">
-        </div>
-      </div> <!-- Cierre del Div container -->
-</form>
+    	<div class="form-row">
+        <div class="form-group col-md-4">
+          <label>Estado: </label>
+          <select id="cbxEstado" name="cbxEstado" class="form-control">
+         <option value="<?php echo $Fila['estado']; ?>">
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+          </select>
+      </div>
+     </div>
+    </div> <!-- Cierre del Div table-wrapper -->
+  </div><!-- Cierre del Div container -->
+</form> 
+
 <!-- -------------------- Validaciones de ingreso de datos -------------------- -->
 
 <script type="text/javascript">
-  function ValidarEditar(){
+  function ValidarNuevo(){
     if ( !document.getElementById('txtNombreMarca').value ) {
     alert('Ingrese el nombre de  la marca del articulo');
     }
-    else if ( !document.getElementById('txtFecha_Ingreso').value ){
-    alert('Ingrese la fecha de ingreso de la marca del articulo');
-    }
-    else if ( !document.getElementById('txtFecha_Modificacion').value ) {
-    alert('Ingrese la fecha de modificacion de la marca del articulo');
-    }
     else {
-    document.forms.frmEditar.action = 'index.php?mod=marcaarti&form=ac';
-    document.forms.frmEditar.submit();
+    document.forms.frmNuevo.action = 'index.php?mod=marcaarti&form=ag';
+    document.forms.frmNuevo.submit();
     }
   }
 </script>
