@@ -220,6 +220,12 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 </div>
 </div>
 
+<div class="form-row">
+<div class="form-group col-md-8">
+<label>Giro NRC: </label>
+<input type="text" class="form-control" id="txtGiroNrc" name="txtGiroNrc">
+</div>
+</div>
 
 <!-- -------------------------- Fila 3 -------------------------- -->
 <div class="form-row">
@@ -257,7 +263,7 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <div class="form-row">
 <div class="form-group col-md-4">
 <label>Teléfono: </label>
-<input type="text" class="form-control" id="txtTelefono" name="txtTelefono">
+<input type="tel" class="form-control" id="txtTel" name="txtTel">
 </div>
 <div class="form-group col-md-4">
 <label>Correo: </label>
@@ -345,7 +351,7 @@ alert('Seleccione un departamento');
 else if ( !document.getElementById('cbxMunicipio').value ) {
 alert('Selecione un municipio');
 }
-else if ( !document.getElementById('txtTelefono').value ) {
+else if ( !document.getElementById('txtTel').value ) {
 alert('Ingrese número de teléfono');
 }
 else if ( !document.getElementById('txtCorreo').value ) {
@@ -355,7 +361,10 @@ else if ( !document.getElementById('txtNIT').value ) {
 alert('Ingrese número de nit del cliente');
 }
 else if ( !document.getElementById('txtNRC').value ) {
-alert('');
+alert('Agregue NRC');
+}
+else if ( !document.getElementById('txtGiroNrc').value ) {
+alert('Agregue Giro NRC');
 }
 else {
 document.forms.frmNuevo.action = 'index.php?mod=clie&form=ag ';
