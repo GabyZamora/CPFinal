@@ -8,10 +8,9 @@
 	//Asignación de atributos de la clase de la capa de negocio
 	$Obj_Categoria_Servicio->Nombre = $_POST['txtNombreCategoria'];
 	$Obj_Categoria_Servicio->Descripcion = $_POST['txtDescripcion'];
-	$Obj_Categoria_Servicio->Fecha_Ingreso = $_POST['txtFecha_Ingreso'];
-	$Obj_Categoria_Servicio->Fecha_Modificacion = $_POST['txtFecha_Modificacion'];
+	$Obj_Categoria_Servicio->Estado = $_POST['cbxEstado'];
 	//Ejecutamos el mantenimiento de actualizar
-	if(	$Obj_Categoria_Servicio->Actualizar( $_POST['id'] ) ) {
+	if(	$Obj_Categoria_Servicio->Actualizar( $_POST['hidId'] ) ) {
 	//Si se ejecuta, redireccionamos al formulario de listar con mensaje update
 	echo "<script>location.replace('index.php?mod=catse&form=li&m=update');</script>";
 	}

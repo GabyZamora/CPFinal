@@ -35,7 +35,7 @@ $DatosCategoria_Servicio = $Fila;
 
 		}
 		.sidebar{
-			position: absolute;
+			position: fixed;
 			width: 250px;
 			height: 100%;
 			left: 0;
@@ -149,7 +149,7 @@ $DatosCategoria_Servicio = $Fila;
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">
-						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
+						<li><a href="#">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
 					</ul>
@@ -193,7 +193,7 @@ $DatosCategoria_Servicio = $Fila;
  			<div class="table-title">
  				<div class="form-row">
  					<div class="col-md-8">
- 						<h2>Editar Marca de Articulos</h2>
+ 						<h2>Editar Categoria de Servicios</h2>
  					</div>
  					<div class="col-md-4">
 						 <button type="button" class="btn btn-danger"
@@ -206,23 +206,28 @@ $DatosCategoria_Servicio = $Fila;
 <!-- -------------------------- Fila 1 -------------------------- -->
 			<div class="form-row">
  				<div class="form-group col-md-8">
-					<label>Nombre de marca de articulo: </label>
- 					<input type="text" class="form-control" id="txtNombreMarca">
+					<label>Nombre de Categoria de Servicio: </label>
+ 					<input type="text" class="form-control" id="txtNombreCategoria" name ="txtNombreCategoria"value="<?php echo $Fila['nombre_categoria']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_categoria']; ?>">
  				</div>
  				<div class="form-group col-md-8">
 					<label>Descripcion; </label>
- 					<input type="text" class="form-control" id="txtDescripcion">
- 				</div>
- 					<label>Fecha de Ingreso: </label>
- 					<input type="text" class="form-control" id="txtFecha_Ingreso">
- 				</div>
- 				<div class="form-group col-md-8">
-					<label>Fecha de Modificacion: </label>
- 					<input type="text" class="form-control" id="txtFecha_Modificacion">
- 				</div>
- 			</div>
-		</div> <!-- Cierre del Div table-wrapper -->
-	</div> <!-- Cierre del Div container -->
+ 					<input type="text" class="form-control" id="txtDescripcion"name="txtDescripcion"value="<?php echo $Fila['descripcion']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_categoria']; ?>">
+ 				</div>	
+ 	 		<div class="form-row">
+        <div class="form-group col-md-4">
+          <label>Estado: </label>
+          <select id="cbxEstado" name="cbxEstado" class="form-control">
+         <option value="<?php echo $Fila['estado']; ?>">
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+          </select>
+        </div>
+      </div>
+    </div> <!-- Cierre del Div table-wrapper -->
+  </div>
+ </div> <!-- Cierre del Div container -->
 </form>
 <!-- -------------------- Validaciones de ingreso de datos -------------------- -->
 <script type="text/javascript">
@@ -233,14 +238,8 @@ $DatosCategoria_Servicio = $Fila;
 		if ( !document.getElementById('txtDescripcion').value ) {
 		alert('Ingrese la descripción');
 		}
-		else if ( !document.getElementById('txtFecha_Ingreso').value ){
-		alert('Ingrese la fecha de ingreso de la marca del articulo');
-		}
-		else if ( !document.getElementById('txtFecha_Modificacion').value ) {
-		alert('Ingrese la fecha de modificacion de la marca del articulo');
-		}
 		else {
-		document.forms.frmEditar.action = 'index.php?mod=marcaarti&form=ac';
+		document.forms.frmEditar.action = 'index.php?mod=catse&form=ac';
 		document.forms.frmEditar.submit();
 		}
 	}

@@ -48,7 +48,6 @@ $Obj_Paginador->ConfPaginador();
 			left: 0;
 			top: 70px;
 			background-color: white;
-			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -157,7 +156,7 @@ $Obj_Paginador->ConfPaginador();
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">
-						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
+						<li><a href="#">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
 					</ul>
@@ -226,7 +225,7 @@ $Obj_Paginador->ConfPaginador();
             <button type="button" class="btn btn-danger" data-toggle="modal"
             onClick="location.replace('index.php?mod=menu');">
             <i class="material-icons">&#xe879;</i><span>Cerrar</span></button>
-            <button type="button" class="btn btn-info" onclick="window.open('reportes/GeneralCategoriaSer.php','ReporteGenCategoriaSer', 'width=1000,height=600');">
+            <button type="button" class="btn btn-info" onclick="window.open('reportes/GeneralCategoriaServicio.php','ReporteDeCategoriaServicio', 'width=1000,height=600');">
               <i class="material-icons">&#xe8ad;</i><span>Imprimir</span></button>
               <button type="button" class="btn btn-success" onclick="location.replace('index.php?mod=catse&form=nu');">
                 <i class="material-icons">&#xe148;</i><span>Agregar Nuevo</span></button>
@@ -243,9 +242,8 @@ $Obj_Paginador->ConfPaginador();
               <tr>
                 <th>Nombre de Categoria de servicio</th>
                 <th>Descripcion</th>
-                <th>Fecha de ingreso</th>
-                <th>Fecha de modificación</th>
-              </tr>
+                <th>Estado</th>
+                </tr>
             </thead>
             <tbody>
               <?php
@@ -253,10 +251,9 @@ $Obj_Paginador->ConfPaginador();
               foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
                 ?>
                 <tr>
-                  <td><?php echo $Fila['Nombre de Categoria de Servicio']; ?></td>
-                  <td><?php echo $Fila['Descripcion']; ?></td>
-                  <td><?php echo $Fila['Fecha de ingreso']; ?></td>
-                  <td><?php echo $Fila['Fecha de modificacion']; ?></td>
+                  <td><?php echo $Fila['nombre_categoria']; ?></td>
+                  <td><?php echo $Fila['descripcion']; ?></td>
+                  <td><?php echo $Fila['estado']; ?></td>
                   <td>
                     <a href="index.php?mod=catse&form=de&id=<?php echo $Fila['id_categoria'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
                     <a href="index.php?mod=catse&form=ed&id=<?php echo $Fila['id_categoria'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"
