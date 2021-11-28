@@ -7,17 +7,15 @@
 	//Instanciamos la clase
 	$Obj_Proveedor = new Proveedor();
 	//Asignación de atributos de la clase de la capa de negocio
-	$Obj_Proveedor->Nombre = $_POST['txtNombre'];
-	$Obj_Proveedor->Apellido = $_POST['txtApellido'];
-	$Obj_Proveedor->Genero = $_POST['txtGenero'];
+	$Obj_Proveedor->NombreComercial = $_POST['txtNombreComercial'];
+	$Obj_Proveedor->NombreProveedor = $_POST['txtNombreProveedor'];
+	$Obj_Proveedor->Giro = $_POST['txtGiro'];
 	$Obj_Proveedor->DUI = $_POST['txtDUI'];
 	$Obj_Proveedor->NIT = $_POST['txtNIT'];
 	$Obj_Proveedor->Direccion = $_POST['txtDireccion'];
 	$Obj_Proveedor->Telefono1 = $_POST['txtTelefono1'];
 	$Obj_Proveedor->Telefono2 = $_POST['txtTelefono2'];
 	$Obj_Proveedor->Telefono3 = $_POST['txtTelefono3'];
-	$Obj_Proveedor->Fecha_Ingreso = $_POST['txtFecha_Ingreso'];
-	$Obj_Proveedor->Fecha_Modificacion = $_POST['txtFecha_Modificacion'];
 	$Obj_Proveedor->Estado = $_POST['cbxEstado'];
 //Ejecutamos el mantenimiento de agregar
 if( $Obj_Proveedor->Agregar() ) {

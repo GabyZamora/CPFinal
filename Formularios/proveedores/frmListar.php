@@ -12,7 +12,7 @@ $Obj_Proveedor = new Proveedor();
 $Obj_Paginador->Cadena = $Obj_Proveedor->ListarTodos( addslashes( @$_POST['txtBuscar'] ) );
 $Obj_Paginador->CantTotalReg = $Obj_Proveedor->CantTotalRegistros( addslashes( @$_POST['txtBuscar']
 ) );
-$Obj_Paginador->FilasPorPagina = 5; //Define la cantidad de registros mostrados por página
+$Obj_Paginador->FilasPorPagina = 10; //Define la cantidad de registros mostrados por página
 $Obj_Paginador->NumPagina = @$_GET['np']; //Define la página solicitada al paginador
 $Obj_Paginador->EnlaceListar = "mod=prove&form=li"; //Define el enlace al modulo y formulario listar de ese módulo
 //Aplicamos la configuración al paginador
@@ -50,7 +50,6 @@ $Obj_Paginador->ConfPaginador();
 			left: 0;
 			top: 70px;
 			background-color: white;
-			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -243,17 +242,11 @@ $Obj_Paginador->ConfPaginador();
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Genero</th>
-                <th>DUI</th>
-                <th>NIT</th>
+                <th>Nombre Comercial</th>
+                <th>Nombre Proveedor</th>
+                <th>Giro</th>
                 <th>Dirección</th>
-                <th>Teléfono 1</th>
-                <th>Teléfono 2</th>
-                <th>Teléfono 3</th>
-                <th>Fecha de ingreso</th>
-                <th>Fecha de modificación</th>
+                <th>Teléfono </th>
                 <th>Estado</th>
               </tr>
             </thead>
@@ -263,18 +256,12 @@ $Obj_Paginador->ConfPaginador();
               foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
                 ?>
                 <tr>
-                  <td><?php echo $Fila['Nombre']; ?></td>
-                  <td><?php echo $Fila['Apellido']; ?></td>
-                  <td><?php echo $Fila['Genero']; ?></td>
-                  <td><?php echo $Fila['DUI']; ?></td>
-                  <td><?php echo $Fila['NIT']; ?></td>
-                  <td><?php echo $Fila['Direccion']; ?></td>
-                  <td><?php echo $Fila['Telefono 1']; ?></td>
-                  <td><?php echo $Fila['Telefono 2']; ?></td>
-                  <td><?php echo $Fila['Telefono 3']; ?></td>
-                  <td><?php echo $Fila['Fecha de ingreso']; ?></td>
-                  <td><?php echo $Fila['Fecha de modificacion']; ?></td>
-                  <td><?php echo $Fila['Estado']; ?></td>
+                  <td><?php echo $Fila['nombre_comercial_proveedor']; ?></td>
+                  <td><?php echo $Fila['nombre_propietario_proveedor']; ?></td>
+                  <td><?php echo $Fila['giro_proveedor']; ?></td>
+                  <td><?php echo $Fila['direccion_proveedor']; ?></td>
+                  <td><?php echo $Fila['telefono1_proveedor']; ?></td>
+                  <td><?php echo $Fila['estado']; ?></td>
                   <td>
                     <a href="index.php?mod=prove&form=de&id=<?php echo $Fila['id_proveedor'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
                     <a href="index.php?mod=prove&form=ed&id=<?php echo $Fila['id_proveedor'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"
@@ -297,16 +284,23 @@ $Obj_Paginador->ConfPaginador();
             }
           }
           </script>
-          <?php
-          //Llamamos a la capa de presentación, para las alertas que darán información al ejecutarse los mantenimientos
-          require_once 'Formularios/MyAlert.php';
-          //-- -------------------- Opciones para las alertas -------------------- --
-          //-- Si la url lleva una variable "m", significa mensaje, se mostrará según lo que sea solicitado
-          if ( isset( $_GET['m'] ) ) {
-            if ( $_GET['m'] == 'success' ) {
-              echo "<script>myAlertSuccess();</script>";
-            }
-            else if ( $_GET['m'] == 'error' ) {
-              echo "<script>myAlertDanger();</script>";
-            }
-          }
+                   
+<?php
+          
+require_once 'Formularios/myAlert.php';
+          
+if ( isset( $_GET['m'] ) ) {
+    if ( $_GET['m'] == 'success' ) {
+      	echo "<script>myAlertSuccess();</script>";
+    }
+   	else if ( $_GET['m'] == 'error' ) {
+        echo "<script>myAlertDanger();</script>";
+   	}
+    else if ( $_GET['m'] == 'update' ) {
+        echo "<script>myAlertInfo();</script>";
+    }
+    else if ( $_GET['m'] == 'delete' ) {
+        echo "<script>myAlertWarning();</script>";
+        }
+}
+?>

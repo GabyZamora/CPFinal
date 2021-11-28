@@ -39,7 +39,6 @@ $DatosProveedor = $Fila;
 			left: 0;
 			top: 70px;
 			background-color: white;
-			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -205,85 +204,81 @@ $DatosProveedor = $Fila;
 <!-- -------------------------- Fila 1 -------------------------- -->
 			<div class="form-row">
  				<div class="form-group col-md-8">
-					<label>Nombre: </label>
- 					<input type="text" class="form-control" id="txtNombre">
+					<label>Nombre Comercial: </label>
+ 					<input type="text" class="form-control" id="txtNombreComercial" name="txtNombreComercial"value="<?php echo $Fila['nombre_comercial_proveedor']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_proveedor']; ?>">
  				</div>
  				<div class="form-group col-md-8">
-					<label>Apellido: </label>
- 					<input type="text" class="form-control" id="txtApellido">
+					<label>Nombre del Proveedor: </label>
+ 					<input type="text" class="form-control" id="txtNombreProveedor" name= "txtNombreProveedor"value="<?php echo $Fila['nombre_propietario_proveedor']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_proveedor']; ?>">
  				</div>
  				<div class="form-group col-md-8">
-					<label>Genero: </label>
- 					<input type="text" class="form-control" id="txtGenero">
+					<label>Giro: </label>
+ 					<input type="text" class="form-control" id="txtGiro" name="txtGiro"value="<?php echo $Fila['giro_proveedor']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_proveedor']; ?>">
  				</div>
  			</div>
 <!-- -------------------------- Fila 2 -------------------------- -->
 			<div class="form-row">
  				<div class="form-group col-md-8">
 					<label>DUI: </label>
- 					<input type="text" class="form-control" id="txtDUI">
+ 					<input type="text" class="form-control" id="txtDUI" name= "txtDUI"value="<?php echo $Fila['DUI_proveedor']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_proveedor']; ?>">
  				</div>
  				<div class="form-group col-md-8">
 					<label>NIT: </label>
- 					<input type="text" class="form-control" id="txtNIT">
+ 					<input type="text" class="form-control" id="txtNIT" name="txtNIT"value="<?php echo $Fila['NIT_proveedor']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_proveedor']; ?>">
  				</div>
  				<div class="form-group col-md-8">
 					<label>Dirección: </label>
- 					<input type="text" class="form-control" id="txtDireccion">
+ 					<input type="text" class="form-control" id="txtDireccion" name="txtDireccion"value="<?php echo $Fila['direccion_proveedor']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_proveedor']; ?>">
  				</div>
  			</div>
 <!-- -------------------------- Fila 3 -------------------------- -->
 			<div class="form-row">
  				<div class="form-group col-md-8">
 					<label>Telefono 1: </label>
- 					<input type="text" class="form-control" id="txtTelefono1"
+ 					<input type="text" class="form-control" id="txtTelefono1" name="txtTelefono1"value="<?php echo $Fila['telefono1_proveedor']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_proveedor']; ?>">
  				</div>
  				<div class="form-group col-md-8">
 					<label>Telefono 2: </label>
- 					<input type="text" class="form-control" id="txtTelefono2">
+ 					<input type="text" class="form-control" id="txtTelefono2" name="txtTelefono2"value="<?php echo $Fila['telefono2_proveedor']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_proveedor']; ?>">
  				</div>
  				<div class="form-group col-md-8">
 					<label>Telefono 3: </label>
- 					<input type="text" class="form-control" id="txtTelefono3">
- 				</div>
- 			</div>
-
-<!-- -------------------------- Fila 4 -------------------------- -->
-			<div class="form-row">
- 				<div class="form-group col-md-8">
-					<label>Fecha de Ingreso: </label>
- 					<input type="text" class="form-control" id="txtFecha_Ingreso">
- 				</div>
- 				<div class="form-group col-md-8">
-					<label>Fecha de Modificacion: </label>
- 					<input type="text" class="form-control" id="txtFecha_Modificacion">
+ 					<input type="text" class="form-control" id="txtTelefono3" name="txtTelefono3"value="<?php echo $Fila['telefono3_proveedor']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_proveedor']; ?>">
  				</div>
  			</div>
 <!-- --------------------------Fila5----------------------------- -->
-
-			<div class="form-row">
-				<div class="form-group col-md-4">
-					<label>Estado: </label>
-					<select id="cbxEstado" name="cbxEstado" class="form-control">
-					<option value="">Seleccione...</option>
-					<option value="">Activo</option>
-					<option value="">Inactivo</option>
-					</select>
-				</div>
-			</div>
-		</div> <!-- Cierre del Div table-wrapper -->
-	</div> <!-- Cierre del Div container -->
+		  <div class="form-row">
+        <div class="form-group col-md-4">
+          <label>Estado: </label>
+          <select id="cbxEstado" name="cbxEstado" class="form-control">
+         <option value="<?php echo $Fila['estado']; ?>">
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+          </select>
+        </div>
+      </div>
+    </div> <!-- Cierre del Div table-wrapper -->
+  </div> <!-- Cierre del Div container -->
 </form>
 <!-- -------------------- Validaciones de ingreso de datos -------------------- -->
 <script type="text/javascript">
 	function ValidarEditar(){
-		if ( !document.getElementById('txtNombre').value ) {
-		alert('Ingrese el nombre del proveedor');
+		if ( !document.getElementById('txtNombreComercial').value ) {
+		alert('Ingrese el nombre Comercial del Proveedor');
 		}
-		else if ( !document.getElementById('txtApellido').value ){
-		alert('Ingrese los apellidos del proveedor');
+		else if ( !document.getElementById('txtNombreProveedor').value ){
+		alert('Ingrese el nombre completo del proveedor');
 		}
-		else if ( !document.getElementById('txtGenero').value ) {
+		else if ( !document.getElementById('txtGiro').value ) {
 		alert('Ingrese el genero del proveedor');
 		}
 		else if ( !document.getElementById('txtDUI').value ) {
@@ -305,18 +300,12 @@ $DatosProveedor = $Fila;
 		else if ( !document.getElementById('txtTelefono3').value ) {
 		alert('Ingrese el numero de telefono  del proveedor');
 		}
-		else if ( !document.getElementById('txtFecha_Ingreso').value ) {
-		alert('Ingrese la fecha del ingreso del proveedor');
-		}
-		else if ( !document.getElementById('txtFecha_Modificacion').value ) {
-		alert('Ingrese la fecha de modificacion del proveedor');
-		}
 		else if ( !document.getElementById('cbxEstado').value ) {
 		alert('Seleccione estado');
 		}
 		else {
-		document.forms.frmEditar.action = 'index.php?mod=prove&form=ac';
-		document.forms.frmEditar.submit();
-		}
-	}
+document.forms.frmEditar.action = 'index.php?mod=prove&form=ac';
+document.forms.frmEditar.submit();
+}
+}
 </script>

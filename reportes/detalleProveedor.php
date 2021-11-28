@@ -76,52 +76,52 @@ foreach ( $DatosProveedor as $Fila ) {
       <table width="100%" class="table table-borderless ">
         <tbody>
           <tr>
-            <td width="20%"><strong>Nombre del Proveedor:</strong></td>
-            <td colspan="3"><?php echo $Fila['Nombre']; ?></td>
+            <td width="20%"><strong>Nombre Comercial:</strong></td>
+            <td colspan="3"><?php echo $Fila['nombre_comercial_proveedor']; ?></td>
           </tr>
           <tr>
-            <td><strong>Apellido del Proveedor</strong></td>
-            <td width="41%"><?php echo $Fila['Apellido']; ?></td>
+            <td><strong>Nombre del Proveedor</strong></td>
+            <td width="41%"><?php echo $Fila['nombre_propietario_proveedor']; ?></td>
           </tr>
           <tr>
-            <td><strong>Genero</strong></td>
-            <td width="41%"><?php echo $Fila['Genero']; ?></td>
+            <td><strong>Giro</strong></td>
+            <td width="41%"><?php echo $Fila['giro_proveedor']; ?></td>
           </tr>
           <tr>
             <td><strong>DUI</strong></td>
-            <td width="41%"><?php echo $Fila['DUI']; ?></td>
+            <td width="41%"><?php echo $Fila['DUI_proveedor']; ?></td>
           </tr>
            <tr>
             <td><strong>NIT</strong></td>
-            <td width="41%"><?php echo $Fila['NIT']; ?></td>
+            <td width="41%"><?php echo $Fila['NIT_proveedor']; ?></td>
           </tr>
            <tr>
             <td><strong>Direccion</strong></td>
-            <td width="41%"><?php echo $Fila['Direccion']; ?></td>
+            <td width="41%"><?php echo $Fila['direccion_proveedor']; ?></td>
           </tr>
            <tr>
             <td><strong>Telefono 1</strong></td>
-            <td width="41%"><?php echo $Fila['Telefono1']; ?></td>
+            <td width="41%"><?php echo $Fila['telefono1_proveedor']; ?></td>
           </tr>
           <tr>
             <td><strong>Telefono 2</strong></td>
-            <td width="41%"><?php echo $Fila['Telefono2']; ?></td>
+            <td width="41%"><?php echo $Fila['telefono2_proveedor']; ?></td>
           </tr>
           <tr>
             <td><strong>Telefono 3</strong></td>
-            <td width="41%"><?php echo $Fila['Telefono3']; ?></td>
+            <td width="41%"><?php echo $Fila['telefono3_proveedor']; ?></td>
           </tr>
           <tr>
             <td><strong>Fecha de ingreso</strong></td>
-            <td width="41%"><?php echo $Fila['Fecha_Ingreso']; ?></td>
+            <td width="41%"><?php echo $Fila['fechaIngreso_proveedor']; ?></td>
           </tr>
           <tr>
             <td><strong>Fecha de modificacion</strong></td>
-            <td width="41%"><?php echo $Fila['Fecha_Modificacion']; ?></td>
+            <td width="41%"><?php echo $Fila['fechaModificacion_proveedor']; ?></td>
           </tr>
           <tr>
             <td><strong>Estado</strong></td>
-            <td width="41%"><?php echo $Fila['Estado']; ?></td>
+            <td width="41%"><?php echo $Fila['estado']; ?></td>
           </tr>
           </tbody>
         </table>
