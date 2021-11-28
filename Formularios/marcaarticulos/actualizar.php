@@ -6,11 +6,10 @@
 	//Instanciamos la clase
 	$Obj_Marcas_Articulos = new Marcas_Articulos();
 	//Asignación de atributos de la clase de la capa de negocio
-	$Obj_Marcas_Articulos->Nombre = $_POST['txtNombreMarca'];
-	$Obj_Marcas_Articulos->Fecha_Ingreso = $_POST['txtFecha_Ingreso'];
-	$Obj_Marcas_Articulos->Fecha_Modificacion = $_POST['txtFecha_Modificacion'];
+	$Obj_Marcas_Articulos->nombremarca = $_POST['txtNombreMarca'];
+	$Obj_Marcas_Articulos->Estado = $_POST['cbxEstado'];
 	//Ejecutamos el mantenimiento de actualizar
-	if(	$Obj_Marcas_Articulos->Actualizar( $_POST['id'] ) ) {
+	if(	$Obj_Marcas_Articulos->Actualizar( $_POST['hidId'] ) ) {
 	//Si se ejecuta, redireccionamos al formulario de listar con mensaje update
 	echo "<script>location.replace('index.php?mod=marcaarti&form=li&m=update');</script>";
 	}

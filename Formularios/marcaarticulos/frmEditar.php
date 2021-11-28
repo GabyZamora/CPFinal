@@ -2,14 +2,14 @@
 	//Llamamos a la capa de datos
 	require_once 'datos/datos.php';
 	//Llamamos a la capa de negocio
-	require_once 'negocio/categoriaservicios.php';
+	require_once 'negocio/marcaarticulos.php';
 	//Instanciamos la clase
-	$Obj_Categoria_Servicio= new Categoria_Servicio();
+	$Obj_Marcas_Articulos= new Marcas_Articulos();
 //Cargamos el registro solicitado
-$DatosCategoria_Servicio = $Obj_Categoria_Servicio->BuscarPorId( $_GET['id'] );
+$DatosMarcas_Articulos = $Obj_Marcas_Articulos->BuscarPorId( $_GET['id'] );
 //Recuperamos el registro obtenido en una variable fila
-foreach ( $DatosCategoria_Servicio as $Fila ) {
-$DatosCategoria_Servicio = $Fila;
+foreach ( $DatosMarcas_Articulos as $Fila ) {
+$DatosMarcas_Articulos = $Fila;
 }
 ?>
 <!-- CSS -->
@@ -39,7 +39,6 @@ $DatosCategoria_Servicio = $Fila;
 			left: 0;
 			top: 70px;
 			background-color: white;
-			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -148,7 +147,7 @@ $DatosCategoria_Servicio = $Fila;
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">
-						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
+						<li><a href="#">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
 					</ul>
@@ -192,11 +191,11 @@ $DatosCategoria_Servicio = $Fila;
  			<div class="table-title">
  				<div class="form-row">
  					<div class="col-md-8">
- 						<h2>Editar Categoria de Servicios</h2>
+ 						<h2>Editar Marcas de Articulos</h2>
  					</div>
  					<div class="col-md-4">
 						 <button type="button" class="btn btn-danger"
-						onClick="location.replace('index.php?mod=catse&form=li');"><i class="materialicons">&#xe5c9;</i><span>Cancelar</span></button>
+						onClick="location.replace('index.php?mod=marcaarti&form=li');"><i class="materialicons">&#xe5c9;</i><span>Cancelar</span></button>
 						 <button type="button" class="btn btn-success"
 						onClick="ValidarEditar();"><i class="materialicons">&#xe161;</i><span>Guardar</span></button>
 					 </div>
@@ -205,42 +204,33 @@ $DatosCategoria_Servicio = $Fila;
 <!-- -------------------------- Fila 1 -------------------------- -->
 			<div class="form-row">
  				<div class="form-group col-md-8">
-					<label>Nombre de categoria de servicios: </label>
- 					<input type="text" class="form-control" id="nombre_categoria " name="txtNombreCategoria">
- 				</div>
- 					<div class="form-group col-md-8">
- 					<label>Descripcion: </label>
- 					<input type="text" class="form-control" id="descripcion_catServ" name= "txtDescripcion">
- 				</div>	
- 				<div class="form-group col-md-8">
- 					<label>Fecha de Ingreso: </label>
- 					<input type="text" class="form-control" id="txtFecha_Ingreso" name= "txtFecha_Ingreso">
- 				</div>	
- 				<div class="form-group col-md-8">
-					<label>Fecha de Modificacion: </label>
- 					<input type="text" class="form-control" id="txtFecha_Modificacion" name ="txtFecha_Modificacion">
- 				</div>
- 			</div>
-		</div> <!-- Cierre del Div table-wrapper -->
-	</div> <!-- Cierre del Div container -->
+					<label>Nombre de Marca de articulos: </label>
+ 					<input type="text" class="form-control" id="txtNombreMarca" name="txtNombreMarca"value="<?php echo $Fila['nombreMarca']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_marca_art']; ?>">
+ 					</div>
+ 					</div>
+ 				<div class="form-row">
+        		<div class="form-group col-md-4">
+         			 <label>Estado: </label>
+          			<select id="cbxEstado" name="cbxEstado" class="form-control">
+        			 <option value="<?php echo $Fila['estado']; ?>">
+          			<option value="Activo">Activo</option>
+         			<option value="Inactivo">Inactivo</option>
+          			</select>
+        		</div>
+     		 </div>
+    </div> <!-- Cierre del Div table-wrapper ---->
+  </div> <!-- Cierre del Div container -->
 </form>
 <!-- -------------------- Validaciones de ingreso de datos -------------------- -->
 <script type="text/javascript">
 	function ValidarEditar(){
-		if ( !document.getElementById('txtNombreCategoria').value ) {
-		alert('Ingrese el nombre de la categoria del servicio');
+		if ( !document.getElementById('txtNombreMarca').value ) {
+		alert('Ingrese el nombre de  la marca de articulos');
 		}
-		if ( !document.getElementById('txtNombreDescripcion').value ) {
-		alert('Ingrese la categoria');
-		}
-		else if ( !document.getElementById('txtFecha_Ingreso').value ){
-		alert('Ingrese la fecha de ingreso de la categoria de servicios');
-		}
-		else if ( !document.getElementById('txtFecha_Modificacion').value ) {
-		alert('Ingrese la fecha de modificacion de la categoria de servicios');
-		}
+		
 		else {
-		document.forms.frmEditar.action = 'index.php?mod=catse&form=ac';
+		document.forms.frmEditar.action = 'index.php?mod=marcaarti&form=ac';
 		document.forms.frmEditar.submit();
 		}
 	}
