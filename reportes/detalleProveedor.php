@@ -9,7 +9,7 @@ $Obj_Proveedor = new Proveedor();
 $DatosProveedor = $Obj_Proveedor->BuscarPorId( $_GET['id'] );
 //Recuperamos el registro obtenido en una variable fila
 foreach ( $DatosProveedor as $Fila ) {
-  $DatosProductos = $Fila;
+  $DatosProveedor = $Fila;
 }
 ?>
 <html lang="es">
@@ -72,7 +72,7 @@ foreach ( $DatosProveedor as $Fila ) {
           </div>
         </div>
       </div>
-      <h3>Detalle de Productos</h3>
+      <h3>Detalle de Proveedor</h3>
       <table width="100%" class="table table-borderless ">
         <tbody>
           <tr>
