@@ -8,14 +8,14 @@ class Cat_Articulo extends Datos {
   //Métodos
   public function ListarTodos( $paBuscar ) {
     $Cadena = "SELECT * FROM categoria_art WHERE
-    (nombre_categoria_art LIKE '%".$paBuscar."%' )
-    ";
+    (nombre_categoria_art LIKE '%".$paBuscar."%' ) 
+      AND estado= 'ACTIVO' ";
     return $Cadena; //Acá no se ejecuta la cadena, porque se hace en la clase del paginador
   }
   public function CantTotalRegistros( $paBuscar ) {
     $Cadena = "SELECT COUNT(id_categoria_art) FROM categoria_art WHERE
     (nombre_categoria_art LIKE '%".$paBuscar."%' )
-    ";
+    AND estado= 'ACTIVO' ";
     return mysqli_fetch_row($this->EjecutarQuery( $Cadena ));
   } //Retorna el número de filas que tiene la consulta
 
@@ -30,22 +30,23 @@ class Cat_Articulo extends Datos {
     public function Agregar() {
     $Cadena = "INSERT INTO categoria_art (
           nombre_categoria_art,
-          descripcion_categoria_art)
+          descripcion_categoria_art,
+          estado)
       VALUES (
         '".addslashes($this->Nombre)."',
         '".addslashes($this->Descripcion)."',
-        '1' )";
+        'ACTIVO' )";
         return $this->EjecutarQuery( $Cadena );
       }
       public function Actualizar( $paId ) {
         $Cadena = "UPDATE categoria_art SET
         nombre_categoria_art = '".addslashes($this->Nombre)."',
-        descripcion_categoria_art = '".addslashes($this->Descripcion)."',
-        WHERE id_categoria_art".$paId."' ";
+        descripcion_categoria_art = '".addslashes($this->Descripcion)."'
+        WHERE id_categoria_art  = '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
       }
       public function Eliminar( $paId ) {
-        $Cadena = "UPDATE categoria_art SET estado = '1' WHERE id_categoria_art = '".$paId."' ";
+        $Cadena = "UPDATE categoria_art SET estado = 'INACTIVO' WHERE id_categoria_art = '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
       }
     }
