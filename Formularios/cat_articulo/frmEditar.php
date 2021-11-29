@@ -220,7 +220,7 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
  <div class="form-group col-md-8">
 <label>Estado: </label>
 <select id="cbxEstado" name="cbxEstado" class="form-control">
-<option value="<?php echo $Fila['estado']; ?>"><?php echo $Fila['estado']; ?>Seleccione...</option>
+<option value="<?php echo $Fila['estado']; ?>"><?php echo $Fila['estado']; ?></option>
 <option value="">ACTIVO</option>
 <option value="">INACTIVO</option>
 </select>

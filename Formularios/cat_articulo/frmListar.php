@@ -162,6 +162,7 @@ $Obj_Paginador->ConfPaginador();
 						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
+						<li><a href="index.php?mod=estveh&form=li">Estado de Vehículo</a></li>
 					</ul>
 				</li>
 				<li>
