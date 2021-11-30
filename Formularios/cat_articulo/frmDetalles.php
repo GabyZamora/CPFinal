@@ -37,18 +37,21 @@ $Datos_Catar = $Fila;
 				<label>Nombre de la Categoria de Artículo: </label>
 				<input type="text" class="form-control" id="txtNombre" name="txtNombre" readonly value="<?php echo $Fila['nombre_categoria_art']; ?>">
 			</div>
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-8">
 				<label>Descripción: </label>
 				<input type="text" class="form-control" id="txtDescripcion" name="txtDescripcion" readonly value="<?php echo $Fila['descripcion_categoria_art']; ?>">
 			</div>
 		</div>
+
+		<div class="form-row">
 			<div class="form-group col-md-8">
 				<label>Fecha de Ingreso: </label>
 				<input type="text" class="form-control" id="txtFecha_Ingreso" name="txtFecha_Ingreso" readonly value="<?php echo $Fila['fechaIngreso_categoria_art']; ?>">
 			</div>
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-8">
 				<label>Fecha de Modificación: </label>
 				<input type="text" class="form-control" id="txtFecha_Modificacion" name="txtFecha_Modificacion" readonly value="<?php echo $Fila['fechaModificacion_categoria_art']; ?>">
+			</div>
 			</div>
 
 			<div class="form-row">
