@@ -5,14 +5,16 @@ require_once 'datos/datos.php';
 require_once 'negocio/vehiculos.php';
 //Instanciamos las clases de la capa de negocio
 $Obj_Vehiculos = new Vehiculos();
+$Obj_EstadoV = new EstadoV();
 //Cargamos el registro solicitado
-$DatosVehiculos = $Obj_Vehiculos->BuscarPorId( $_GET['id'] );
+$Datos_EstadoV = $Obj_EstadoV->BuscarPorId( $_GET['id'] );
+//Recuperamos los registros de las categorías y las marcas, para los combos
+$DatosVehiculos = $Obj_Vehiculos->ListarTodoCombos();
 //Recuperamos el registro obtenido en una variable fila
-foreach ( $DatosVehiculos as $Fila ) {
-$DatosVehiculos = $Fila;
+foreach ( $Datos_EstadoV as $Fila ) {
+$Datos_EstadoV = $Fila;
 }
 ?>
-
 <!-- CSS -->
 <head>
 <link rel="stylesheet" href="css/iconfont/material-icons.css">
@@ -188,89 +190,108 @@ $DatosVehiculos = $Fila;
 		});
 	</script>
 
-<div class="container">
+<form name="frmEditar" action="" method="post">
+	<div class="container">
+		<div class="table-wrapper">
+ 			<div class="table-title">
+ 				<div class="form-row">
+ 					<div class="col-md-8">
+ 						<h2>Editar Estado de vehículo</h2>
+ 					</div>
+ 					<div class="col-md-4">
+<button type="button" class="btn btn-danger"
+onClick="location.replace('index.php?mod=estveh&form=li');"><i class="material-icons">&#xe5c9;</i><span>Cancelar</span></button>
+<button type="button" class="btn btn-success" onClick="ValidarEditar();"><i
+class="material-icons">&#xe161;</i><span>Guardar</span></button>
+</div>
+ 				</div>
+			</div>
 
-	<div class="table-wrapper">
-		<div class="table-title">
-			<div class="form-row">
-				<div class="col-md-8">
-					<h2>Detalles de Vehiculo</h2>
-				</div>
-				<div class="col-md-4">
-					<button type="button" class="btn btn-info" onclick="window.open('reportes/detalleVehiculo.php?id=<?php echo $_GET['id'] ?>', 'ReporteDetVehiculo', 'width=1000,height=600');"><i class="material-icons">&#xe8ad;</i><span>Imprimir</span></button>
-					<button type="button" class="btn btn-success" onClick="location.replace('index.php?mod=veh&form=li');"><i class="material-icons">&#xe5c4;</i><span>Regresar</span></button>
-				</div>
-			</div>
-		</div>
-<!-- -------------------------- Fila 1 -------------------------- -->
-		<div class="form-row">
+<!-- Fila -------------------------------------------->
+<div class="form-row">
 			<div class="form-group col-md-8">
-				<label>Nombre: </label>
-				<input type="text" class="form-control" id="txtNombre" name="txtNombreC" readonly value="<?php echo $Fila['nombre_cliente']; ?>">
-			</div>
-			<div class="form-group col-md-6">
-				<label>Marca: </label>
-				<input class="form-control" id="cbxMarca" name="cbxMarca" readonly value="<?php echo $Fila['nombre_marca']; ?>">
-			</div>
-			<div class="form-group col-md-4">
-				<label>Modelo: </label>
-				<input  class="form-control" id="cbxModelo" name="cbxModelo" readonly value="<?php echo $Fila['nombre_modelo']; ?>">
-			</div>
-		</div>
-<!-- -------------------------- Fila 2 -------------------------- -->
-		<div class="form-row">
-			<div class="form-group col-md-8">
-				<label>Placa: </label>
-				<input type="text" class="form-control" id="txtPlaca" name="txtPlaca" readonly value="<?php echo $Fila['placa']; ?>">
-			</div>
-			<div class="form-group col-md-4">
-				<label>Tipo Vehiculo: </label>
-				<input type="text" class="form-control" id="txtTipoVeh" name="txtTipoVeh" readonly value="<?php echo $Fila['tipo_vehiculo']; ?>">
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-4">
-				<label>Color: </label>
-				<input type="text" class="form-control" id="txtColorVeh" name="txtColorVeh" readonly value="<?php echo $Fila['color_vehiculo']; ?>">
-			</div>
-			<div class="form-group col-md-4">
-				<label>Año Vehiculo: </label>
-				<input type="text" class="form-control" id="txtAnio" name="txtAnio" readonly value="<?php echo $Fila['anio_vehiculo']; ?>">
-			</div>
-		</div>
-<!-- -------------------------- Fila 4 -------------------------- -->
-
-		<div class="form-row">
-			<div class="form-group col-md-4">
-				<label>Vin : </label>
-				<input type="text" class="form-control" id="txVin" name="txtVin" readonly value="<?php echo $Fila['vin_vehiculo']; ?>">
-			</div>
-			<div class="form-group col-md-4">
-				<label>Número de Motor : </label>
-				<input type="text" class="form-control" id="txtMotor" name="txtMotor" readonly value="<?php echo $Fila['numero_motor_vehiculo']; ?>">
-			</div>
-			<div class="form-group col-md-4">
-				<label>Observaciones : </label>
-				<input type="text" class="form-control" id="txObservacion" name="txtObservacion" readonly value="<?php echo $Fila['observaciones_vehiculo']; ?>">
-			</div>
-		</div>
-		
-<!-- -------------------------- Fila 5 -------------------------- -->
-		<div class="form-row">
-			<div class="form-group col-md-4">
-				<label>Fecha de Ingreso: </label>
-				<input type="text" class="form-control" id="txtFechIngreso" name="txtFechIngreso" readonly value="<?php echo $Fila['fecIngreso_cliente']; ?>">
-			</div>
-			
-			<div class="form-group col-md-4">
-				<label>Fecha de Modificación: </label>
-				<input type="text" class="form-control" id="txtFechModificacon" name="txtFechModificacion" readonly value="<?php echo $Fila['fechModificacion_cliente']; ?>">
+				<label>Vehículo Ingresado: </label>
+				<input type="text" class="form-control" id="txtIngresado" name="txtIngresado" value="<?php echo $Fila['Ingresado']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_estado_del_vehiculo']; ?>">
 			</div>
 				<div class="form-group col-md-4">
-					<label>Estado: </label>
-					<input type="text" class="form-control" id="txtEstado" name="txtEstado" readonly value="<?php echo $Fila['estado']; ?>">
-				</div>
+				<label>Placa: </label>
+				<select id="cbxPlaca" name="cbxPlaca" class="form-control">
+				<option value="<?php echo $Fila['Placa']; ?>"><?php echo $Fila['Placa']; ?></option>
+              <?php
+              foreach ( $DatosVehiculos as $FilaVehiculo ) {
+                ?>
+                <option value="<?php echo $FilaVehiculo['id_vehiculo']; ?>"><?php echo
+                $FilaVehiculo['placa']; ?></option>
+                <?php
+              }
+              ?>
+</select>
+</div>
+
+<div class="form-group col-md-8">
+				<label>Aceptado por el cliente: </label>
+				<input type="text" class="form-control" id="txtAceptacion" name="txtAceptacion" value="<?php echo $Fila['Aceptacion']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_estado_del_vehiculo']; ?>">
 			</div>
-<!-- Cierre de los primeros 2 div --->
-	</div> <!-- Cierre del Div table-wrapper -->
-</div> <!-- Cierre del Div container -->
+
+			<div class="form-group col-md-8">
+				<label>Espera de repuesto: </label>
+				<input type="text" class="form-control" id="txtEsperaRepuesto" name="txtEsperaRepuesto" value="<?php echo $Fila['EsperaRepuesto']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_estado_del_vehiculo']; ?>">
+			</div>
+
+			<div class="form-group col-md-8">
+				<label>Estado de reparación: </label>
+				<input type="text" class="form-control" id="txtEstadoReparacion" name="txtEstadoReparacion" value="<?php echo $Fila['EstadoReparacion']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_estado_del_vehiculo']; ?>">
+			</div>
+
+			<div class="form-group col-md-8">
+				<label>Finalizacion de taller: </label>
+				<input type="text" class="form-control" id="txtFinalizacionTaller" name="txtFinalizacionTaller" value="<?php echo $Fila['FinalizacionTaller']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_estado_del_vehiculo']; ?>">
+			</div>
+
+			<div class="form-group col-md-8">
+<label>Estado: </label>
+<select id="cbxEstado" name="cbxEstado" class="form-control">
+<option value="<?php echo $Fila['estado']; ?>"><?php echo $Fila['estado']; ?></option>
+<option value="">ACTIVO</option>
+<option value="">INACTIVO</option>
+</select>
+</div>
+		</div>
+    </div> <!-- Cierre del Div table-wrapper ---->
+  </div> <!-- Cierre del Div container -->
+</form>
+<!-- -------------------- Validaciones de ingreso de datos -------------------- -->
+<script type="text/javascript">
+	function ValidarEditar(){
+		if ( !document.getElementById('txtIngresado').value ) {
+alert('Ingrese dato para ingresado');
+}
+else if ( !document.getElementById('cbxPlaca').value ) {
+alert('Seleccione un número de placa');
+}
+else if ( !document.getElementById('txtAceptacion').value ) {
+alert('Ingrese aceptación de cliente');
+}
+else if ( !document.getElementById('txtEsperaRepuesto').value ) {
+alert('Ingrese espera de repuesto');
+}
+else if ( !document.getElementById('txtEstadoReparacion').value ) {
+alert('Ingrese estado de repación');
+}
+else if ( !document.getElementById('txtFinalizacionTaller').value ) {
+alert('Ingrese finalizacion de taller');
+}
+else if ( !document.getElementById('cbxEstado').value ) {
+alert('Seleccione un estado');
+}
+		else {
+		document.forms.frmEditar.action = 'index.php?mod=estveh&form=ac';
+		document.forms.frmEditar.submit();
+		}
+	}
+</script>

@@ -161,6 +161,7 @@ $Obj_Paginador->ConfPaginador();
 				<li><a href="index.php?mod=usu&form=li"><span class="fas fa-user"></span> Usuarios</a></li>
 				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span> Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
+				<li><a href="index.php?mod=estveh&form=li"><span class="fas fa-file-alt"></span>Estado de <br>vehículo</a>
 				<li>
 					<a href="#" class="vehi-btn">Vehículos
 						<span class="fas fa-caret-down first"></span>
@@ -186,7 +187,7 @@ $Obj_Paginador->ConfPaginador();
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="ser-show">
-						<li><a href="#">Gestión de servicios</a></li>
+						<li><a href="index.php?mod=ser&form=li">Gestión de servicios</a></li>
 						<li><a href="index.php?mod=catse&form=li">Categorías</a></li>
 					</ul>
 				</li>
@@ -262,10 +263,10 @@ $Obj_Paginador->ConfPaginador();
               foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
                 ?>
                 <tr>
-                  <td><?php echo $Fila['Nombre']; ?></td>
-                  <td><?php echo $Fila['Apellido']; ?></td>
+                  <td><?php echo $Fila['NombreCliente']; ?></td>
+                  <td><?php echo $Fila['ApellidoCliente']; ?></td>
                   <td><?php echo $Fila['Direccion']; ?></td>
-                  <td><?php echo $Fila['telefono_cliente']; ?></td>
+                  <td><?php echo $Fila['Telefono']; ?></td>
                   <td><?php echo $Fila['correo_cliente']; ?></td>
                   <td><?php echo $Fila['nit_cliente']; ?></td>
                   <td><?php echo $Fila['nrc_cliente']; ?></td>

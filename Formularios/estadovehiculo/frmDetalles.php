@@ -1,9 +1,23 @@
+<?php
+//Llamamos a la capa de datos
+require_once 'datos/datos.php';
+//Llamamos a la capa de negocio
+require_once 'negocio/estveh';
+//Instanciamos las clases de la capa de negocio
+$Obj_EstadoV = new EstadoV();
+//Cargamos el registro solicitado
+$Datos_EstadoV = $Obj_EstadoV->BuscarPorId( $_GET['id'] );
+//Recuperamos el registro obtenido en una variable fila
+foreach ( $Datos_EstadoV as $Fila ) {
+$Datos_EstadoV = $Fila;
+}
+?>
+
 <!-- CSS -->
 <head>
 <link rel="stylesheet" href="css/iconfont/material-icons.css">
 <link rel="stylesheet" href="css/bootstrap-4.3.1.min.css">
 <link rel="stylesheet" href="css/formularios.css">
-
 <link href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<link rel="stylesheet" href="css/iconfont/material-icons.css">
@@ -26,7 +40,6 @@
 			left: 0;
 			top: 70px;
 			background-color: white;
-			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -136,7 +149,7 @@
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">
-						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
+						<li><a href="#">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
 					</ul>
@@ -149,6 +162,7 @@
 						<li><a href="#">Artículos</a></li>
 						<li><a href="index.php?mod=catar&form=li">Categorías</a></li>
 						<li><a href="index.php?mod=marcaarti&form=li">Marcas</a></li>
+						<li><a href="index.php?mod=estveh&form=li">Estado de Vehículo</a></li>
 					</ul>
 				</li>
 				<li>
@@ -174,61 +188,67 @@
 		});
 	</script>
 
-<form name="frmNuevo" action="" method="post">
-	<div class="container">
-		<div class="table-wrapper">
- 			<div class="table-title">
- 				<div class="form-row">
- 					<div class="col-md-8">
- 						<h2>Nuevo Usuario</h2>
-					</div>
- 					<div class="col-md-4">
- 						<button type="button" class="btn btn-danger"
-						onClick="location.replace('index.php?mod=usu&form=li');"><i class="materialicons">&#xe5c9;</i><span>Cancelar</span></button>
- 						<button type="button" class="btn btn-success"
-						onClick="ValidarNuevo();"><i class="materialicons">&#xe161;</i><span>Guardar</span></button>
- 					</div>
+<div class="container">
+
+	<div class="table-wrapper">
+		<div class="table-title">
+			<div class="form-row">
+				<div class="col-md-8">
+					<h2>Detalles de Estado de Vehículo</h2>
+				</div>
+				<div class="col-md-4">
+					<button type="button" class="btn btn-success" onClick="location.replace('index.php?mod=estveh&form=li');"><i class="material-icons">&#xe5c4;</i><span>Regresar</span></button>
 				</div>
 			</div>
-			  <!-- -------------------------- Fila 1 -------------------------- -->
- 			<div class="form-row">
- 				<div class="form-group col-md-8">
-					<label>Nombre Completo: </label>
- 					<input type="text" class="form-control" id="txtNombreC"
-					name="txtNombreC">
- 				</div>
- 			</div>
- 			<!-- -------------------------- Fila 2 -------------------------- -->
- 			<div class="form-row">
- 				<div class="form-group col-md-8">
- 					<label>Nombre Usuario: </label>
- 					<input type="text" class="form-control" id="txtUsuario"
-					name="txtUsuario">
- 				</div>
- 				<div class="form-group col-md-4">
- 					<label>Password: </label>
- 					<input type="password" class="form-control" id="txtPassword"
-					name="txtPassword">
- 				</div>
- 			</div>
- 		</div> <!-- Cierre del Div table-wrapper -->
-	</div> <!-- Cierre del Div container -->
-</form>
-<!-- -------------------- Validaciones de ingreso de datos -------------------- -->
-<script type="text/javascript">
-	function ValidarNuevo(){
-		 if ( !document.getElementById('txtNombreC').value ) {
-		 alert('Ingrese el nombre completo');
-		 }
-		 else if ( !document.getElementById('txtUsuario').value ) {
-		 alert('Ingrese el usuario');
-		 }
-		 else if ( !document.getElementById('txtPassword').value ) {
-		 alert('Ingrese el password');
-		 }
-		 else {
-		 document.forms.frmNuevo.action = 'index.php?mod=usu&form=ag';
-		 document.forms.frmNuevo.submit();
-		 }
-	}
-</script>
+		</div>
+<!-- -------------------------- Fila 1 -------------------------- -->
+		<div class="form-row">
+			<div class="form-group col-md-8">
+				<label>Ingresado: </label>
+				<input type="text" class="form-control" id="txtIngresado" name="txtIngresado" readonly value="<?php echo $Fila['Ingresado']; ?>">
+			</div>
+			<div class="form-group col-md-8">
+				<label>Placa: </label>
+				<input type="text" class="form-control" id="txtPlaca" name="txtPlaca" readonly value="<?php echo $Fila['Placa']; ?>">
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group col-md-8">
+				<label>Aceptado por el cliente: </label>
+				<input type="text" class="form-control" id="txtAceptacion" name="txtAceptacion" readonly value="<?php echo $Fila['Aceptacion']; ?>">
+			</div>
+			<div class="form-group col-md-8">
+				<label>Espera de repuesto: </label>
+				<input type="text" class="form-control" id="txtEsperaRepuesto" name="txtEsperaRepuesto" readonly value="<?php echo $Fila['EsperaRepuesto']; ?>">
+			</div>
+			</div>
+
+			<div class="form-row">
+			<div class="form-group col-md-8">
+				<label>Estado de reparación: </label>
+				<input type="text" class="form-control" id="txtEstadoReparacion" name="txtEstadoReparacion" readonly value="<?php echo $Fila['EstadoReparacion']; ?>">
+			</div>
+
+			<div class="form-group col-md-8">
+				<label>Finalización en taller: </label>
+				<input type="text" class="form-control" id="txtFinalizacionTaller" name="txtFinalizacionTaller" readonly value="<?php echo $Fila['FinalizacionTaller']; ?>">
+			</div>
+
+			<div class="form-group col-md-8">
+				<label>Fuera del taller: </label>
+				<input type="text" class="form-control" id="txtFueraTaller" name="txtFueraTaller" readonly value="<?php echo $Fila['FueraTaller']; ?>">
+			</div>
+
+			<div class="form-group col-md-8">
+				<label>Estado: </label>
+				<input type="text" class="form-control" id="txtEstado" name="txtEstado" readonly value="<?php echo $Fila['estado']; ?>">
+			</div>
+		</div>
+
+
+			
+
+<!-- Cierre de los primeros 2 div --->
+	</div> <!-- Cierre del Div table-wrapper -->
+</div> <!-- Cierre del Div container -->

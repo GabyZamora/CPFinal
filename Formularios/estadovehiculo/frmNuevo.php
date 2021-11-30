@@ -1,25 +1,20 @@
 <?php
-require_once ('datos/datos.php');
-require_once ('negocio/marcasautos.php');
-require_once ('negocio/modelo.php');
-require_once ('negocio/clientes.php');
-
-$Obj_Cliente = new Cliente();
-$DatosCliente = $Obj_Cliente->ListarTodoCombos();
-$Obj_Modelo = new Modelo();
-$Datos_Modelo = $Obj_Modelo->ListarTodoCombos();
-$Obj_Marcas_Autos = new Marcas_Autos();
-$Datos_Marcas_Autos = $Obj_Marcas_Autos->ListarTodoCombos();
+//Llamamos a la capa de datos
+require_once 'datos/datos.php';
+//Llamamos a la capa de negocio
+require_once 'negocio/vehiculos.php';
+//Instanciamos las clases de la capa de negocio
+$Obj_Vehiculos = new Vehiculos();
+//Recuperamos los registros de las categorías y las marcas
+$DatosVehiculos = $Obj_Vehiculos->ListarTodoCombos();
 ?>
-
 <!-- CSS -->
 <head>
 <link rel="stylesheet" href="css/iconfont/material-icons.css">
 <link rel="stylesheet" href="css/bootstrap-4.3.1.min.css">
 <link rel="stylesheet" href="css/formularios.css">
 <link href="https://fonts.googleapis.com/css?family=Raleway|Open+Sans" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-			  crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<link rel="stylesheet" href="css/iconfont/material-icons.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap-3.3.7.min.css"> 
@@ -153,6 +148,7 @@ $Datos_Marcas_Autos = $Obj_Marcas_Autos->ListarTodoCombos();
 						<li><a href="index.php?mod=veh&form=li">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
+						<li><a href="index.php?mod=estveh&form=li">Estado de Vehículo</a></li>
 					</ul>
 				</li>
 				<li>
@@ -186,7 +182,6 @@ $Datos_Marcas_Autos = $Obj_Marcas_Autos->ListarTodoCombos();
 		$('.ser-btn').click(function(){
 			$('nav ul .ser-show').toggleClass("show");
 		});
-
 	</script>
 
 <form name="frmNuevo" action="" method="post">
@@ -195,11 +190,11 @@ $Datos_Marcas_Autos = $Obj_Marcas_Autos->ListarTodoCombos();
 <div class="table-title">
 <div class="form-row">
 <div class="col-md-8">
-<h2>Nuevo Vehiculo</h2>
+<h2>Nuevo Estado de Vehículo</h2>
 </div>
 <div class="col-md-4">
 <button type="button" class="btn btn-danger"
-onClick="location.replace('index.php?mod=veh&form=li');"><i class="material-icons">&#xe5c9;</i><span>Cancelar</span></button>
+onClick="location.replace('index.php?mod=estveh&form=li');"><i class="material-icons">&#xe5c9;</i><span>Cancelar</span></button>
 <button type="button" class="btn btn-success" onClick="ValidarNuevo();"><i
 class="material-icons">&#xe161;</i><span>Guardar</span></button>
 </div>
@@ -207,100 +202,54 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 </div>
 <!-- -------------------------- Fila 1 -------------------------- -->
 <div class="form-row">
+			<div class="form-group col-md-8">
+				<label>Vehículo Ingresado: </label>
+				<input type="text" class="form-control" id="txtIngresado" name="txtIngresado" >
+			</div>
+				<div class="form-group col-md-4">
+				<label>Placa: </label>
+				<select id="cbxPlaca" name="cbxPlaca" class="form-control">
+				<option value="">Seleccione...</option>
+              <?php
+              foreach ( $DatosVehiculos as $FilaVehiculo ) {
+                ?>
+                <option value="<?php echo $FilaVehiculo['id_vehiculo']; ?>"><?php echo
+                $FilaVehiculo['placa']; ?></option>
+                <?php
+              }
+              ?>
+</select>
+</div>
+
 <div class="form-group col-md-8">
-<label>Nombre Cliente: </label>
-<select id="cbxCliente" name="cbxCliente" class="form-control">
-           <option value="">Seleccione...</option>
-           <?php
-           foreach ( $DatosClientes as $FilaCliente ) {
-           ?>
-           <option value="<?php echo $FilaCliente['id_cliente']; ?>"><?php echo
-          $FilaCliente['nombre_cliente']; ?></option>
-           <?php
-           }
-           ?>
-          </select>
-</div>
-<div class="form-group col-md-6">
-          <label>Marca: </label>
-          <select id="cbxMarca" name="cbxMarca" class="form-control">
-           <option value="">Seleccione...</option>
-           <?php
-           foreach ( $Datos_Marcas_Autos as $FilaMarca ) {
-           ?>
-           <option value="<?php echo $FilaMarca['id_marca']; ?>"><?php echo
-          $FilaMarca['nombre_marca']; ?></option>
-           <?php
-           }
-           ?>
-          </select>
-</div>
-</div>
-<!-- -------------------------- Fila 2 -------------------------- -->
-<div class="form-row">
-<div class="form-group col-md-6">
-          <label>Modelo: </label>
-          <select id="cbxModelo" name="cbxModelo" class="form-control">
-           <option value="">Seleccione...</option>
-           <?php
-           foreach ( $DatosModelo as $FilaModelo ) {
-           ?>
-           <option value="<?php echo $FilaModelo['id_modelo']; ?>"><?php echo
-          $FilaModelo['nombre_modelo']; ?></option>
-           <?php
-           }
-           ?>
-          </select>
-        </div>
-<div class="form-group col-md-8">
-<label>Placa: </label>
-<input type="text" class="form-control" id="txtPlaca" name="txtPlaca">
-</div>
-</div>
-<!-- -------------------------- Fila 3 -------------------------- -->
-<div class="form-row">
-<div class="form-group col-md-4">
-<label>Tipo Vehículo: </label>
-<input type="text" class="form-control" id="txtTipoVeh" name="txtTipoVeh">
-</div>
-<div class="form-group col-md-4">
-<label>Color Vehículo: </label>
-<input type="text" class="form-control" id="txtColorVeh" name="txtColorVeh">
-</div>
-<div class="form-group col-md-4">
-<label>Año de Vehiculo: </label>
-<input type="text" class="form-control" id="txtAnio" name="txtAnio">
-</div>
-</div>
+				<label>Aceptado por el cliente: </label>
+				<input type="text" class="form-control" id="txtAceptacion" name="txtAceptacion" >
+			</div>
 
-<!-- --------------------------Fila 4 ----------------------------- -->
-<div class="form-row">
-<div class="form-group col-md-4">
-<label>Vin Vehiculo </label>
-<input type="text" class="form-control" id="txtVin" name="txtVin">
-</div>
-<div class="form-group col-md-4">
-<label>Número de Motor: </label>
-<input type="text" class="form-control" id="txtMotor" name="txtMotor">
-</div>
+			<div class="form-group col-md-8">
+				<label>Espera de repuesto: </label>
+				<input type="text" class="form-control" id="txtEsperaRepuesto" name="txtEsperaRepuesto" >
+			</div>
 
-</div>
+			<div class="form-group col-md-8">
+				<label>Estado de reparación: </label>
+				<input type="text" class="form-control" id="txtEstadoReparacion" name="txtEstadoReparacion" >
+			</div>
 
-<!-- --------------------------Fila 5----------------------------- -->
-<div class="form-row">
-<div class="form-group col-md-4">
-<label>Observaciones Vehiculo: </label>
-<input type="text" class="form-control" id="txtObservacion" name="txtObservacion">
-</div>
-<div class="form-group col-md-4">
+			<div class="form-group col-md-8">
+				<label>Finalizacion de taller: </label>
+				<input type="text" class="form-control" id="txtFinalizacionTaller" name="txtFinalizacionTaller" >
+			</div>
+
+			<div class="form-group col-md-8">
 <label>Estado: </label>
 <select id="cbxEstado" name="cbxEstado" class="form-control">
 <option value="">Seleccione...</option>
-<option value=""></option>
-<option value=""></option>
+<option value="">ACTIVO</option>
+<option value="">INACTIVO</option>
 </select>
 </div>
-</div>
+		</div>
 
 <!-- Cierres de div iniciales -->
 </div> <!-- Cierre del Div table-wrapper -->
@@ -309,38 +258,29 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <!-- -------------------- Validaciones de ingreso de datos -------------------- -->
 <script type="text/javascript">
 function ValidarNuevo(){
-if ( !document.getElementById('txtNombre').value ) {
-alert('Seleccione el nombre del cliente');
+if ( !document.getElementById('txtIngresado').value ) {
+alert('Ingrese dato para ingresado');
 }
-else if ( !document.getElementById('cbxMarca').value ) {
-alert('Seleccione la marca del vehículo');
+else if ( !document.getElementById('cbxPlaca').value ) {
+alert('Seleccione un número de placa');
 }
-else if ( !document.getElementById('cbxModelo').value ) {
-alert('Seleccione el modelo del vehículo');
+else if ( !document.getElementById('txtAceptacion').value ) {
+alert('Ingrese aceptación de cliente');
 }
-else if ( !document.getElementById('txtTipoVeh').value ) {
-alert('Ingrese tipo de vehículo');
+else if ( !document.getElementById('txtEsperaRepuesto').value ) {
+alert('Ingrese espera de repuesto');
 }
-else if ( !document.getElementById('txtColorVeh').value ) {
-alert('Ingrese el color del vehículo');
+else if ( !document.getElementById('txtEstadoReparacion').value ) {
+alert('Ingrese estado de repación');
 }
-else if ( !document.getElementById('txtAnio').value ) {
-alert('Ingrese el año del vehículo');
-}
-else if ( !document.getElementById('txtVin').value ) {
-alert('Ingrese el VIN del vehículo');
-}
-else if ( !document.getElementById('txtMotor').value ) {
-alert('Ingrese el número de motor');
-}
-else if ( !document.getElementById('txtObservacion').value ) {
-alert('Ingrese las observaciones del vehículo');
+else if ( !document.getElementById('txtFinalizacionTaller').value ) {
+alert('Ingrese finalizacion de taller');
 }
 else if ( !document.getElementById('cbxEstado').value ) {
-alert('Seleccione estado');
+alert('Seleccione un estado');
 }
 else {
-document.forms.frmNuevo.action = 'index.php?mod=veh&form=ag';
+document.forms.frmNuevo.action = 'index.php?mod=estveh&form=ag';
 document.forms.frmNuevo.submit();
 }
 }

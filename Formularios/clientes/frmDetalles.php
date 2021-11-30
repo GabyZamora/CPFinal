@@ -34,7 +34,7 @@ $DatosCliente = $Fila;
 
 		}
 		.sidebar{
-			position: absolute;
+			position: fixed;
 			width: 250px;
 			height: 100%;
 			left: 0;
@@ -206,11 +206,11 @@ $DatosCliente = $Fila;
 		<div class="form-row">
 			<div class="form-group col-md-4">
 				<label>Nombre: </label>
-				<input type="text" class="form-control" id="txtNombre" name="txtNombreC" readonly value="<?php echo $Fila['Nombre']; ?>">
+				<input type="text" class="form-control" id="txtNombre" name="txtNombreC" readonly value="<?php echo $Fila['NombreCliente']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Apellido: </label>
-				<input type="text" class="form-control" id="txtApellido" name="txtApellido" readonly value="<?php echo $Fila['Apellido']; ?>">
+				<input type="text" class="form-control" id="txtApellido" name="txtApellido" readonly value="<?php echo $Fila['ApellidoCliente']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Estado: </label>
@@ -221,7 +221,7 @@ $DatosCliente = $Fila;
 		<div class="form-row">
 			<div class="form-group col-md-4">
 				<label>Dirección: </label>
-				<input type="text" class="form-control" id="txtDireccion" name="txtDireccion" readonly value="<?php echo $Fila['Direccion']; ?>">
+				<input type="text" class="form-control" id="txtDireccion" name="txtDireccion" readonly value="<?php echo $Fila['direccion_cliente']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Departamento: </label>

@@ -145,7 +145,7 @@ class Clientes extends Datos {
         return $this->EjecutarQuery( $Cadena );
       }
       public function Eliminar( $paId ) {
-        $Cadena = "UPDATE clientes SET estado = '1' WHERE id_cliente =
+        $Cadena = "UPDATE clientes SET estado = 'ACTIVO' WHERE id_cliente =
         '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
       }

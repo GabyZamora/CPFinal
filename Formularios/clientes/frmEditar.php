@@ -40,7 +40,7 @@ foreach ( $DatosClientes as $Fila ) {
 
 		}
 		.sidebar{
-			position: fixed;
+			position: absolute;
 			width: 250px;
 			height: 100%;
 			left: 0;
@@ -150,6 +150,7 @@ foreach ( $DatosClientes as $Fila ) {
 				<li><a href="index.php?mod=usu&form=li"><span class="fas fa-user"></span> Usuarios</a></li>
 				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span> Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
+				<li><a href="index.php?mod=estveh&form=li"><span class="fas fa-file-alt"></span>Estado de <br>vehículo</a>
 				<li>
 					<a href="#" class="vehi-btn">Vehículos
 						<span class="fas fa-caret-down first"></span>
@@ -175,7 +176,7 @@ foreach ( $DatosClientes as $Fila ) {
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="ser-show">
-						<li><a href="#">Gestión de servicios</a></li>
+						<li><a href="index.php?mod=ser&form=li">Gestión de servicios</a></li>
 						<li><a href="index.php?mod=catse&form=li">Categorías</a></li>
 					</ul>
 				</li>
@@ -214,13 +215,13 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <div class="form-group col-md-8">
 <label>Nombre: </label>
 <input type="text" class="form-control" id="txtNombre" name="txtNombre"
-value="<?php echo $Fila['Nombre']; ?>">
+value="<?php echo $Fila['NombreCliente']; ?>">
 					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_cliente']; ?>">
 </div>
 <div class="form-group col-md-8">
 <label>Apellidos: </label>
 <input type="text" class="form-control" id="txtApellido" name="txtApellido"
-value="<?php echo $Fila['Apellido']; ?>">
+value="<?php echo $Fila['ApellidoCliente']; ?>">
 					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_cliente']; ?>">
 </div>
 </div>
@@ -229,7 +230,7 @@ value="<?php echo $Fila['Apellido']; ?>">
 <div class="form-group col-md-8">
 <label>Dirección: </label>
 <input type="text" class="form-control" id="txtDireccion" name="txtDireccion"
-value="<?php echo $Fila['Direccion']; ?>">
+value="<?php echo $Fila['direccion_cliente']; ?>">
 					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_cliente']; ?>">
 </div>
 </div>
@@ -283,7 +284,7 @@ value="<?php echo $Fila['giro_nrc']; ?>">
 <div class="form-group col-md-4">
 <label>Teléfono: </label>
 <input type="text" class="form-control" id="txtTel" name="txtTel"
-value="<?php echo $Fila['telefono_cliente']; ?>">
+value="<?php echo $Fila['Telefono']; ?>">
 					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_cliente']; ?>">
 </div>
 <div class="form-group col-md-4">
