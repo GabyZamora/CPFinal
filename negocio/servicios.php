@@ -62,5 +62,13 @@
 		id_usuario = '".$paId."' ";
 		return $this->EjecutarQuery( $Cadena );
 		}
+
+		public function ListarTodoCombos() {
+        $Cadena = "SELECT * FROM servicios
+        WHERE
+        estado = 'ACTIVO'
+        ORDER BY nombre_marca ASC";
+        return $this->EjecutarQuery( $Cadena );
+    }
 	}
 ?>
