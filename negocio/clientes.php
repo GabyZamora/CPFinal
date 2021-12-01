@@ -149,6 +149,13 @@ class Clientes extends Datos {
         '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
       }
+      public function ListarTodoCombos() {
+        $Cadena = "SELECT * FROM clientes
+        WHERE
+        estado = 'ACTIVO'
+        ORDER BY nombre_cliente ASC";
+        return $this->EjecutarQuery( $Cadena );
+    }
   }
     ?>
 

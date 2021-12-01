@@ -1,11 +1,12 @@
 <?php
-require_once ('datos/datos.php');
-require_once ('negocio/marcasautos.php');
-require_once ('negocio/modelo.php');
-require_once ('negocio/clientes.php');
+require_once 'datos/datos.php';
+require_once 'negocio/clientes.php';
+require_once 'negocio/marcasautos.php';
+require_once 'negocio/modelo.php';
 
-$Obj_Cliente = new Cliente();
-$DatosCliente = $Obj_Cliente->ListarTodoCombos();
+
+$Obj_Clientes = new Clientes();
+$DatosClientes = $Obj_Clientes->ListarTodoCombos();
 $Obj_Modelo = new Modelo();
 $Datos_Modelo = $Obj_Modelo->ListarTodoCombos();
 $Obj_Marcas_Autos = new Marcas_Autos();
@@ -34,7 +35,7 @@ $Datos_Marcas_Autos = $Obj_Marcas_Autos->ListarTodoCombos();
 
 		}
 		.sidebar{
-			position: fixed;
+			position: absolute;
 			width: 250px;
 			height: 100%;
 			left: 0;
@@ -297,8 +298,8 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <label>Estado: </label>
 <select id="cbxEstado" name="cbxEstado" class="form-control">
 <option value="">Seleccione...</option>
-<option value=""></option>
-<option value=""></option>
+<option value="">Activo</option>
+<option value="">Inactivo</option>
 </select>
 </div>
 </div>

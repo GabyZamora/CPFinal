@@ -77,5 +77,12 @@ class Modelo extends Datos {
         '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
       }
+      public function ListarTodoCombos() {
+        $Cadena = "SELECT * FROM modelo_aut
+        WHERE
+        estado = 'ACTIVO'
+        ORDER BY nombre_modelo ASC";
+        return $this->EjecutarQuery( $Cadena );
+    }
     }
     ?>

@@ -9,7 +9,7 @@ $Obj_Vehiculos = new Vehiculos();
 $DatosVehiculos = $Obj_Vehiculos->BuscarPorId( $_GET['id'] );
 //Recuperamos el registro obtenido en una variable fila
 foreach ( $DatosVehiculos as $Fila ) {
-$DatosVehiculos = $Fila;
+	$DatosVehiculos = $Fila;
 }
 ?>
 
@@ -207,7 +207,8 @@ $DatosVehiculos = $Fila;
 		<div class="form-row">
 			<div class="form-group col-md-8">
 				<label>Nombre: </label>
-				<input type="text" class="form-control" id="txtNombre" name="txtNombreC" readonly value="<?php echo $Fila['nombre_cliente']; ?>">
+				<input type="text" class="form-control" id="cbxCliente" name="cbxCliente" readonly 
+				value="<?php echo $Fila['nombre_cliente']; ?>">
 			</div>
 			<div class="form-group col-md-6">
 				<label>Marca: </label>
@@ -226,17 +227,20 @@ $DatosVehiculos = $Fila;
 			</div>
 			<div class="form-group col-md-4">
 				<label>Tipo Vehiculo: </label>
-				<input type="text" class="form-control" id="txtTipoVeh" name="txtTipoVeh" readonly value="<?php echo $Fila['tipo_vehiculo']; ?>">
+				<input type="text" class="form-control" id="txtTipoVeh" name="txtTipoVeh" readonly 
+				value="<?php echo $Fila['tipo_vehiculo']; ?>">
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-4">
 				<label>Color: </label>
-				<input type="text" class="form-control" id="txtColorVeh" name="txtColorVeh" readonly value="<?php echo $Fila['color_vehiculo']; ?>">
+				<input type="text" class="form-control" id="txtColorVeh" name="txtColorVeh" readonly 
+				value="<?php echo $Fila['color_vehiculo']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Año Vehiculo: </label>
-				<input type="text" class="form-control" id="txtAnio" name="txtAnio" readonly value="<?php echo $Fila['anio_vehiculo']; ?>">
+				<input type="text" class="form-control" id="txtAnio" name="txtAnio" readonly 
+				value="<?php echo $Fila['anio_vehiculo']; ?>">
 			</div>
 		</div>
 <!-- -------------------------- Fila 4 -------------------------- -->
@@ -244,15 +248,18 @@ $DatosVehiculos = $Fila;
 		<div class="form-row">
 			<div class="form-group col-md-4">
 				<label>Vin : </label>
-				<input type="text" class="form-control" id="txVin" name="txtVin" readonly value="<?php echo $Fila['vin_vehiculo']; ?>">
+				<input type="text" class="form-control" id="txVin" name="txtVin" readonly 
+				value="<?php echo $Fila['vin_vehiculo']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Número de Motor : </label>
-				<input type="text" class="form-control" id="txtMotor" name="txtMotor" readonly value="<?php echo $Fila['numero_motor_vehiculo']; ?>">
+				<input type="text" class="form-control" id="txtMotor" name="txtMotor" readonly 
+				value="<?php echo $Fila['numero_motor_vehiculo']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Observaciones : </label>
-				<input type="text" class="form-control" id="txObservacion" name="txtObservacion" readonly value="<?php echo $Fila['observaciones_vehiculo']; ?>">
+				<input type="text" class="form-control" id="txObservacion" name="txtObservacion" readonly 
+				value="<?php echo $Fila['observaciones_vehiculo']; ?>">
 			</div>
 		</div>
 		
@@ -260,16 +267,19 @@ $DatosVehiculos = $Fila;
 		<div class="form-row">
 			<div class="form-group col-md-4">
 				<label>Fecha de Ingreso: </label>
-				<input type="text" class="form-control" id="txtFechIngreso" name="txtFechIngreso" readonly value="<?php echo $Fila['fecIngreso_cliente']; ?>">
+				<input type="text" class="form-control" id="txtFechIngreso" name="txtFechIngreso" readonly 
+				value="<?php echo $Fila['fechaIngreso_vehiculo']; ?>">
 			</div>
 			
 			<div class="form-group col-md-4">
 				<label>Fecha de Modificación: </label>
-				<input type="text" class="form-control" id="txtFechModificacon" name="txtFechModificacion" readonly value="<?php echo $Fila['fechModificacion_cliente']; ?>">
+				<input type="text" class="form-control" id="txtFechModificacon" name="txtFechModificacion" readonly 
+				value="<?php echo $Fila['fechaModificacion_vehiculo']; ?>">
 			</div>
 				<div class="form-group col-md-4">
 					<label>Estado: </label>
-					<input type="text" class="form-control" id="txtEstado" name="txtEstado" readonly value="<?php echo $Fila['estado']; ?>">
+					<input type="text" class="form-control" id="txtEstado" name="txtEstado" readonly 
+					value="<?php echo $Fila['estado']; ?>">
 				</div>
 			</div>
 <!-- Cierre de los primeros 2 div --->

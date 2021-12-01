@@ -254,7 +254,7 @@ $Obj_Paginador->ConfPaginador();
               foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
                 ?>
                 <tr>
-                  <td><?php echo $Fila['NombreCliente'+'ApellidoCliente']; ?></td>
+                  <td><?php echo $Fila['NombreCliente + ApellidoCliente']; ?></td>
                   <td><?php echo $Fila['NombreMarca']; ?></td>
                   <td><?php echo $Fila['NombreModelo']; ?></td>
                   <td><?php echo $Fila['placa']; ?></td>

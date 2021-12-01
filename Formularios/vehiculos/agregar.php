@@ -6,7 +6,7 @@ require_once 'negocio/vehiculos.php';
 //Instanciamos la clase de la capa de negocio
 $Obj_Vehiculos = new Vehiculos();
 //Asignación de atributos a la clase de la capa de negocio
-$Obj_Vehiculos->nombre_cliente = $_POST['txtNombre'];
+$Obj_Vehiculos->nombre_cliente = $_POST['cbxCliente'];
 $Obj_Vehiculos->nombre_marca = $_POST['cbxMarca'];
 $Obj_Vehiculos->nombre_modelo = $_POST['cbxModelo'];
 $Obj_Vehiculos->tipo_vehiculo = $_POST['txtTipoVeh'];
