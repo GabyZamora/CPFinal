@@ -51,5 +51,12 @@ class Categoria_Servicio extends datos {
         '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
     }
+    public function ListarTodoCombos() {
+        $Cadena = "SELECT * FROM categorias_serv
+        WHERE
+        estado = 'ACTIVO'
+        ORDER BY nombre_categoria ASC";
+        return $this->EjecutarQuery( $Cadena );
+    }
  }
  ?>

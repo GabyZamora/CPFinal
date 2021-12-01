@@ -206,12 +206,8 @@ $DatosCliente = $Fila;
 <!-- -------------------------- Fila 1 -------------------------- -->
 		<div class="form-row">
 			<div class="form-group col-md-4">
-				<label>Nombre: </label>
+				<label>Nombre Completo: </label>
 				<input type="text" class="form-control" id="txtNombre" name="txtNombreC" readonly value="<?php echo $Fila['NombreCliente']; ?>">
-			</div>
-			<div class="form-group col-md-4">
-				<label>Apellido: </label>
-				<input type="text" class="form-control" id="txtApellido" name="txtApellido" readonly value="<?php echo $Fila['ApellidoCliente']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Estado: </label>
@@ -257,11 +253,11 @@ $DatosCliente = $Fila;
 			</div>
 			<div class="form-group col-md-4">
 				<label>Fecha de Ingreso: </label>
-				<input type="text" class="form-control" id="txtFechIngreso" name="txtFechaIngreso" readonly value="<?php echo $Fila['fechaIngreso_cliente']; ?>">
+				<input type="text" class="form-control" id="txtFechIngreso" name="txtFechaIngreso" readonly value="<?php echo $Fila['FechaIngreso']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Fecha de Modificación: </label>
-				<input type="text" class="form-control" id="txtFechaModificacon" name="txtFechModificacion" readonly value="<?php echo $Fila['fechaModificacion_cliente']; ?>">
+				<input type="text" class="form-control" id="txtFechaModificacon" name="txtFechModificacion" readonly value="<?php echo $Fila['FechaModificacion']; ?>">
 			</div>
 		</div>
 

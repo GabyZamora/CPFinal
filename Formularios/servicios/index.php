@@ -27,25 +27,11 @@
 	$FormValid = true;
 	break;
 	
-	case 'rp':
-	$Form = 'Formularios/servicios/reestablecerPassword.php';
-	$FormValid = true;
-	break;
-	
 	case 'el':
 	$Form = 'Formularios/servicios/eliminar.php';
 	$FormValid = true;
 	break;
-	
-	case 'mc':
-	$Form = 'Formularios/servicios/frmMiCuenta.php';
-	$FormValid = true;
-	break;
-	
-	case 'cp':
-	$Form = 'Formularios/servicios/cambiarPassword.php';
-	$FormValid = true;
-	break;
+
 	
 	default:
 	$FormValid = false;

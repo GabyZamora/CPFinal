@@ -3,13 +3,24 @@
 require_once 'datos/datos.php';
 //Llamamos a la capa de negocio
 require_once 'negocio/vehiculos.php';
+require_once 'negocio/clientes.php';
+require_once 'negocio/marcasautos.php';
+require_once 'negocio/modelo.php';
 //Instanciamos las clases de la capa de negocio
 $Obj_Vehiculos = new Vehiculos();
+$Obj_Clientes = new Clientes();
+$Obj_Modelo = new Modelo();
+$Obj_Marcas_Autos = new Marcas_Autos();
+
 //Cargamos el registro solicitado
 $DatosVehiculos = $Obj_Vehiculos->BuscarPorId( $_GET['id'] );
+
+$DatosClientes = $Obj_Clientes->ListarTodoCombos();
+$Datos_Modelo = $Obj_Modelo->ListarTodoCombos();
+$Datos_Marcas_Autos = $Obj_Marcas_Autos->ListarTodoCombos();
 //Recuperamos el registro obtenido en una variable fila
 foreach ( $DatosVehiculos as $Fila ) {
-$DatosVehiculos = $Fila;
+	$DatosVehiculos = $Fila;
 }
 ?>
 <!-- CSS -->
@@ -194,7 +205,7 @@ $DatosVehiculos = $Fila;
 <div class="table-title">
 <div class="form-row">
 <div class="col-md-8">
-<h2>Editar Cliente</h2>
+<h2>Editar Vehículo</h2>
 </div>
 <div class="col-md-4">
 <button type="button" class="btn btn-danger"
@@ -215,7 +226,7 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
            foreach ( $DatosClientes as $FilaCliente ) {
            ?>
            <option value="<?php echo $FilaCliente['id_cliente']; ?>"><?php echo
-          $FilaCliente['nombre_cliente'+'apellidos_cliente']; ?></option>
+          $FilaCliente['nombre_cliente']; ?></option>
            <?php
            }
            ?>
@@ -261,7 +272,12 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <div class="form-row">
 <div class="form-group col-md-4">
 <label>Tipo Vehículo: </label>
-<input type="tel" class="form-control" id="txtTipoVeh" name="txtTipoVeh">
+<select id="cbxTipo" name="cbxTipo" class="form-control">
+<option value="">Seleccione...</option>
+<option value="Sedan">Sedan</option>
+<option value="Camioneta">Camioneta</option>
+<option value="PickUp">Pick Up</option>
+</select>
 </div>
 <div class="form-group col-md-4">
 <label>Año de Vehiculo: </label>
@@ -312,8 +328,8 @@ alert('Seleccione la marca del vehículo');
 else if ( !document.getElementById('cbxModelo').value ) {
 alert('Seleccione el modelo del vehículo');
 }
-else if ( !document.getElementById('txtTipoVeh').value ) {
-alert('Ingrese tipo de vehículo');
+else if ( !document.getElementById('cbxTipo').value ) {
+alert('Seleccione el tipo de vehículo');
 }
 else if ( !document.getElementById('txtAnio').value ) {
 alert('Ingrese el año del vehículo');

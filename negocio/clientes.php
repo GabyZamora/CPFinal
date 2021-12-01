@@ -2,7 +2,6 @@
 class Clientes extends Datos {
   //Atributos, corresponden a cada uno de los campos de la tabla de clientes
   public $nombre_cliente;
-  public $apellidos_cliente;
   public $direccion_cliente;
   public $id_departamento;
   public $id_municipio;
@@ -18,7 +17,6 @@ class Clientes extends Datos {
     $Cadena = "SELECT
     clientes.id_cliente,
     clientes.nombre_cliente AS NombreCliente,
-    clientes.apellidos_cliente AS ApellidoCliente,
     clientes.direccion_cliente AS Direccion,
     clientes.id_departamento,
     departamentos.nombre_departamento AS Departamento,
@@ -55,7 +53,6 @@ class Clientes extends Datos {
     $Cadena = "SELECT
     clientes.id_cliente,
     clientes.nombre_cliente AS NombreCliente,
-    clientes.apellidos_cliente AS ApellidoCliente,
     clientes.direccion_cliente,
     clientes.id_departamento,
     departamentos.nombre_departamento AS Departamento,
@@ -79,7 +76,6 @@ class Clientes extends Datos {
     $Cadena = "SELECT
     clientes.id_cliente,
     clientes.nombre_cliente AS NombreCliente,
-    clientes.apellidos_cliente AS ApellidoCliente,
     clientes.direccion_cliente,
     clientes.id_departamento,
     departamentos.nombre_departamento AS Departamento,
@@ -89,7 +85,9 @@ class Clientes extends Datos {
     clientes.nombre_factura,
     clientes.nit_cliente,
     clientes.nrc_cliente,
-    clientes.giro_nrc
+    clientes.giro_nrc,
+    clientes.fechaIngreso_cliente AS FechaIngreso,
+    clientes.fechaModificacion_cliente AS FechaModificacion
     FROM
     clientes
     INNER JOIN departamentos ON clientes.id_departamento = departamentos.id_departamento
@@ -102,7 +100,6 @@ class Clientes extends Datos {
     public function Agregar() {
     $Cadena = "INSERT INTO clientes (
           nombre_cliente,
-          apellidos_cliente,
           direccion_cliente,
           id_departamento,
           id_municipio,
@@ -115,7 +112,6 @@ class Clientes extends Datos {
           estado )
       VALUES (
         '".addslashes($this->Nombre)."',
-        '".addslashes($this->Apellido)."',
         '".addslashes($this->Direccion)."',
         '".addslashes($this->Departamento)."',
         '".addslashes($this->Municipio)."',
@@ -125,13 +121,12 @@ class Clientes extends Datos {
         '".addslashes($this->NIT)."',
         '".addslashes($this->NRC)."',
         '".addslashes($this->GiroNrc)."',
-        '1' )";
+        'ACTIVO' )";
         return $this->EjecutarQuery( $Cadena );
       }
       public function Actualizar( $paId ) {
         $Cadena = "UPDATE clientes SET
         nombre_cliente = '".addslashes($this->Nombre)."',
-        apellidos_cliente = '".addslashes($this->Apellido)."',
         direccion_cliente = '".addslashes($this->Direccion)."',
         id_departamento = '".addslashes($this->Departamento)."',
         id_municipio = '".addslashes($this->Municipio)."',

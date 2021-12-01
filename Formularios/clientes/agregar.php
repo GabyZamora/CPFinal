@@ -7,7 +7,6 @@ require_once 'negocio/clientes.php';
 $Obj_Clientes = new Clientes();
 //Asignación de atributos a la clase de la capa de negocio
 $Obj_Clientes->Nombre = $_POST['txtNombre'];
-$Obj_Clientes->Apellido = $_POST['txtApellido'];
 $Obj_Clientes->Direccion = $_POST['txtDireccion'];
 $Obj_Clientes->Departamento = $_POST['cbxDepa'];
 $Obj_Clientes->Municipio = $_POST['cbxMunicipio'];

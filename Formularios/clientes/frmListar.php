@@ -248,8 +248,7 @@ $Obj_Paginador->ConfPaginador();
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>Nombre</th>
-                <th>Apellidos</th>
+                <th>Nombre Completo</th>
                 <th>Dirección</th>
                 <th>Teléfono</th>
                 <th>Correo</th>
@@ -265,9 +264,8 @@ $Obj_Paginador->ConfPaginador();
                 ?>
                 <tr>
                   <td><?php echo $Fila['NombreCliente']; ?></td>
-                  <td><?php echo $Fila['ApellidoCliente']; ?></td>
                   <td><?php echo $Fila['Direccion']; ?></td>
-                  <td><?php echo $Fila['Telefono']; ?></td>
+                  <td><?php echo $Fila['telefono_cliente']; ?></td>
                   <td><?php echo $Fila['correo_cliente']; ?></td>
                   <td><?php echo $Fila['nit_cliente']; ?></td>
                   <td><?php echo $Fila['nrc_cliente']; ?></td>

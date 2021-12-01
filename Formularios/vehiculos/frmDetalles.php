@@ -34,12 +34,13 @@ foreach ( $DatosVehiculos as $Fila ) {
 
 		}
 		.sidebar{
-			position: fixed;
+			position: absolute;
 			width: 250px;
 			height: 100%;
 			left: 0;
 			top: 70px;
 			background-color: white;
+			overflow: auto;
 		}
 
 		#sidemenu #profile{
@@ -207,27 +208,30 @@ foreach ( $DatosVehiculos as $Fila ) {
 		<div class="form-row">
 			<div class="form-group col-md-8">
 				<label>Nombre: </label>
-				<input type="text" class="form-control" id="cbxCliente" name="cbxCliente" readonly 
+				<input class="form-control" id="cbxCliente" name="cbxCliente" readonly 
 				value="<?php echo $Fila['nombre_cliente']; ?>">
 			</div>
 			<div class="form-group col-md-6">
 				<label>Marca: </label>
-				<input class="form-control" id="cbxMarca" name="cbxMarca" readonly value="<?php echo $Fila['nombre_marca']; ?>">
+				<input class="form-control" id="cbxMarca" name="cbxMarca" readonly 
+				value="<?php echo $Fila['nombre_marca']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Modelo: </label>
-				<input  class="form-control" id="cbxModelo" name="cbxModelo" readonly value="<?php echo $Fila['nombre_modelo']; ?>">
+				<input  class="form-control" id="cbxModelo" name="cbxModelo" readonly 
+				value="<?php echo $Fila['nombre_modelo']; ?>">
 			</div>
 		</div>
 <!-- -------------------------- Fila 2 -------------------------- -->
 		<div class="form-row">
 			<div class="form-group col-md-8">
 				<label>Placa: </label>
-				<input type="text" class="form-control" id="txtPlaca" name="txtPlaca" readonly value="<?php echo $Fila['placa']; ?>">
+				<input type="text" class="form-control" id="txtPlaca" name="txtPlaca" readonly 
+				value="<?php echo $Fila['placa']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Tipo Vehiculo: </label>
-				<input type="text" class="form-control" id="txtTipoVeh" name="txtTipoVeh" readonly 
+				<input class="form-control" id="cbxTipo" name="cbxTipo" readonly 
 				value="<?php echo $Fila['tipo_vehiculo']; ?>">
 			</div>
 		</div>
@@ -278,7 +282,7 @@ foreach ( $DatosVehiculos as $Fila ) {
 			</div>
 				<div class="form-group col-md-4">
 					<label>Estado: </label>
-					<input type="text" class="form-control" id="txtEstado" name="txtEstado" readonly 
+					<input class="form-control" id="cbxEstado" name="cbxEstado" readonly 
 					value="<?php echo $Fila['estado']; ?>">
 				</div>
 			</div>

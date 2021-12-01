@@ -19,7 +19,6 @@ class Vehiculos extends Datos {
     $Cadena = "SELECT 
     vehiculos.id_cliente,
     clientes.nombre_cliente AS NombreCliente,
-    clientes.apellidos_cliente AS ApellidoCliente,
     vehiculos.id_marca,
     marca_aut.nombre_marca AS NombreMarca,
     vehiculos.id_modelo,
@@ -55,7 +54,6 @@ class Vehiculos extends Datos {
     $Cadena = "SELECT     
     vehiculos.id_cliente,
     clientes.nombre_cliente AS NombreCliente,
-    clientes.apellidos_cliente AS ApellidoCliente,
     vehiculos.id_marca,
     marca_aut.nombre_marca AS NombreMarca,
     vehiculos.id_modelo,
@@ -79,7 +77,6 @@ class Vehiculos extends Datos {
     $Cadena = "SELECT 
     vehiculos.id_cliente,
     clientes.nombre_cliente AS NombreCliente,
-    clientes.apellidos_cliente AS ApellidoCliente,
     vehiculos.id_marca,
     marca_aut.nombre_marca AS NombreMarca,
     vehiculos.id_modelo,
@@ -112,31 +109,31 @@ class Vehiculos extends Datos {
           observaciones_vehiculo,
           estado )
       VALUES (
-        '".addslashes($this->id_cliente)."',
-        '".addslashes($this->id_marca)."',
-        '".addslashes($this->id_modelo)."',
-        '".addslashes($this->placa)."',
-        '".addslashes($this->tipo_vehiculo)."',
-        '".addslashes($this->color_vehiculo)."',
-        '".addslashes($this->anio_vehiculo)."',
-        '".addslashes($this->vin_vehiculo)."',
-        '".addslashes($this->numero_motor_vehiculo)."',
-        '".addslashes($this->observaciones_vehiculo)."',
-        'ACTIVO' )";
+        '".addslashes($this->Cliente)."',
+        '".addslashes($this->Marca)."',
+        '".addslashes($this->Modelo)."',
+        '".addslashes($this->Placa)."',
+        '".addslashes($this->TipoVehiculo)."',
+        '".addslashes($this->ColorVehiculo)."',
+        '".addslashes($this->AnioVehiculo)."',
+        '".addslashes($this->VinVehiculo)."',
+        '".addslashes($this->NumeroMotor)."',
+        '".addslashes($this->Observaciones)."',
+        'ACTIVO')";
         return $this->EjecutarQuery( $Cadena );
       }
       public function Actualizar( $paId ) {
         $Cadena = "UPDATE vehiculos SET
-        id_cliente = '".addslashes($this->id_cliente)."',
-        id_marca = '".addslashes($this->id_marca)."',
-        id_modelo = '".addslashes($this->id_modelo)."',
-        placa = '".addslashes($this->placa)."',
-        tipo_vehiculo = '".addslashes($this->tipo_vehiculo)."',
-        color_vehiculo = '".addslashes($this->color_vehiculo)."',
-        anio_vehiculo = '".addslashes($this->anio_vehiculo)."',
-        vin_vehiculo = '".addslashes($this->vin_vehiculo)."',
-        numero_motor_vehiculo = '".addslashes($this->numero_motor_vehiculo)."',
-        observaciones_vehiculo = '".addslashes($this->observaciones_vehiculo)."',
+        id_cliente = '".addslashes($this->Cliente)."',
+        id_marca = '".addslashes($this->Marca)."',
+        id_modelo = '".addslashes($this->Modelo)."',
+        placa = '".addslashes($this->Placa)."',
+        tipo_vehiculo = '".addslashes($this->TipoVehiculo)."',
+        color_vehiculo = '".addslashes($this->ColorVehiculo)."',
+        anio_vehiculo = '".addslashes($this->AnioVehiculo)."',
+        vin_vehiculo = '".addslashes($this->VinVehiculo)."',
+        numero_motor_vehiculo = '".addslashes($this->NumeroMotor)."',
+        observaciones_vehiculo = '".addslashes($this->Observaciones)."',
         WHERE id_vehiculo".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
       }
@@ -149,7 +146,7 @@ class Vehiculos extends Datos {
         $Cadena = "SELECT * FROM vehiculos
         WHERE
         estado = 'ACTIVO'
-        ORDER BY NombreCliente ASC";
+        ORDER BY placa ASC";
         return $this->EjecutarQuery( $Cadena );
       }
     }

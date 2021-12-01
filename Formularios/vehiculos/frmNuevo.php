@@ -245,7 +245,7 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
           <select id="cbxModelo" name="cbxModelo" class="form-control">
            <option value="">Seleccione...</option>
            <?php
-           foreach ( $DatosModelo as $FilaModelo ) {
+           foreach ( $Datos_Modelo as $FilaModelo ) {
            ?>
            <option value="<?php echo $FilaModelo['id_modelo']; ?>"><?php echo
           $FilaModelo['nombre_modelo']; ?></option>
@@ -263,7 +263,12 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <div class="form-row">
 <div class="form-group col-md-4">
 <label>Tipo Vehículo: </label>
-<input type="text" class="form-control" id="txtTipoVeh" name="txtTipoVeh">
+<select id="cbxTipo" name="cbxTipo" class="form-control">
+<option value="">Seleccione...</option>
+<option value="Sedan">Sedan</option>
+<option value="Camioneta">Camioneta</option>
+<option value="Pickup">Pick Up</option>
+</select>
 </div>
 <div class="form-group col-md-4">
 <label>Color Vehículo: </label>
@@ -298,8 +303,8 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <label>Estado: </label>
 <select id="cbxEstado" name="cbxEstado" class="form-control">
 <option value="">Seleccione...</option>
-<option value="">Activo</option>
-<option value="">Inactivo</option>
+<option value="1">Activo</option>
+<option value="2">Inactivo</option>
 </select>
 </div>
 </div>
@@ -311,7 +316,7 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <!-- -------------------- Validaciones de ingreso de datos -------------------- -->
 <script type="text/javascript">
 function ValidarNuevo(){
-if ( !document.getElementById('txtNombre').value ) {
+if ( !document.getElementById('cbxCliente').value ) {
 alert('Seleccione el nombre del cliente');
 }
 else if ( !document.getElementById('cbxMarca').value ) {
@@ -320,8 +325,8 @@ alert('Seleccione la marca del vehículo');
 else if ( !document.getElementById('cbxModelo').value ) {
 alert('Seleccione el modelo del vehículo');
 }
-else if ( !document.getElementById('txtTipoVeh').value ) {
-alert('Ingrese tipo de vehículo');
+else if ( !document.getElementById('cbxTipo').value ) {
+alert('Seleccione tipo de vehículo');
 }
 else if ( !document.getElementById('txtColorVeh').value ) {
 alert('Ingrese el color del vehículo');

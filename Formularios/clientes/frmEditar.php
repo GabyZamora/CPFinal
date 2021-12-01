@@ -214,15 +214,9 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <!-- -------------------------- Fila 1 -------------------------- -->
 <div class="form-row">
 <div class="form-group col-md-8">
-<label>Nombre: </label>
+<label>Nombre Completo: </label>
 <input type="text" class="form-control" id="txtNombre" name="txtNombre"
 value="<?php echo $Fila['NombreCliente']; ?>">
-					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_cliente']; ?>">
-</div>
-<div class="form-group col-md-8">
-<label>Apellidos: </label>
-<input type="text" class="form-control" id="txtApellido" name="txtApellido"
-value="<?php echo $Fila['ApellidoCliente']; ?>">
 					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_cliente']; ?>">
 </div>
 </div>
@@ -285,7 +279,7 @@ value="<?php echo $Fila['giro_nrc']; ?>">
 <div class="form-group col-md-4">
 <label>Teléfono: </label>
 <input type="text" class="form-control" id="txtTel" name="txtTel"
-value="<?php echo $Fila['Telefono']; ?>">
+value="<?php echo $Fila['telefono_cliente']; ?>">
 					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_cliente']; ?>">
 </div>
 <div class="form-group col-md-4">
@@ -339,9 +333,6 @@ value="<?php echo $Fila['nrc_cliente']; ?>">
 function ValidarEditar(){
 if ( !document.getElementById('txtNombre').value ) {
 alert('Ingrese el nombre del cliente');
-}
-else if ( !document.getElementById('txtApellido').value ) {
-alert('Ingrese los apellidos del cliente');
 }
 else if ( !document.getElementById('txtDireccion').value ) {
 alert('Ingrese la dirección del cliente');

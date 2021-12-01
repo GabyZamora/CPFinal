@@ -14,7 +14,7 @@ $Obj_Paginador->CantTotalReg = $Obj_Vehiculos->CantTotalRegistros( addslashes( @
 ) );
 $Obj_Paginador->FilasPorPagina = 5; 
 $Obj_Paginador->NumPagina = @$_GET['np']; 
-$Obj_Paginador->EnlaceListar = "mod=clie&form=li"; 
+$Obj_Paginador->EnlaceListar = "mod=veh&form=li"; 
 $Obj_Paginador->ConfPaginador();
 
 ?>
@@ -254,14 +254,14 @@ $Obj_Paginador->ConfPaginador();
               foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
                 ?>
                 <tr>
-                  <td><?php echo $Fila['NombreCliente + ApellidoCliente']; ?></td>
+                  <td><?php echo $Fila['NombreCliente']; ?></td>
                   <td><?php echo $Fila['NombreMarca']; ?></td>
                   <td><?php echo $Fila['NombreModelo']; ?></td>
                   <td><?php echo $Fila['placa']; ?></td>
                   <td><?php echo $Fila['tipo_vehiculo']; ?></td>
                   <td>
-                    <a href="indx.php?mod=veh&form=de&id=<?php echo $Fila['id_vehiculo'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
-                    <a href="indx.php?mod=veh&form=ed&id=<?php echo $Fila['id_vehiculo'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"
+                    <a href="index.php?mod=veh&form=de&id=<?php echo $Fila['id_vehiculo'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
+                    <a href="index.php?mod=veh&form=ed&id=<?php echo $Fila['id_vehiculo'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"
                       title="Editar">&#xE254;</i></a>
                       <a href="#" class="delete" onclick="Eliminar('<?php echo $Fila['id_vehiculo']; ?>');"><i class="material-icons" data-toggle="tooltip"
                         title="Eliminar">&#xE872;</i></a>

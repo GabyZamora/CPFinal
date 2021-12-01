@@ -218,12 +218,8 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <!-- -------------------------- Fila 1 -------------------------- -->
 <div class="form-row">
 <div class="form-group col-md-8">
-<label>Nombre: </label>
+<label>Nombre Completo: </label>
 <input type="text" class="form-control" id="txtNombre" name="txtNombre">
-</div>
-<div class="form-group col-md-8">
-<label>Apellidos: </label>
-<input type="text" class="form-control" id="txtApellido" name="txtApellido">
 </div>
 </div>
 <!-- -------------------------- Fila 2 -------------------------- -->
@@ -328,9 +324,6 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 function ValidarNuevo(){
 if ( !document.getElementById('txtNombre').value ) {
 alert('Ingrese el nombre del cliente');
-}
-else if ( !document.getElementById('txtApellido').value ) {
-alert('Ingrese los apellidos del cliente');
 }
 else if ( !document.getElementById('txtDireccion').value ) {
 alert('Ingrese la dirección del cliente');
