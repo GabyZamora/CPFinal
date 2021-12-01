@@ -1,3 +1,4 @@
+#DROP DATABASE autos_cp;
 CREATE DATABASE autos_cp;
 USE autos_cp;
 CREATE TABLE usuarios(
@@ -649,6 +650,7 @@ Espera_de_repuesto VARCHAR(10) NOT NULL,
 estado_de_reparacion VARCHAR(10) NOT NULL,
 finalizacion_de_taller VARCHAR(10) NOT NULL,
 fuera_de_taller VARCHAR(10) NOT NULL,
+estado VARCHAR(10) NOT NULL,
 PRIMARY KEY(id_estado_del_vehiculo),
 CONSTRAINT FK_VEH_ID FOREIGN KEY(id_vehiculo) REFERENCES vehiculos(id_vehiculo) ON UPDATE CASCADE
 );
