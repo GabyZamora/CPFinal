@@ -3,7 +3,7 @@
 date_default_timezone_set("America/El_Salvador");
 switch( @$_GET["mod"] ){
   case 'menu':
-    $Modulo = 'presentacion/menu.html';
+    $Modulo = 'presentacion/menu.php';
     break;
   case 'clie':
   $Modulo = 'Formularios/clientes/index.php';

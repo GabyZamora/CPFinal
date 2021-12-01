@@ -160,6 +160,7 @@
 						<li><a href="index.php?mod=catse&form=li">Categorías</a></li>
 					</ul>
 				</li>
+				<li><a href="index.php"><span class="fas fa-sign-out-alt"></span>Cerrar sesión</a></li>
 			</ul>
 		</nav>
 	<script>

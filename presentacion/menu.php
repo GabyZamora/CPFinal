@@ -1,3 +1,6 @@
+<?php
+ require_once ('datos/conexion.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +9,7 @@
 	<link rel="stylesheet" href="css/iconfont/material-icons.css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap-3.3.7.min.css"> 
+	<link rel="stylesheet" href="css/bootstrap-4.3.1.min.css"> 
 	<script src="https://kit.fontawesome.com/b1f3afb15c.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="css/menuside.css">
 	<style type="text/css">
@@ -127,7 +131,7 @@
 				<li><a href="index.php?mod=usu&form=li"><span class="fas fa-user"></span> Usuarios</a></li>
 				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span> Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
-				<li><a href="index.php?mod=estveh&form=li"><span class="fas fa-file-alt"></span>Estado de <br>vehículo</a>
+				<li><a href="index.php?mod=estveh&form=li"><span class="fas fa-file-alt"></span>Estado de vehículo</a>
 				<li>
 					<a href="#" class="vehi-btn">Vehículos
 						<span class="fas fa-caret-down first"></span>
@@ -157,6 +161,7 @@
 						<li><a href="index.php?mod=catse&form=li">Categorías</a></li>
 					</ul>
 				</li>
+				<li><a href="index.php"><span class="fas fa-sign-out-alt"></span>Cerrar sesión</a></li>
 			</ul>
 		</nav>
 	<script>
@@ -168,6 +173,9 @@
 		});
 		$('.ser-btn').click(function(){
 			$('nav ul .ser-show').toggleClass("show");
+		});
+		$('.cue-btn').click(function(){
+			$('nav ul .cue-show').toggleClass("show");
 		});
 	</script>
 </body>
