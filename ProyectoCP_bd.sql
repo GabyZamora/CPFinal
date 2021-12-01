@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 CREATE DATABASE autos_cp;
 
 
