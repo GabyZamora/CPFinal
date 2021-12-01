@@ -35,6 +35,9 @@ switch( @$_GET["mod"] ){
   case 'estveh':
     $Modulo = 'Formularios/estadovehiculo/index.php';
   break;
+  case 'serv':
+    $Modulo = 'Formularios/servicios/index.php';
+  break;
   default:
   $Modulo = 'login.php';
   break;
