@@ -1,16 +1,16 @@
 <?php
-//Llamamos a la capa de datos
-require_once 'datos/datos.php';
-//Llamamos a la capa de negocio
-require_once 'negocio/marcaarticulos.php';
-//Instanciamos las clases de la capa de negocio
- $Obj_Marcas_Articulos= new Marcas_Articulos();
-//Cargamos el registro solicitado
-$DatosMarcas_Articulos = $Obj_Marcas_Articulos->BuscarPorId( $_GET['id'] );
-//Recuperamos el registro obtenido en una variable fila
-foreach ( $DatosMarcas_Articulos as $Fila ) {
-$DatosMarcas_Articulos = $Fila;
-}
+	//Llamamos a la capa de datos
+	require_once 'datos/datos.php';
+	//Llamamos a la capa de negocio
+	require_once 'negocio/marcaarticulos.php';
+	//Instanciamos las clases de la capa de negocio
+	$Obj_Marcas_Articulos= new Marcas_Articulos();
+	//Cargamos el registro solicitado
+	$DatosMarcas_Articulos = $Obj_Marcas_Articulos->BuscarPorId( $_GET['id'] );
+	//Recuperamos el registro obtenido en una variable fila
+	foreach ( $DatosMarcas_Articulos as $Fila ) {
+	$DatosMarcas_Articulos = $Fila;
+	}
 ?>
 
 <!-- CSS -->
