@@ -49,6 +49,13 @@ class Cat_Articulo extends Datos {
         $Cadena = "UPDATE categoria_art SET estado = 'INACTIVO' WHERE id_categoria_art = '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
       }
+      public function ListarTodoCombos() {
+        $Cadena = "SELECT * categorias_serv
+        WHERE
+        estado = 'ACTIVO'
+        ORDER BY nombre_marca ASC";
+        return $this->EjecutarQuery( $Cadena );
+    }
     }
     ?>
 
