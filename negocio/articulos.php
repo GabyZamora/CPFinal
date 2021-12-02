@@ -18,13 +18,13 @@
 		articulos.id_categoria_art,
 		categoria_art.nombre_categoria_art AS NombreCategoriaArticulos,
 		articulos.id_proveedor,
-		proveedor.nombre_comercial_proveedor AS NombreProveedor,
+		proveedores.nombre_comercial_proveedor AS NombreProveedor,
 		articulos.id_marca_art,
 		marca_art.nombreMarca AS NombreMarcaArticulos,
 		articulos.estado 
 		FROM 
 		articulos 
-		INNER JOIN categoria_art ON articulos.id_categoria_art = categoria_art.id_categoria_art.
+		INNER JOIN categoria_art ON articulos.id_categoria_art = categoria_art.id_categoria_art
 		INNER JOIN proveedores ON articulos.id_proveedor = proveedores.id_proveedor
 		INNER JOIN marca_art ON articulos.id_marca_art = marca_art.id_marca_art
 		WHERE (articulos.id_articulo LIKE '%".$paBuscar."%')

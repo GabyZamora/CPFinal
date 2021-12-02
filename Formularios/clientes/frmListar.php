@@ -177,9 +177,10 @@ $Obj_Paginador->ConfPaginador();
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="art-show">
-						<li><a href="#">Artículos</a></li>
+					<li><a href="index.php?mod=art&form=li">Artículos</a></li>
 						<li><a href="index.php?mod=catar&form=li">Categorías</a></li>
 						<li><a href="index.php?mod=marcaarti&form=li">Marcas</a></li>
+						<li><a href="index.php?mod=cot&form=li">Cotización</a></li>
 					</ul>
 				</li>
 				<li>

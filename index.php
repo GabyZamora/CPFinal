@@ -38,6 +38,12 @@ switch( @$_GET["mod"] ){
   case 'ser':
     $Modulo = 'Formularios/servicios/index.php';
   break;
+  case 'cot':
+    $Modulo = 'Formularios/cotizacion/index.php';
+  break;
+  case 'art':
+    $Modulo = 'Formularios/articulos/index.php';
+  break;
   default:
   $Modulo = 'login.php';
   break;

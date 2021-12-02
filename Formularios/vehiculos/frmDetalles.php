@@ -150,9 +150,10 @@ foreach ( $DatosVehiculos as $Fila ) {
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">
-						<li><a href="#">Gestión de Vehículos</a></li>
+						<li><a href="index.php?mod=cot&form=li">Artículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
+						<li><a href="index.php?mod=cot&form=li">Cotización</a></li>
 					</ul>
 				</li>
 				<li>

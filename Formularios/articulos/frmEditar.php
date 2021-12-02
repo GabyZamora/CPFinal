@@ -1,3 +1,17 @@
+<?php
+	//Llamamos a la capa de datos
+	require_once 'datos/datos.php';
+	//Llamamos a la capa de negocio
+	require_once 'negocio/articulos.php';
+	//Instanciamos las clases de la capa de negocio
+	$Obj_Articulos = new Articulos();
+	//Cargamos el registro solicitado
+	$DatosArticulos = $Obj_Articulos->BuscarPorId( $_GET['id'] );
+	//Recuperamos el registro obtenido en una variable fila
+	foreach ( $DatosArticulos as $Fila ) {
+	$DatosArticulos = $Fila;
+	}
+?>
 <!-- CSS -->
 <head>
 <link rel="stylesheet" href="css/iconfont/material-icons.css">
@@ -19,7 +33,7 @@
 
 		}
 		.sidebar{
-			position: absolute;
+			position: fixed;
 			width: 250px;
 			height: 100%;
 			left: 0;
@@ -145,7 +159,7 @@
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="art-show">
-					<li><a href="index.php?mod=cot&form=li">Artículos</a></li>
+						<li><a href="index.php?mod=art&form=li">Artículos</a></li>
 						<li><a href="index.php?mod=catar&form=li">Categorías</a></li>
 						<li><a href="index.php?mod=marcaarti&form=li">Marcas</a></li>
 						<li><a href="index.php?mod=cot&form=li">Cotización</a></li>
@@ -156,7 +170,7 @@
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="ser-show">
-						<li><a href="index.php?mod=ser&form=li">Gestión de servicios</a></li>
+						<li><a href="index.php?mod=serv&form=li">Gestión de servicios</a></li>
 						<li><a href="index.php?mod=catse&form=li">Categorías</a></li>
 					</ul>
 				</li>
@@ -175,73 +189,92 @@
 		});
 	</script>
 
-<form name="frmNuevo" action="" method="post">
-  <div class="container">
-    <div class="table-wrapper">
-      <div class="table-title">
-        <div class="form-row">
-          <div class="col-md-8">
-            <h2>Nuevo Proveedor</h2>
-           </div>
-          <div class="col-md-4">
-            <button type="button" class="btn btn-danger"
-            onClick="location.replace('index.php?mod=prove&form=li');"><i class="material-icons">&#xe5c9;</i><span>Cancelar</span></button>
-            <button type="button" class="btn btn-success" onClick="ValidarNuevo();"><i
-              class="material-icons">&#xe161;</i><span>Guardar</span></button>
-            </div>
-          </div>
-        </div>
-<!-- -------------------------- Fila 1 -------------------------- -->
-      <div class="form-row">
-        <div class="form-group col-md-8">
-          <label>Nombre Comercial: </label>
-          <input type="text" class="form-control" id="txtNombreComercial"name="txtNombreComercial">
-        </div>
-        <div class="form-group col-md-8">
-          <label>Nombre del Proveedor: </label>
-          <input type="text" class="form-control" id="txtNombreProveedor"name="txtNombreProveedor">
-        </div>
-        <div class="form-group col-md-8">
-          <label>Giro: </label>
-          <input type="text" class="form-control" id="txtGiro" name="txtGiro">
-        </div>
-      </div>
-<!-- -------------------------- Fila 2 -------------------------- -->
-      <div class="form-row">
-        <div class="form-group col-md-8">
-          <label>DUI: </label>
-          <input type="text" class="form-control" id="txtDUI" name="txtDUI">
-        </div>
-        <div class="form-group col-md-8">
-          <label>NIT: </label>
-          <input type="text" class="form-control" id="txtNIT" name="txtNIT">
-        </div>
-        <div class="form-group col-md-8">
-          <label>Dirección: </label>
-          <input type="text" class="form-control" id="txtDireccion" name="txtDireccion">
-        </div>
-      </div>
-<!-- -------------------------- Fila 3 -------------------------- -->
-      <div class="form-row">
-        <div class="form-group col-md-8">
-          <label>Telefono 1: </label>
-          <input type="text" class="form-control" id="txtTelefono1" name="txtTelefono1">
-        </div>
-        <div class="form-group col-md-8">
-          <label>Telefono 2: </label>
-          <input type="text" class="form-control" id="txtTelefono2" name="txtTelefono2">
-        </div>
-        <div class="form-group col-md-8">
-          <label>Telefono 3: </label>
-          <input type="text" class="form-control" id="txtTelefono3" name="txtTelefono3">
-        </div>
-      </div>
-
-<!-- -------------------------- Fila 4 -------------------------- -->
-
-<!-- --------------------------Fila5----------------------------- -->
-
-      <div class="form-row">
+<form name="frmEditar" action="" method="post">
+	<div class="container">
+		<div class="table-wrapper">
+ 		   <div class="table-title">
+ 			   <div class="form-row">
+ 				   <div class="col-md-8">
+ 					    <h2>Editar Articulo</h2>
+ 					</div>
+ 					<div class="col-md-4">
+						 <button type="button" class="btn btn-danger"
+						onClick="location.replace('index.php?mod=art&form=li');"><i class="materialicons">&#xe5c9;</i><span>Cancelar</span></button>
+						 <button type="button" class="btn btn-success"
+						onClick="ValidarEditar();"><i class="materialicons">&#xe161;</i><span>Guardar</span></button>
+					 </div>
+ 				</div>
+			</div>
+			<!-- -------------------------- Fila 1 -------------------------- -->
+			<div class="form-row">
+ 				<div class="form-group col-md-8">
+					<label>Nombre del Articulo: </label>
+ 					<input type="text" class="form-control" id="txtNombreNombreAr"
+					name="txtNombreAr" value="<?php echo $Fila['nombre_articulo']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId"
+					value="<?php echo $Fila['id_articulo']; ?>">
+ 				</div>
+ 			</div>
+ 			<!---------------------------- Fila 2 -------------------------- -->
+ 			<div class="form-row">
+ 				<div class="form-group col-md-8">
+ 					<label>Descripcion: </label>
+ 					<input type="text" class="form-control" id="txtDescripcion"
+					name="txtDescripcion" value="<?php echo $Fila['descripcion']; ?>" readonly>
+ 				</div>
+ 			</div>
+ 			<div class="form-row">
+	 			<div class="form-group col-md-6">
+		 			<label>Categoria Articulo: </label>
+					 <select id="cbxCateArt" name="cbxCateArt" class="form-control">
+						 <option value="<?php echo $Fila['id_categoria_art']; ?>"><?php
+					echo $FilaCategoriaArt['NombreCategoriaArticulos']; ?></option>
+						 <?php
+						 foreach ( $Datos_Catar as $FilaCategoriaArt ) {
+						 ?>
+			 			<option value="<?php echo $FilaCategoriaArt['id_categoria_art']; ?>"><?php echo
+						$FilaCategoriaArt['nombre_categoria_art']; ?></option>
+						 <?php
+						 }
+						 ?>
+		 			</select>
+				</div>
+ 		</div>
+ 		<div class="form-row">
+	 			<div class="form-group col-md-6">
+		 			<label>Proveedor: </label>
+					 <select id="cbxProveedor" name="cbxProveedor" class="form-control">
+						 <option value="<?php echo $Fila['id_proveedor']; ?>"><?php
+					echo $FilaProveedor['NombreProveedor']; ?></option>
+						 <?php
+						 foreach ( $DatosProveedor as $FilaProveedor ) {
+						 ?>
+			 			<option value="<?php echo $FilaProveedor['id_proveedor']; ?>"><?php echo
+						$FilaProveedor['nombre_comercial_proveedor']; ?></option>
+						 <?php
+						 }
+						 ?>
+		 			</select>
+				</div>
+ 		</div>
+ 		<div class="form-row">
+	 			<div class="form-group col-md-6">
+		 			<label>Marca Articulos: </label>
+					 <select id="cbxMarcArt" name="cbxMarcArt" class="form-control">
+						 <option value="<?php echo $Fila['id_marca_art']; ?>"><?php
+					echo $FilaMarcas_Articulos['NombreMarcaArt']; ?></option>
+						 <?php
+						 foreach ( $DatosMarcas_Articulos as $FilaMarcas_Articulos ) {
+						 ?>
+			 			<option value="<?php echo $FilaMarcas_Articulos['id_marca_art']; ?>"><?php echo
+						$FilaMarcas_Articulos['nombreMarca']; ?></option>
+						 <?php
+						 }
+						 ?>
+		 			</select>
+				</div>
+ 		</div>
+ 		 <div class="form-row">
         <div class="form-group col-md-4">
           <label>Estado: </label>
           <select id="cbxEstado" name="cbxEstado" class="form-control">
@@ -251,45 +284,22 @@
           </select>
         </div>
       </div>
-    </div> <!-- Cierre del Div table-wrapper -->
-  </div> <!-- Cierre del Div container -->
+ 		</div> <!-- Cierre del Div table-wrapper -->
+	</div> <!-- Cierre del Div container -->
 </form>
+<!-- -------------------- Validaciones de ingreso de datos --------------------->
 <script type="text/javascript">
-  function ValidarNuevo(){
-    if ( !document.getElementById('txtNombreComercial').value ) {
-    alert('Ingrese el nombre Comercial del proveedor');
-    }
-    else if ( !document.getElementById('txtNombreProveedor').value ){
-    alert('Ingrese el nombre completo del proveedor');
-    }
-    else if ( !document.getElementById('txtGiro').value ) {
-    alert('Ingrese el genero del proveedor');
-    }
-    else if ( !document.getElementById('txtDUI').value ) {
-    alert('Ingrese número de DUI');
-    }
-
-    else if ( !document.getElementById('txtNIT').value ) {
-    alert('Ingrese número de nit del proveedor');
-    }
-    else if ( !document.getElementById('txtDireccion').value ) {
-    alert('Ingrese la direccion del proveedor');
-    }
-    else if ( !document.getElementById('txtTelefono1').value ) {
-    alert('Ingrese el numero de telefono  del proveedor');
-    }
-    else if ( !document.getElementById('txtTelefono2').value ) {
-    alert('Ingrese el numero de telefono  del proveedor');
-    }
-    else if ( !document.getElementById('txtTelefono3').value ) {
-    alert('Ingrese el numero de telefono  del proveedor');
-    }
-    else if ( !document.getElementById('cbxEstado').value ) {
-    alert('Seleccione estado');
-    }
-    else {
-    document.forms.frmNuevo.action = 'index.php?mod=prove&form=ag';
-    document.forms.frmNuevo.submit();
-    }
-  }
+	 function ValidarEditar(){
+		if ( !document.getElementById('txtNombreArt').value ) {
+		 alert('Ingrese el Nombre del Articulo');
+		}
+		if ( !document.getElementById('txtDescripcion').value ) {
+		 alert('Ingrese la descripción');
+		}
+		
+		else {
+		 document.forms.frmEditar.action = 'index.php?mod=art&form=ac';
+		 document.forms.frmEditar.submit();
+		}
+	 }
 </script>

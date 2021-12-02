@@ -3,18 +3,18 @@
 	require_once 'datos/datos.php';
 	//Llamamos a la capa de negocio
 	require_once 'negocio/paginador.php';
-	require_once 'negocio/usuarios.php';
+	require_once 'negocio/articulos.php';
 	//Instanciamos las clases de la capa de negocio
 	$Obj_Paginador = new Paginador();
-	$Obj_Usuarios = new Usuarios();
+	$Obj_Articulos = new Articulos();
 	//Asignamos los valores necesarios a los atributos de la clase del paginador ---
-	$Obj_Paginador->Cadena = $Obj_Usuarios->ListarTodos( addslashes(
+	$Obj_Paginador->Cadena = $Obj_Articulos->ListarTodos( addslashes(
 	@$_POST['txtBuscar'] ) );
-	$Obj_Paginador->CantTotalReg = $Obj_Usuarios->CantTotalRegistros( addslashes(
+	$Obj_Paginador->CantTotalReg = $Obj_Articulos->CantTotalRegistros( addslashes(
 	@$_POST['txtBuscar'] ) );
-	$Obj_Paginador->FilasPorPagina = 5; //Define la cantidad de registros mostrados por página
+	$Obj_Paginador->FilasPorPagina = 10; //Define la cantidad de registros mostrados por página
 	$Obj_Paginador->NumPagina = @$_GET['np']; //Define la página solicitada al paginador
-	$Obj_Paginador->EnlaceListar = "mod=usua&form=li"; //Define el enlace al modulo y formulario listar de ese módulo
+	$Obj_Paginador->EnlaceListar = "mod=art&form=li"; //Define el enlace al modulo y formulario listar de ese módulo
 	//Aplicamos la configuración al paginador
 	$Obj_Paginador->ConfPaginador();
 	//Fin de configuraciones del paginador ------------------------------------------
@@ -170,7 +170,7 @@
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="art-show">
-						li><a href="index.php?mod=cot&form=li">Artículos</a></li>
+						<li><a href="index.php?mod=art&form=li">Artículos</a></li>
 						<li><a href="index.php?mod=catar&form=li">Categorías</a></li>
 						<li><a href="index.php?mod=marcaarti&form=li">Marcas</a></li>
 						<li><a href="index.php?mod=cot&form=li">Cotización</a></li>
@@ -181,7 +181,7 @@
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="ser-show">
-						<li><a href="index.php?mod=ser&form=li">Gestión de servicios</a></li>
+						<li><a href="index.php?mod=serv&form=li">Gestión de servicios</a></li>
 						<li><a href="index.php?mod=catse&form=li">Categorías</a></li>
 					</ul>
 				</li>
@@ -205,7 +205,7 @@
 		<div class="table-title">
 			<div class="form-row">
 		 		<div class="col-md-4">
-		 			<a href="index.php?mod=usua&form=li" class="a-tituloform"><h2>Gestión de <b>Usuarios</b></h2></a>
+		 			<a href="index.php?mod=art&form=li" class="a-tituloform"><h2>Gestión de <b>Articulos</b></h2></a>
 		 		</div>
 		 		<div class="col-md-3">
 		 			<div class="input-group">
@@ -227,7 +227,7 @@
             		onClick="location.replace('index.php?mod=menu');">
            			 <i class="material-icons">&#xe879;</i><span>Cerrar</span></button>
 		 			<button type="button" class="btn btn-success"
-					onClick="location.replace('index.php?mod=usu&form=nu');">
+					onClick="location.replace('index.php?mod=art&form=nu');">
 		 			<i class="material-icons">&#xe148;</i><span>Agregar
 					Nuevo</span></button>
 		 		</div>
@@ -241,8 +241,8 @@
 	 	<table class="table table-striped table-hover">
 	 		<thead>
 	 			<tr>
-	 				<th>NombreUsuario</th>
-	 				<th>Usuario</th>
+	 				<th>Articulo</th>
+	 				<th>Descripcion</th>
 					 <th>Acciones</th>
 	 			</tr>
 	 		</thead>
@@ -252,15 +252,13 @@
 				 foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
 			 ?>
 	 			<tr>
-		 			<td><?php echo $Fila['nombre_usuario']; ?></td>
-		 			<td><?php echo $Fila['Usuario']; ?></td>
+		 			<td><?php echo $Fila['nombre_articulo']; ?></td>
+		 			<td><?php echo $Fila['descripcion']; ?></td>
 		 			<td>
-					 <a href="#" class="view" onClick="ReestablecerPassword('<?php
-					echo $Fila['usuario_id']; ?>');" title="Reestablecer Password"><i class="materialicons">&#xe0da;</i></a>
-					 <a href="index.php?mod=usu&form=ed&id=<?php echo
-					$Fila['id_usuario']; ?>" class="edit"><i class="material-icons" datatoggle="tooltip" title="Editar">&#xE254;</i></a>
+					 <a href="index.php?mod=art&form=ed&id=<?php echo
+					$Fila['id_articulo']; ?>" class="edit"><i class="material-icons" datatoggle="tooltip" title="Editar">&#xE254;</i></a>
 					 <a href="#" class="delete" onclick="Eliminar('<?php echo
-					$Fila['usuario_id']; ?>');"><i class="material-icons" data-toggle="tooltip"
+					$Fila['id_articulo']; ?>');"><i class="material-icons" data-toggle="tooltip"
 					title="Eliminar">&#xE872;</i></a>
 					</td>
 			 	</tr>
@@ -274,14 +272,7 @@
 <script type="text/javascript">
 	function Eliminar( paId ){
 		if( confirm('¿Confirma eliminar este registro?') ){
-		window.location.replace('index.php?mod=usu&form=el&id=' +
-		paId);
-		}
-	}
-	//Función para reestablecer el password de la cuenta
-	function ReestablecerPassword( paId ){
-		if( confirm('¿Confirma reestablecer el password de esta cuenta?') ){
-		window.location.replace('index.php?mod=usu&form=rp&id=' +
+		window.location.replace('index.php?mod=art&form=el&id=' +
 		paId);
 		}
 	}

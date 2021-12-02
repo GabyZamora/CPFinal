@@ -1,18 +1,20 @@
 <?php
-//Llamamos a la capa de datos
-require_once 'datos/datos.php';
-//Llamamos a la capa de negocio
-require_once 'negocio/vehiculos.php';
+	//Llamamos a la capa de datos
+	require_once 'datos/datos.php';
+	//Llamamos a la capa de negocio
+require_once 'negocio/cotizacion.php';
+require_once 'negocio/articulos.php';
+require_once 'negocio/servicios.php';
 //Instanciamos las clases de la capa de negocio
-$Obj_Vehiculos = new Vehiculos();
-$Obj_EstadoV = new EstadoV();
-//Cargamos el registro solicitado
-$Datos_EstadoV = $Obj_EstadoV->BuscarPorId( $_GET['id'] );
-//Recuperamos los registros de las categorías y las marcas, para los combos
-$DatosVehiculos = $Obj_Vehiculos->ListarTodoCombos();
+$Obj_Cotizacion = new Cotizacion();
+$Obj_Articulos = new Articulos();
+$Obj_Servicios = new Servicios();
+//Recuperamos los registros de las categorías y las marcas
+$DatosArticulos = $Obj_Articulos->ListarTodoCombos();
+$DatosServicios = $Obj_Servicios->ListarTodoCombos();
 //Recuperamos el registro obtenido en una variable fila
-foreach ( $Datos_EstadoV as $Fila ) {
-$Datos_EstadoV = $Fila;
+foreach ( $DatosCotizacion as $Fila ) {
+$DatosCotizacion = $Fila;
 }
 ?>
 <!-- CSS -->
@@ -145,7 +147,6 @@ $Datos_EstadoV = $Fila;
 				<li><a href="index.php?mod=usu&form=li"><span class="fas fa-user"></span> Usuarios</a></li>
 				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span> Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
-				<li><a href="index.php?mod=estveh&form=li"><span class="fas fa-file-alt"></span>Estado de vehículo</a>
 				<li>
 					<a href="#" class="vehi-btn">Vehículos
 						<span class="fas fa-caret-down first"></span>
@@ -173,11 +174,11 @@ $Datos_EstadoV = $Fila;
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="ser-show">
-						<li><a href="index.php?mod=ser&form=li">Gestión de servicios</a></li>
+						<li><a href="#">Gestión de servicios</a></li>
 						<li><a href="index.php?mod=catse&form=li">Categorías</a></li>
 					</ul>
 				</li>
-				<li><a href="index.php"><span class="fas fa-sign-out-alt"></span>Cerrar sesión</a></li>
+				<li><a href="index.php?mod=cot&form=li"><span class="fas fa-truck"></span> Cotización </a></li>
 			</ul>
 		</nav>
 	<script>
@@ -198,67 +199,78 @@ $Datos_EstadoV = $Fila;
  			<div class="table-title">
  				<div class="form-row">
  					<div class="col-md-8">
- 						<h2>Editar Estado de vehículo</h2>
+ 						<h2>Editar Cotización</h2>
  					</div>
  					<div class="col-md-4">
 <button type="button" class="btn btn-danger"
-onClick="location.replace('index.php?mod=estveh&form=li');"><i class="material-icons">&#xe5c9;</i><span>Cancelar</span></button>
+onClick="location.replace('index.php?mod=cot&form=li');"><i class="material-icons">&#xe5c9;</i><span>Cancelar</span></button>
 <button type="button" class="btn btn-success" onClick="ValidarEditar();"><i
 class="material-icons">&#xe161;</i><span>Guardar</span></button>
 </div>
  				</div>
 			</div>
-
-<!-- Fila -------------------------------------------->
+<!-- -------------------------- Fila 1 -------------------------- -->
 <div class="form-row">
 			<div class="form-group col-md-8">
-				<label>Vehículo Ingresado: </label>
-				<input type="text" class="form-control" id="txtIngresado" name="txtIngresado" value="<?php echo $Fila['Ingresado']; ?>">
-					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_estado_del_vehiculo']; ?>">
-			</div>
-				<div class="form-group col-md-4">
-				<label>Placa: </label>
-				<select id="cbxPlaca" name="cbxPlaca" class="form-control">
-				<option value="<?php echo $Fila['Placa']; ?>"><?php echo $Fila['Placa']; ?></option>
+				<label>Seleccione un servicio: </label>
+				<select id="cbxServicio" name="cbxServicio" class="form-control">
+				<option value="<?php echo $Fila['id_servicio']; ?>"><?php echo
+            $Fila['Servicio']; ?></option>
               <?php
-              foreach ( $DatosVehiculos as $FilaVehiculo ) {
+              foreach ( $DatosServicios as $FilaServicio ) {
                 ?>
-                <option value="<?php echo $FilaVehiculo['id_vehiculo']; ?>"><?php echo
-                $FilaVehiculo['placa']; ?></option>
+                <option value="<?php echo $FilaServicio['id_servicio']; ?>"><?php echo
+                $FilaServicio['nombre_servicio']; ?></option>
                 <?php
               }
               ?>
-</select>
-</div>
-
-<div class="form-group col-md-8">
-				<label>Aceptado por el cliente: </label>
-				<input type="text" class="form-control" id="txtAceptacion" name="txtAceptacion" value="<?php echo $Fila['Aceptacion']; ?>">
-					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_estado_del_vehiculo']; ?>">
+			</select>
 			</div>
 
 			<div class="form-group col-md-8">
-				<label>Espera de repuesto: </label>
-				<input type="text" class="form-control" id="txtEsperaRepuesto" name="txtEsperaRepuesto" value="<?php echo $Fila['EsperaRepuesto']; ?>">
-					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_estado_del_vehiculo']; ?>">
+				<label>Cantidad de Servicio: </label>
+				<input type="text" class="form-control" id="txtCantServicio" name="txtCantServicio" value="<?php echo $Fila['CantServicio']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_cotizacion']; ?>">
 			</div>
 
 			<div class="form-group col-md-8">
-				<label>Estado de reparación: </label>
-				<input type="text" class="form-control" id="txtEstadoReparacion" name="txtEstadoReparacion" value="<?php echo $Fila['EstadoReparacion']; ?>">
-					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_estado_del_vehiculo']; ?>">
+				<label>Precio del Servicio: </label>
+				<input type="text" class="form-control" id="txtPrecioServicio" name="txtPrecioServicio" value="<?php echo $Fila['PrecioServicio']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_cotizacion']; ?>">
 			</div>
 
 			<div class="form-group col-md-8">
-				<label>Finalizacion de taller: </label>
-				<input type="text" class="form-control" id="txtFinalizacionTaller" name="txtFinalizacionTaller" value="<?php echo $Fila['FinalizacionTaller']; ?>">
-					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_estado_del_vehiculo']; ?>">
+				<label>Seleccione un artículo: </label>
+				<select id="cbxArticulo" name="cbxArticulo" class="form-control">
+				<option value="<?php echo $Fila['id_articulo']; ?>"><?php echo
+            $Fila['Articulo']; ?></option>
+              <?php
+              foreach ( $DatosArticulos as $FilaArticulo ) {
+                ?>
+                <option value="<?php echo $FilaArticulo['id_articulo']; ?>"><?php echo
+                $FilaArticulo['nombre_articulo']; ?></option>
+                <?php
+              }
+              ?>
+			</select>
+			</div>
+
+			<div class="form-group col-md-8">
+				<label>Cantidad de Articulo: </label>
+				<input type="text" class="form-control" id="txtCantidadArt" name="txtCantidadArt" value="<?php echo $Fila['CantidadArt']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_cotizacion']; ?>">
+			</div>
+
+			<div class="form-group col-md-8">
+				<label>Precio del Articulo: </label>
+				<input type="text" class="form-control" id="txtPrecioArt" name="txtPrecioArt" value="<?php echo $Fila['PrecioArt']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['id_cotizacion']; ?>">
 			</div>
 
 			<div class="form-group col-md-8">
 <label>Estado: </label>
 <select id="cbxEstado" name="cbxEstado" class="form-control">
-<option value="<?php echo $Fila['estado']; ?>"><?php echo $Fila['estado']; ?></option>
+<option value="">Seleccione...</option>
 <option value="">ACTIVO</option>
 <option value="">INACTIVO</option>
 </select>
@@ -270,30 +282,30 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <!-- -------------------- Validaciones de ingreso de datos -------------------- -->
 <script type="text/javascript">
 	function ValidarEditar(){
-		if ( !document.getElementById('txtIngresado').value ) {
-alert('Ingrese dato para ingresado');
+	if ( !document.getElementById('cbxServicio').value ) {
+alert('Seleccione Servicio');
 }
-else if ( !document.getElementById('cbxPlaca').value ) {
-alert('Seleccione un número de placa');
+else if ( !document.getElementById('txtCantServicio').value ) {
+alert('Ingrese cantidad de servicio');
 }
-else if ( !document.getElementById('txtAceptacion').value ) {
-alert('Ingrese aceptación de cliente');
+else if ( !document.getElementById('txtRecioServicio').value ) {
+alert('Ingrese precio de servicio');
 }
-else if ( !document.getElementById('txtEsperaRepuesto').value ) {
-alert('Ingrese espera de repuesto');
+else if ( !document.getElementById('cbxArticulo').value ) {
+alert('Seleccione Articulo');
 }
-else if ( !document.getElementById('txtEstadoReparacion').value ) {
-alert('Ingrese estado de repación');
+else if ( !document.getElementById('txtCantidadArt').value ) {
+alert('Ingrese cantidad de articulos');
 }
-else if ( !document.getElementById('txtFinalizacionTaller').value ) {
-alert('Ingrese finalizacion de taller');
+else if ( !document.getElementById('txtPrecioArt').value ) {
+alert('Ingrese precio de articulo');
 }
 else if ( !document.getElementById('cbxEstado').value ) {
-alert('Seleccione un estado');
+alert('Seleccione estado');
 }
-		else {
-		document.forms.frmEditar.action = 'index.php?mod=estveh&form=ac';
-		document.forms.frmEditar.submit();
-		}
-	}
+else {
+document.forms.frmEditar.action = 'index.php?mod=cot&form=ac';
+document.forms.frmEditar.submit();
+}
+}
 </script>
