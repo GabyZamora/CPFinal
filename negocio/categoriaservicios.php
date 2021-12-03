@@ -47,7 +47,7 @@ class Categoria_Servicio extends datos {
         return $this->EjecutarQuery( $Cadena );
     }
       public function Eliminar( $paId ) {
-        $Cadena = "UPDATE categorias_serv SET estado = 'ACTIVO' WHERE id_categoria  =
+        $Cadena = "UPDATE categorias_serv SET estado = 'INACTIVO' WHERE id_categoria  =
         '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
     }
