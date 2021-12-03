@@ -153,7 +153,6 @@ $Obj_Paginador->ConfPaginador();
 				<li><a href="index.php?mod=usu&form=li"><span class="fas fa-user"></span> Usuarios</a></li>
 				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span>Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
-				<li><a href="index.php?mod=estveh&form=li"><span class="fas fa-file-alt"></span>Estado de vehículo</a>
 				<li>
 					<a href="#" class="vehi-btn">Vehículos
 						<span class="fas fa-caret-down first"></span>
@@ -246,6 +245,7 @@ $Obj_Paginador->ConfPaginador();
                 <th>Nombre Modelo</th>
                 <th>Placa</th>
                 <th>Tipo Vehiculo</th>
+				<th>Estado de vehículo</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -260,6 +260,7 @@ $Obj_Paginador->ConfPaginador();
                   <td><?php echo $Fila['NombreModelo']; ?></td>
                   <td><?php echo $Fila['placa']; ?></td>
                   <td><?php echo $Fila['tipo_vehiculo']; ?></td>
+				  <td><?php echo $Fila['estado_del_vehiculo']; ?></td>
                   <td>
                     <a href="index.php?mod=veh&form=de&id=<?php echo $Fila['id_vehiculo'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
                     <a href="index.php?mod=veh&form=ed&id=<?php echo $Fila['id_vehiculo'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"

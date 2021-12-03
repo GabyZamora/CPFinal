@@ -6,6 +6,7 @@ class Vehiculos extends Datos {
   public $id_modelo;
   public $placa;
   public $tipo_vehiculo;
+  public $estado_del_vehiculo;
   public $color_vehiculo;
   public $anio_vehiculo;
   public $vin_vehiculo;
@@ -25,6 +26,7 @@ class Vehiculos extends Datos {
     modelo_aut.nombre_modelo AS NombreModelo,
     vehiculos.placa,
     vehiculos.tipo_vehiculo,
+    vehiculos.estado_del_vehiculo,
     vehiculos.color_vehiculo,
     vehiculos.anio_vehiculo,
     vehiculos.vin_vehiculo,
@@ -60,6 +62,7 @@ class Vehiculos extends Datos {
     modelo_aut.nombre_modelo AS NombreModelo,
     vehiculos.placa,
     vehiculos.tipo_vehiculo,
+    vehiculos.estado_del_vehiculo,
     vehiculos.color_vehiculo,
     vehiculos.anio_vehiculo,
     vehiculos.vin_vehiculo,
@@ -75,6 +78,7 @@ class Vehiculos extends Datos {
   }
   public function BuscarPorId( $paId ) {
     $Cadena = "SELECT 
+    vehiculos.id_vehiculo,
     vehiculos.id_cliente,
     clientes.nombre_cliente AS NombreCliente,
     vehiculos.id_marca,
@@ -83,6 +87,7 @@ class Vehiculos extends Datos {
     modelo_aut.nombre_modelo AS NombreModelo,
     vehiculos.placa,
     vehiculos.tipo_vehiculo,
+    vehiculos.estado_del_vehiculo,
     vehiculos.color_vehiculo,
     vehiculos.anio_vehiculo,
     vehiculos.vin_vehiculo,
@@ -92,7 +97,8 @@ class Vehiculos extends Datos {
     INNER JOIN clientes ON vehiculos.id_cliente = clientes.id_cliente
     INNER JOIN marca_aut ON vehiculos.id_marca = marca_aut.id_marca
     INNER JOIN modelo_aut ON vehiculos.id_modelo = modelo_aut.id_modelo
-    WHERE vehiculos.id_vehiculo = '".$paId."' ";
+    WHERE
+    vehiculos.id_vehiculo = '".$paId."' ";
     return $this->EjecutarQuery( $Cadena );
     }
     public function Agregar() {
@@ -102,6 +108,7 @@ class Vehiculos extends Datos {
           id_modelo,
           placa,
           tipo_vehiculo,
+          estado_del_vehiculo,
           color_vehiculo,
           anio_vehiculo,
           vin_vehiculo,
@@ -114,6 +121,7 @@ class Vehiculos extends Datos {
         '".addslashes($this->Modelo)."',
         '".addslashes($this->Placa)."',
         '".addslashes($this->TipoVehiculo)."',
+        '".addslashes($this->EstadoVehiculo)."',
         '".addslashes($this->ColorVehiculo)."',
         '".addslashes($this->AnioVehiculo)."',
         '".addslashes($this->VinVehiculo)."',
@@ -129,6 +137,7 @@ class Vehiculos extends Datos {
         id_modelo = '".addslashes($this->Modelo)."',
         placa = '".addslashes($this->Placa)."',
         tipo_vehiculo = '".addslashes($this->TipoVehiculo)."',
+        estado_del_vehiculo = '".addslashes($this->EstadoVehiculo)."',
         color_vehiculo = '".addslashes($this->ColorVehiculo)."',
         anio_vehiculo = '".addslashes($this->AnioVehiculo)."',
         vin_vehiculo = '".addslashes($this->VinVehiculo)."',

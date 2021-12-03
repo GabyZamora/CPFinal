@@ -154,7 +154,7 @@
 				<li><a href="index.php?mod=usu&form=li"><span class="fas fa-user"></span> Usuarios</a></li>
 				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span> Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
-				<li><a href="index.php?mod=estveh&form=li"><span class="fas fa-file-alt"></span>Estado de vehículo</a>
+				
 				<li>
 					<a href="#" class="vehi-btn">Vehículos
 						<span class="fas fa-caret-down first"></span>
@@ -254,11 +254,13 @@
 				 foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
 			 ?>
 	 			<tr>
-		 			<td><?php echo $Fila['nombre_articulo']; ?></td>
+		 			<td><?php echo $Fila['NombreArticulo']; ?></td>
+		 			<td><?php echo $Fila['NombreMarcaArticulos']; ?></td>
+					 <td><?php echo $Fila['NombreCategoriaArticulos']; ?></td>
 		 			<td><?php echo $Fila['descripcion']; ?></td>
 		 			<td>
-					 <a href="index.php?mod=art&form=ed&id=<?php echo
-					$Fila['id_articulo']; ?>" class="edit"><i class="material-icons" datatoggle="tooltip" title="Editar">&#xE254;</i></a>
+					 <a href="index.php?mod=art&form=de&id=<?php echo $Fila['id_articulo'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
+					 <a href="index.php?mod=art&form=ed&id=<?php echo $Fila['id_articulo']; ?>" class="edit"><i class="material-icons" datatoggle="tooltip" title="Editar">&#xE254;</i></a>
 					 <a href="#" class="delete" onclick="Eliminar('<?php echo
 					$Fila['id_articulo']; ?>');"><i class="material-icons" data-toggle="tooltip"
 					title="Eliminar">&#xE872;</i></a>

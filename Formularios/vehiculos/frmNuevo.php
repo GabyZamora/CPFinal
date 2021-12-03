@@ -145,7 +145,6 @@ $Datos_Marcas_Autos = $Obj_Marcas_Autos->ListarTodoCombos();
 				<li><a href="index.php?mod=usu&form=li"><span class="fas fa-user"></span> Usuarios</a></li>
 				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span> Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
-				<li><a href="index.php?mod=estveh&form=li"><span class="fas fa-file-alt"></span>Estado de vehículo</a>
 				<li>
 					<a href="#" class="vehi-btn">Vehículos
 						<span class="fas fa-caret-down first"></span>
@@ -291,9 +290,19 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <label>Número de Motor: </label>
 <input type="text" class="form-control" id="txtMotor" name="txtMotor">
 </div>
-
+<div class="form-group col-md-4">
+<label>Estado de Vehículo: </label>
+<select id="cbxEstadoVeh" name="cbxEstadoVeh" class="form-control">
+<option value="">Seleccione...</option>
+<option value="Ingresando">Ingresando</option>
+<option value="Aceptado">Aceptado por el cliente</option>
+<option value="Espera">Espera de repuesto</option>
+<option value="EstadoReparacion">Estado de reparación</option>
+<option value="FinalizadoTaller">Finalizado en el taller</option>
+<option value="FueraTaller">Fuera del taller</option>
+</select>
 </div>
-
+</div>
 <!-- --------------------------Fila 5----------------------------- -->
 <div class="form-row">
 <div class="form-group col-md-4">
@@ -328,6 +337,9 @@ alert('Seleccione el modelo del vehículo');
 }
 else if ( !document.getElementById('cbxTipo').value ) {
 alert('Seleccione tipo de vehículo');
+}
+else if ( !document.getElementById('cbxEstadoVeh').value ) {
+alert('Seleccione el estado del vehículo');
 }
 else if ( !document.getElementById('txtColorVeh').value ) {
 alert('Ingrese el color del vehículo');

@@ -19,13 +19,13 @@ class Cat_Articulo extends Datos {
     return mysqli_fetch_row($this->EjecutarQuery( $Cadena ));
   } //Retorna el número de filas que tiene la consulta
 
-  public function ListarTodoReporte() {
-    $Cadena = "SELECT * FROM categoria_art ";
-    return $this->EjecutarQuery( $Cadena );
-  }
-  public function BuscarPorId( $paId ) {
-    $Cadena = "SELECT * FROM categoria_art WHERE id_categoria_art = '".$paId."' ";
-    return $this->EjecutarQuery( $Cadena );
+    public function ListarTodoReporte() {
+      $Cadena = "SELECT * FROM categoria_art ";
+      return $this->EjecutarQuery( $Cadena );
+    }
+    public function BuscarPorId( $paId ) {
+      $Cadena = "SELECT * FROM categoria_art WHERE id_categoria_art = '".$paId."' ";
+      return $this->EjecutarQuery( $Cadena );
     }
     public function Agregar() {
     $Cadena = "INSERT INTO categoria_art (
@@ -50,13 +50,14 @@ class Cat_Articulo extends Datos {
         return $this->EjecutarQuery( $Cadena );
       }
       public function ListarTodoCombos() {
-        $Cadena = "SELECT * categoria_art
+        $Cadena = "SELECT * FROM categoria_art
         WHERE
-        estado = 'ACTIVO' ";
+        estado = 'ACTIVO'
+        ORDER BY nombre_categoria_art ASC";
         return $this->EjecutarQuery( $Cadena );
       }
     }
-    ?>
+  ?>
 
 
     

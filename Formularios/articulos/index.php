@@ -17,6 +17,11 @@
 	$FormValid = true;
 	break;
 	
+	case 'de':
+		$Form = 'Formularios/articulos/frmDetalles.php';
+		$FormValid = true;
+	break;
+	
 	case 'ed':
 	$Form = 'Formularios/articulos/frmEditar.php';
 	$FormValid = true;

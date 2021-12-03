@@ -21,6 +21,7 @@
 		proveedores.nombre_comercial_proveedor AS NombreProveedor,
 		articulos.id_marca_art,
 		marca_art.nombreMarca AS NombreMarcaArticulos,
+		articulos.descripcion,
 		articulos.estado 
 		FROM 
 		articulos 

@@ -11,6 +11,7 @@ $Obj_Vehiculos->Marca = $_POST['cbxMarca'];
 $Obj_Vehiculos->Modelo = $_POST['cbxModelo'];
 $Obj_Vehiculos->Placa = $_POST['txtPlaca'];
 $Obj_Vehiculos->TipoVehiculo = $_POST['cbxTipo'];
+$Obj_Vehiculos->EstadoVehiculo = $_POST['cbxEstadoVeh'];
 $Obj_Vehiculos->ColorVehiculo = $_POST['txtColorVeh'];
 $Obj_Vehiculos->AnioVehiculo = $_POST['txtAnio'];
 $Obj_Vehiculos->VinVehiculo = $_POST['txtVin'];

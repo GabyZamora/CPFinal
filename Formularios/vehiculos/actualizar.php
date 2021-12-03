@@ -10,6 +10,7 @@ $Obj_Vehiculos->nombre_cliente = $_POST['txtNombre'];
 $Obj_Vehiculos->nombre_marca = $_POST['cbxMarca'];
 $Obj_Vehiculos->nombre_modelo = $_POST['cbxModelo'];
 $Obj_Vehiculos->tipo_vehiculo = $_POST['cbxTipo'];
+$Obj_Vehiculos->EstadoVehiculo = $_POST['cbxEstadoVeh'];
 $Obj_Vehiculos->color_vehiculo = $_POST['txtColor'];
 $Obj_Vehiculos->anio_vehiculo = $_POST['txtAnio'];
 $Obj_Vehiculos->vin_vehiculo = $_POST['txtVin'];

@@ -3,7 +3,17 @@
 	require_once 'datos/datos.php';
 	//Llamamos a la capa de negocio
 	require_once 'negocio/articulos.php';
-	//Instanciamos las clases de la capa de negocio
+	require_once 'negocio/cat_articulo.php';
+	require_once 'negocio/marcaarticulos.php';
+	require_once 'negocio/proveedor.php';
+
+
+$Obj_Cat_Articulo = new Cat_Articulo();
+$Datos_Catar = $Obj_Cat_Articulo->ListarTodoCombos();
+$Obj_Marcas_Articulos = new Marcas_Articulos();
+$DatosMarcas_Articulos = $Obj_Marcas_Articulos->ListarTodoCombos();
+$Obj_Proveedor = new Proveedor();
+$DatosProveedor = $Obj_Proveedor->ListarTodoCombos();
 	$Obj_Articulos = new Articulos();
 	//Cargamos el registro solicitado
 	$DatosArticulos = $Obj_Articulos->BuscarPorId( $_GET['id'] );
@@ -143,7 +153,6 @@
 				<li><a href="index.php?mod=usu&form=li"><span class="fas fa-user"></span> Usuarios</a></li>
 				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span> Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
-				<li><a href="index.php?mod=estveh&form=li"><span class="fas fa-file-alt"></span>Estado de vehículo</a>
 				<li>
 					<a href="#" class="vehi-btn">Vehículos
 						<span class="fas fa-caret-down first"></span>
@@ -220,7 +229,7 @@
  				<div class="form-group col-md-8">
  					<label>Descripcion: </label>
  					<input type="text" class="form-control" id="txtDescripcion"
-					name="txtDescripcion" value="<?php echo $Fila['descripcion']; ?>" readonly>
+					name="txtDescripcion" value="<?php echo $Fila['descripcion']; ?>">
  				</div>
  			</div>
  			<div class="form-row">
@@ -262,7 +271,7 @@
 		 			<label>Marca Articulos: </label>
 					 <select id="cbxMarcArt" name="cbxMarcArt" class="form-control">
 						 <option value="<?php echo $Fila['id_marca_art']; ?>"><?php
-					echo $FilaMarcas_Articulos['NombreMarcaArt']; ?></option>
+					echo $FilaMarcas_Articulos['NombreMarcaArticulos']; ?></option>
 						 <?php
 						 foreach ( $DatosMarcas_Articulos as $FilaMarcas_Articulos ) {
 						 ?>
@@ -278,9 +287,9 @@
         <div class="form-group col-md-4">
           <label>Estado: </label>
           <select id="cbxEstado" name="cbxEstado" class="form-control">
-         <option value="<?php echo $Fila['estado']; ?>">
-          <option value="Activo">Activo</option>
-          <option value="Inactivo">Inactivo</option>
+         <option value="<?php echo $Fila['estado']; ?>"></option>
+          <option value="">Activo</option>
+          <option value="">Inactivo</option>
           </select>
         </div>
       </div>

@@ -144,7 +144,6 @@ $DatosProveedor = $Obj_Proveedor->ListarTodoCombos();
 				<li><a href="index.php?mod=usu&form=li"><span class="fas fa-user"></span> Usuarios</a></li>
 				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span> Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
-				<li><a href="index.php?mod=estveh&form=li"><span class="fas fa-file-alt"></span>Estado de vehículo</a>
 				<li>
 					<a href="#" class="vehi-btn">Vehículos
 						<span class="fas fa-caret-down first"></span>
@@ -232,7 +231,7 @@ $DatosProveedor = $Obj_Proveedor->ListarTodoCombos();
 						 foreach ( $Datos_Catar as $FilaCategoriaArt ) {
 						 ?>
 			 			<option value="<?php echo $FilaCategoriaArt['id_categoria_art']; ?>"><?php echo
-						$FilaCategoria['nombre_categoria_art']; ?></option>
+						$FilaCategoriaArt['nombre_categoria_art']; ?></option>
 						 <?php
 						 }
 						 ?>

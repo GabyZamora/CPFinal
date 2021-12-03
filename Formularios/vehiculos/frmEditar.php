@@ -154,7 +154,6 @@ foreach ( $DatosVehiculos as $Fila ) {
 				<li><a href="index.php?mod=usu&form=li"><span class="fas fa-user"></span> Usuarios</a></li>
 				<li><a href="index.php?mod=clie&form=li"><span class="fas fa-clipboard-list"></span> Clientes</a></li>
 				<li><a href="index.php?mod=prove&form=li"><span class="fas fa-truck"></span> Proveedores</a></li>
-				<li><a href="index.php?mod=estveh&form=li"><span class="fas fa-file-alt"></span>Estado de vehículo</a>
 				<li>
 					<a href="#" class="vehi-btn">Vehículos
 						<span class="fas fa-caret-down first"></span>
@@ -217,52 +216,54 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 </div>
 </div>
 <!-- -------------------------- Fila 1 -------------------------- -->
-<!-- -------------------------- Fila 1 -------------------------- -->
 <div class="form-row">
 <div class="form-group col-md-8">
-<label>Nombre Cliente: </label>
-<select id="cbxCliente" name="cbxCliente" class="form-control">
-           <option value="">Seleccione...</option>
-           <?php
-           foreach ( $DatosClientes as $FilaCliente ) {
-           ?>
-           <option value="<?php echo $FilaCliente['id_cliente']; ?>"><?php echo
-          $FilaCliente['nombre_cliente']; ?></option>
-           <?php
-           }
-           ?>
-          </select>
+<label>Clientes: </label>
+<select id="cbxClientes" name="cbxClientes" class="form-control">
+<option value="<?php echo $Fila['id_cliente']; ?>"><?php echo
+            $Fila['NombreCliente']; ?></option>
+              <?php
+              foreach ( $DatosClientes as $FilaCliente ) {
+                ?>
+                <option value="<?php echo $FilaCliente['id_cliente']; ?>"><?php echo
+                $FilaCliente['nombre_cliente']; ?></option>
+                <?php
+              }
+              ?>
+</select>
 </div>
 <div class="form-group col-md-6">
-          <label>Marca: </label>
-          <select id="cbxMarca" name="cbxMarca" class="form-control">
-           <option value="">Seleccione...</option>
-           <?php
-           foreach ( $Datos_Marcas_Autos as $FilaMarca ) {
-           ?>
-           <option value="<?php echo $FilaMarca['id_marca']; ?>"><?php echo
-          $FilaMarca['nombre_marca']; ?></option>
-           <?php
-           }
-           ?>
-          </select>
+<label>Marca: </label>
+<select id="cbxMarca" name="cbxMarca" class="form-control">
+<option value="<?php echo $Fila['id_marca']; ?>"><?php echo
+            $Fila['NombreMarca']; ?></option>
+              <?php
+              foreach ( $Datos_Marcas_Autos as $FilaMarca ) {
+                ?>
+                <option value="<?php echo $FilaMarca['id_marca']; ?>"><?php echo
+                $FilaMarca['nombre_marca']; ?></option>
+                <?php
+              }
+              ?>
+</select>
 </div>
 </div>
 <!-- -------------------------- Fila 2 -------------------------- -->
 <div class="form-row">
 <div class="form-group col-md-6">
-          <label>Modelo: </label>
-          <select id="cbxModelo" name="cbxModelo" class="form-control">
-           <option value="">Seleccione...</option>
-           <?php
-           foreach ( $Datos_Modelo as $FilaModelo ) {
-           ?>
-           <option value="<?php echo $FilaModelo['id_modelo']; ?>"><?php echo
-          $FilaModelo['nombre_modelo']; ?></option>
-           <?php
-           }
-           ?>
-          </select>
+<label>Modelo: </label>
+<select id="cbxModelo" name="cbxModelo" class="form-control">
+<option value="<?php echo $Fila['id_modelo']; ?>"><?php echo
+            $Fila['NombreModelo']; ?></option>
+              <?php
+              foreach ( $Datos_Modelo as $FilaModelo ) {
+                ?>
+                <option value="<?php echo $FilaModelo['id_modelo']; ?>"><?php echo
+                $FilaModelo['nombre_modelo']; ?></option>
+                <?php
+              }
+              ?>
+</select>
         </div>
 <div class="form-group col-md-8">
 <label>Placa: </label>
@@ -313,6 +314,18 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <option value=""></option>
 </select>
 </div>
+<div class="form-group col-md-4">
+<label>Estado de Vehículo: </label>
+<select id="cbxEstadoVeh" name="cbxEstadoVeh" class="form-control">
+<option value="">Seleccione...</option>
+<option value="Ingresando">Ingresando</option>
+<option value="Aceptado">Aceptado por el cliente</option>
+<option value="Espera">Espera de repuesto</option>
+<option value="EstadoReparacion">Estado de reparación</option>
+<option value="FinalizadoTaller">Finalizado en el taller</option>
+<option value="FueraTaller">Fuera del taller</option>
+</select>
+</div>
 </div>
 </div> <!-- Cierre del Div table-wrapper -->
 </div> <!-- Cierre del Div container -->
@@ -331,6 +344,9 @@ alert('Seleccione el modelo del vehículo');
 }
 else if ( !document.getElementById('cbxTipo').value ) {
 alert('Seleccione el tipo de vehículo');
+}
+else if ( !document.getElementById('cbxEstadoVeh').value ) {
+alert('Seleccione el estado de vehículo');
 }
 else if ( !document.getElementById('txtAnio').value ) {
 alert('Ingrese el año del vehículo');

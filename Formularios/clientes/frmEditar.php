@@ -16,7 +16,7 @@ $DatosDepartamentos = $Obj_Departamentos->ListarTodoCombos();
 $DatosMunicipios = $Obj_Municipios->ListarTodoCombos();
 //Recuperamos el registro obtenido en una variable fila
 foreach ( $DatosClientes as $Fila ) {
-  $DatosClientes = $Fila;
+	$DatosClientes = $Fila;
 }
 ?>
 <!-- CSS -->
@@ -319,7 +319,7 @@ value="<?php echo $Fila['nrc_cliente']; ?>">
 <div class="form-group col-md-4">
 <label>Estado: </label>
 <select id="cbxEstado" name="cbxEstado" class="form-control">
-<option value="<?php echo $Fila['estado']; ?>"><?php echo $Fila['estado']; ?></option>
+<option value="<?php echo $Fila['estado']; ?>"></option>
 <option value="">ACTIVO</option>
 <option value="">INACTIVO</option>
 </select>
