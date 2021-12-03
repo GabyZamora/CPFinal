@@ -235,6 +235,11 @@ foreach ( $DatosVehiculos as $Fila ) {
 				<input class="form-control" id="cbxTipo" name="cbxTipo" readonly 
 				value="<?php echo $Fila['tipo_vehiculo']; ?>">
 			</div>
+			<div class="form-group col-md-4">
+				<label>Estado de Vehículo: </label>
+				<input  class="form-control" id="cbxEstadoVeh" name="cbxEstadoVeh" readonly 
+				value="<?php echo $Fila['estado_del_vehiculo']; ?>">
+			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-4">
