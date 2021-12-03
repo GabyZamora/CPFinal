@@ -51,7 +51,7 @@ class Marcas_Articulos extends Datos {
     public function ListarTodoCombos() {
         $Cadena = "SELECT * FROM marca_art
         WHERE
-        estado = 'INACTIVO'
+        estado = 'ACTIVO'
         ORDER BY nombreMarca ASC";
         return $this->EjecutarQuery( $Cadena );
     }
