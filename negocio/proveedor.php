@@ -78,7 +78,7 @@ class Proveedor extends datos {
         return $this->EjecutarQuery( $Cadena );
     }
       public function Eliminar( $paId ) {
-        $Cadena = "UPDATE proveedores SET estado = 'ACTIVO' WHERE id_proveedor =
+        $Cadena = "UPDATE proveedores SET estado = 'INACTIVO' WHERE id_proveedor =
         '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
     }
