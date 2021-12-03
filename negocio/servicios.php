@@ -67,7 +67,7 @@
         $Cadena = "SELECT * FROM servicios
         WHERE
         estado = 'ACTIVO'
-        ORDER BY nombre_marca ASC";
+        ORDER BY nombre_servicio ASC";
         return $this->EjecutarQuery( $Cadena );
     }
 	}

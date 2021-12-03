@@ -181,7 +181,7 @@
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="ser-show">
-						<li><a href="index.php?mod=serv&form=li">Gestión de servicios</a></li>
+						<li><a href="index.php?mod=ser&form=li">Gestión de servicios</a></li>
 						<li><a href="index.php?mod=catse&form=li">Categorías</a></li>
 					</ul>
 				</li>
@@ -205,7 +205,7 @@
 		<div class="table-title">
 			<div class="form-row">
 		 		<div class="col-md-4">
-		 			<a href="index.php?mod=serv&form=li" class="a-tituloform"><h2>Gestión de <b>Servicios</b></h2></a>
+		 			<a href="index.php?mod=ser&form=li" class="a-tituloform"><h2>Gestión de <b>Servicios</b></h2></a>
 		 		</div>
 		 		<div class="col-md-3">
 		 			<div class="input-group">
@@ -227,7 +227,7 @@
             		onClick="location.replace('index.php?mod=menu');">
            			 <i class="material-icons">&#xe879;</i><span>Cerrar</span></button>
 		 			<button type="button" class="btn btn-success"
-					onClick="location.replace('index.php?mod=serv&form=nu');">
+					onClick="location.replace('index.php?mod=ser&form=nu');">
 		 			<i class="material-icons">&#xe148;</i><span>Agregar
 					Nuevo</span></button>
 		 		</div>
@@ -243,6 +243,7 @@
 	 			<tr>
 	 				<th>Servicio</th>
 	 				<th>Detalles</th>
+					 <th>Categoría</th>
 					 <th>Acciones</th>
 	 			</tr>
 	 		</thead>
@@ -252,10 +253,11 @@
 				 foreach ( $Obj_Paginador->RegistrosPaginados as $Fila ) {
 			 ?>
 	 			<tr>
-		 			<td><?php echo $Fila['nombre_servicio']; ?></td>
-		 			<td><?php echo $Fila['detalles']; ?></td>
+		 			<td><?php echo $Fila['NombreServicio']; ?></td>
+		 			<td><?php echo $Fila['Detalles']; ?></td>
+					 <td><?php echo $Fila['NombreCategoria']; ?></td>
 		 			<td>
-					 <a href="index.php?mod=serv&form=ed&id=<?php echo
+					 <a href="index.php?mod=ser&form=ed&id=<?php echo
 					$Fila['id_servicio']; ?>" class="edit"><i class="material-icons" datatoggle="tooltip" title="Editar">&#xE254;</i></a>
 					 <a href="#" class="delete" onclick="Eliminar('<?php echo
 					$Fila['id_servicio']; ?>');"><i class="material-icons" data-toggle="tooltip"
@@ -272,7 +274,7 @@
 <script type="text/javascript">
 	function Eliminar( paId ){
 		if( confirm('¿Confirma eliminar este registro?') ){
-		window.location.replace('index.php?mod=serv&form=el&id=' +
+		window.location.replace('index.php?mod=ser&form=el&id=' +
 		paId);
 		}
 	}

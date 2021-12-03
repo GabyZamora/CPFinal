@@ -13,11 +13,11 @@
 	if( $Obj_Servicios->Agregar() ) {
 	 //Si se ejecuta, redireccionamos al formulario de listar con mensaje succes
 	echo 
-	"<script>location.replace('index.php?mod=serv&form=li&m=success');</script>";
+	"<script>location.replace('index.php?mod=ser&form=li&m=success');</script>";
 	}
 	else {
 	 //Si no se ejecuta, redireccionamos al formulario de listar con mensaje de error
 	echo
-	"<script>location.replace('index.php?mod=serv&form=li&m=error');</script>";
+	"<script>location.replace('index.php?mod=ser&form=li&m=error');</script>";
 	}
 ?>

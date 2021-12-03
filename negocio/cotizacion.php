@@ -7,39 +7,36 @@ class Cotizacion extends Datos {
   public $id_articulo;
   public $cantidad_ar;
   public $precio_ar;
-  public $fechaIngreso_cotizacion;
-  public $fechaModificacion_cotizacion;
-  public $estado;
-
   //Métodos
   public function ListarTodos( $paBuscar ) {
     $Cadena = "SELECT 
     cotizacion.id_cotizacion,
-    cotizacion.id_servicio, servicios.nombre_servicio AS Servicio,
+    cotizacion.id_servicio, 
+    servicios.nombre_servicio AS Servicio,
     cotizacion.cantidad_se AS CantServicio,
     cotizacion.precio_se AS PrecioServicio,
-    cotizacion.id_articulo, articulos.nombre_articulo AS Articulo,
+    cotizacion.id_articulo, 
+    articulos.nombre_articulo AS Articulo,
     cotizacion.cantidad_ar AS CantidadArt,
-    cotizacion.precio_ar AS PrecioArt,
-    cotizacion.fechaIngreso_cotizacion AS FechaIngreso,
-    cotizacion.fechaModificacion_cotizacion AS FechaModificacion,
-    cotizacion.estado AS Estado
+    cotizacion.precio_ar AS PrecioArt
     FROM
     cotizacion
-    INNER JOIN servicos ON cotizacion.id_servicio = servicios.id_servicio
+    INNER JOIN servicios ON cotizacion.id_servicio = servicios.id_servicio
     INNER JOIN articulos ON cotizacion.id_articulo = articulos.id_articulo
     WHERE
-    (cotizacion.nombre_servicio LIKE '%".$paBuscar."%')
-    AND estado = 'ACTIVO'";
+    (cotizacion.id_servicio LIKE '%".$paBuscar."%')
+    AND cotizacion.estado = 'ACTIVO'";
     return $Cadena; //Acá no se ejecuta la cadena, porque se hace en la clase del paginador
   }
   public function CantTotalRegistros( $paBuscar ) {
-    $Cadena = "SELECT COUNT(id_cotizacion) FROM cotizacion
-    INNER JOIN servicos ON cotizacion.id_servicio = servicios.id_servicio
+    $Cadena = "SELECT COUNT(id_cotizacion) 
+    FROM 
+    cotizacion
+    INNER JOIN servicios ON cotizacion.id_servicio = servicios.id_servicio
     INNER JOIN articulos ON cotizacion.id_articulo = articulos.id_articulo
     WHERE
-    (cotizacion.nombre_servicio LIKE '%".$paBuscar."%')
-    AND estado = 'ACTIVO'";
+    (cotizacion.id_servicio LIKE '%".$paBuscar."%')
+    AND cotizacion.estado = 'ACTIVO'";
     return mysqli_fetch_row($this->EjecutarQuery( $Cadena ));
   } //Retorna el número de filas que tiene la consulta
 
@@ -51,13 +48,10 @@ class Cotizacion extends Datos {
     cotizacion.precio_se AS PrecioServicio,
     cotizacion.id_articulo, articulos.nombre_articulo AS Articulo,
     cotizacion.cantidad_ar AS CantidadArt,
-    cotizacion.precio_ar AS PrecioArt,
-    cotizacion.fechaIngreso_cotizacion AS FechaIngreso,
-    cotizacion.fechaModificacion_cotizacion AS FechaModificacion,
-    cotizacion.estado AS Estado
+    cotizacion.precio_ar AS PrecioArt
     FROM
     cotizacion
-    INNER JOIN servicos ON cotizacion.id_servicio = servicios.id_servicio
+    INNER JOIN servicios ON cotizacion.id_servicio = servicios.id_servicio
     INNER JOIN articulos ON cotizacion.id_articulo = articulos.id_articulo
     WHERE
     cotizacion.estado = 'ACTIVO'";
@@ -71,13 +65,10 @@ class Cotizacion extends Datos {
     cotizacion.precio_se AS PrecioServicio,
     cotizacion.id_articulo, articulos.nombre_articulo AS Articulo,
     cotizacion.cantidad_ar AS CantidadArt,
-    cotizacion.precio_ar AS PrecioArt,
-    cotizacion.fechaIngreso_cotizacion AS FechaIngreso,
-    cotizacion.fechaModificacion_cotizacion AS FechaModificacion,
-    cotizacion.estado AS Estado
+    cotizacion.precio_ar AS PrecioArt
     FROM
     cotizacion
-    INNER JOIN servicos ON cotizacion.id_servicio = servicios.id_servicio
+    INNER JOIN servicios ON cotizacion.id_servicio = servicios.id_servicio
     INNER JOIN articulos ON cotizacion.id_articulo = articulos.id_articulo
     WHERE
     cotizacion.id_cotizacion = '".$paId."' ";

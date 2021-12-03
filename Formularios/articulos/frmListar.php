@@ -242,7 +242,9 @@
 	 		<thead>
 	 			<tr>
 	 				<th>Articulo</th>
-	 				<th>Descripcion</th>
+	 				<th>Marca</th>
+					<th>Categoría</th>
+					<th>Descripción</th>
 					 <th>Acciones</th>
 	 			</tr>
 	 		</thead>

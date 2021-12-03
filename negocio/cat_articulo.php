@@ -50,12 +50,11 @@ class Cat_Articulo extends Datos {
         return $this->EjecutarQuery( $Cadena );
       }
       public function ListarTodoCombos() {
-        $Cadena = "SELECT * categorias_serv
+        $Cadena = "SELECT * categoria_art
         WHERE
-        estado = 'ACTIVO'
-        ORDER BY nombre_marca ASC";
+        estado = 'ACTIVO' ";
         return $this->EjecutarQuery( $Cadena );
-    }
+      }
     }
     ?>
 

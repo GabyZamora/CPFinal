@@ -27,7 +27,7 @@ class Marcas_Autos extends Datos {
     }
         public function Agregar() {
         $Cadena = "INSERT INTO marca_aut  (
-                nombre_marca;
+                nombre_marca,
                 estado)
             VALUES (
         '".addslashes($this->NombreMarca)."',
@@ -42,7 +42,7 @@ class Marcas_Autos extends Datos {
         return $this->EjecutarQuery( $Cadena );
     }
     public function Eliminar( $paId ) {
-        $Cadena = "UPDATE marca_aut SET Estado = 'ACTIVO' WHERE id_marca  =
+        $Cadena = "UPDATE marca_aut SET Estado = 'INACTIVO' WHERE id_marca  =
         '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
     }

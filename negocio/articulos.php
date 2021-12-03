@@ -81,8 +81,7 @@
 		public function ListarTodoCombos() {
         $Cadena = "SELECT * FROM articulos
         WHERE
-        estado = 'ACTIVO'
-        ORDER BY nombre_articulo ASC";
+        estado = 'ACTIVO'";
         return $this->EjecutarQuery( $Cadena );
     }
 	}

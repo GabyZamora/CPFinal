@@ -1,3 +1,17 @@
+<?php
+require_once 'datos/datos.php';
+require_once 'negocio/cat_articulo.php';
+require_once 'negocio/marcaarticulos.php';
+require_once 'negocio/proveedor.php';
+
+
+$Obj_Cat_Articulo = new Cat_Articulo();
+$Datos_Catar = $Obj_Cat_Articulo->ListarTodoCombos();
+$Obj_Marcas_Articulos = new Marcas_Articulos();
+$DatosMarcas_Articulos = $Obj_Marcas_Articulos->ListarTodoCombos();
+$Obj_Proveedor = new Proveedor();
+$DatosProveedor = $Obj_Proveedor->ListarTodoCombos();
+?>
 <!-- CSS -->
 <head>
 <link rel="stylesheet" href="css/iconfont/material-icons.css">
@@ -20,7 +34,7 @@
 
 		}
 		.sidebar{
-			position: fixed;
+			position: absolute;
 			width: 250px;
 			height: 100%;
 			left: 0;
@@ -182,7 +196,7 @@
  			<div class="table-title">
  				<div class="form-row">
  					<div class="col-md-8">
- 						<h2>Nuevo 	Articulo</h2>
+ 						<h2>Nuevo Articulo</h2>
 					</div>
  					<div class="col-md-4">
  						<button type="button" class="btn btn-danger"
@@ -278,7 +292,18 @@
 		 }
 		 else if ( !document.getElementById('txtDescripcion').value ) {
 		 alert('Ingrese los descripcion del articulo');
-		 
+		 }
+
+		 else if( !document.getElementById('cbxCateArt').value){
+    	alert('Seleccione categoría de artículo');
+    	}
+		else if( !document.getElementById('cbxProveedor').value){
+    	alert('Seleccione el proveedor');
+    	}
+		else if( !document.getElementById('cbxMarcArt').value){
+    	alert('Seleccione la marca del artículo');
+    	}
+		 else if( !document.getElementById('cbxEstado').value){
     	alert('Seleccione estado');
     	}
 		 else {

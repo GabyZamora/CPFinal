@@ -1,6 +1,6 @@
 
 CREATE DATABASE autos_cp;
-
+DROP DATABASE autos_cp;
 
 USE autos_cp;
 CREATE TABLE usuarios(
@@ -1732,6 +1732,7 @@ id_vehiculo INT UNSIGNED NOT NULL AUTO_INCREMENT,
 id_cliente INT UNSIGNED NOT NULL,
 id_marca INT UNSIGNED NOT NULL,
 id_modelo INT UNSIGNED NOT NULL,
+estado_del_vehiculo VARCHAR(50) NOT NULL,
 placa VARCHAR(50) NOT NULL,
 tipo_vehiculo VARCHAR(10) NOT NULL,
 color_vehiculo VARCHAR(10) NOT NULL,
@@ -1747,21 +1748,9 @@ CONSTRAINT FK_MARC_ID FOREIGN KEY(id_marca) REFERENCES marca_aut(id_marca) ON UP
 CONSTRAINT FK_MOD_ID FOREIGN KEY(id_modelo) REFERENCES modelo_aut(id_modelo) ON UPDATE CASCADE,
 CONSTRAINT FK_CLI_ID FOREIGN KEY(id_cliente) REFERENCES clientes(id_cliente) ON UPDATE CASCADE
 );
-
-
-CREATE TABLE estado_del_vehiculo(
-id_estado_del_vehiculo INT UNSIGNED NOT NULL AUTO_INCREMENT,
-ingresado VARCHAR(10) NOT NULL,
-id_vehiculo INT UNSIGNED NOT NULL,
-aceptado_por_el_cliente VARCHAR(10) NOT NULL,
-Espera_de_repuesto VARCHAR(10) NOT NULL,
-estado_de_reparacion VARCHAR(10) NOT NULL,
-finalizacion_de_taller VARCHAR(10) NOT NULL,
-fuera_de_taller VARCHAR(10) NOT NULL,
-estado VARCHAR(10) NOT NULL,
-PRIMARY KEY(id_estado_del_vehiculo),
-CONSTRAINT FK_VEH_ID FOREIGN KEY(id_vehiculo) REFERENCES vehiculos(id_vehiculo) ON UPDATE CASCADE
-);
+INSERT INTO vehiculos (id_vehiculo, id_cliente, id_marca, id_modelo, estado_del_vehiculo, placa, tipo_vehiculo, color_vehiculo,
+anio_vehiculo, vin_vehiculo, numero_motor_vehiculo, observaciones_vehiculo, estado) VALUES
+('0', '1', '1', '2', 'Ingresado', '125-248', 'sedan', 'rojo', '2010', '14782369', '14523696', 'Falla de Motor', 'ACTIVO');
 
 CREATE TABLE cotizacion(
 id_cotizacion INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -1786,11 +1775,12 @@ falla_del_vehiculo VARCHAR(10) NOT NULL,
 fechaIngreso_orden_trabajo DATETIME DEFAULT CURRENT_TIMESTAMP,
 fechaModificacion_orden_trabajo DATETIME ON UPDATE CURRENT_TIMESTAMP,
 id_cliente INT UNSIGNED NOT NULL,
-id_estado_del_vehiculo INT UNSIGNED NOT NULL,
+id_vehiculo INT UNSIGNED NOT NULL,
 id_cotizacion INT UNSIGNED NOT NULL,
 id_servicio INT UNSIGNED NOT NULL, 
 PRIMARY KEY(id_orden_trabajo),
 CONSTRAINT FK_CLIE_OR FOREIGN KEY(id_cliente) REFERENCES clientes(id_cliente)ON UPDATE CASCADE,
-CONSTRAINT FK_ESTA_OR FOREIGN KEY(id_estado_del_vehiculo) REFERENCES estado_del_vehiculo(id_estado_del_vehiculo)ON UPDATE CASCADE,
+CONSTRAINT FK_VEH_OR FOREIGN KEY(id_vehiculo) REFERENCES vehiculos(id_vehiculo)ON UPDATE CASCADE,
 CONSTRAINT FK_COTI_OR FOREIGN KEY(id_cotizacion) REFERENCES cotizacion(id_cotizacion)ON UPDATE CASCADE,
 CONSTRAINT FK_SER_OR FOREIGN KEY(id_servicio) REFERENCES servicios(id_servicio)ON UPDATE CASCADE
+);

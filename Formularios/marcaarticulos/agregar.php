@@ -6,7 +6,7 @@
 	//Instanciamos la clase
 	$Obj_Marcas_Articulos = new Marcas_Articulos();
 	//Asignación de atributos de la clase de la capa de negocio
-	$Obj_Marcas_Articulos->nombremarca = $_POST['txtNombreMarca'];
+	$Obj_Marcas_Articulos->nombreMarca = $_POST['txtNombreMarca'];
 	$Obj_Marcas_Articulos->estado = $_POST['cbxEstado'];
 //Ejecutamos el mantenimiento de agregar
 if(	$Obj_Marcas_Articulos->Agregar( ) ) {

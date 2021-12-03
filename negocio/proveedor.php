@@ -82,5 +82,12 @@ class Proveedor extends datos {
         '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
     }
+    public function ListarTodoCombos() {
+        $Cadena = "SELECT * FROM proveedores
+        WHERE
+        estado = 'ACTIVO'
+        ORDER BY nombre_comercial_proveedor ASC";
+        return $this->EjecutarQuery( $Cadena );
+    }
  }
  ?>

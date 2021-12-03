@@ -6,7 +6,7 @@ require_once('negocio/paginador.php');
 require_once('negocio/cotizacion.php');
 //Instanciamos las clases de la capa de negocio
 $Obj_Paginador = new Paginador();
-
+$Obj_Cotizacion = new Cotizacion();
 $Obj_Paginador->Cadena = $Obj_Cotizacion->ListarTodos( addslashes( @$_POST['txtBuscar'] ) );
 $Obj_Paginador->CantTotalReg = $Obj_Cotizacion->CantTotalRegistros( addslashes( @$_POST['txtBuscar']
 ) );
@@ -203,7 +203,7 @@ $Obj_Paginador->ConfPaginador();
     <div class="table-title">
       <div class="form-row">
         <div class="col-md-4">
-          <a href="index.php?mod=catar&form=li" class="a-titulo-form"><h2>Cotización</h2></a>
+          <a href="index.php?mod=cot&form=li" class="a-titulo-form"><h2>Cotización</h2></a>
           </div>
           <div class="col-md-3">
             <div class="input-group">

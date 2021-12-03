@@ -1,3 +1,9 @@
+<?php
+require_once 'datos/datos.php';
+require_once 'negocio/categoriaservicios.php';
+$Obj_Categoria_Servicio= new Categoria_Servicio();
+$DatosCategoria_Servicio = $Obj_Categoria_Servicio->ListarTodoCombos();
+?>
 <!-- CSS -->
 <head>
 <link rel="stylesheet" href="css/iconfont/material-icons.css">
@@ -157,7 +163,7 @@
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="ser-show">
-						<li><a href="index.php?mod=serv&form=li">Gestión de servicios</a></li>
+						<li><a href="index.php?mod=ser&form=li">Gestión de servicios</a></li>
 						<li><a href="index.php?mod=catse&form=li">Categorías</a></li>
 					</ul>
 				</li>
@@ -186,7 +192,7 @@
 					</div>
  					<div class="col-md-4">
  						<button type="button" class="btn btn-danger"
-						onClick="location.replace('index.php?mod=serv&form=li');"><i class="material-icons">&#xe5c9;</i><span>Cancelar</span></button>
+						onClick="location.replace('index.php?mod=ser&form=li');"><i class="material-icons">&#xe5c9;</i><span>Cancelar</span></button>
  						<button type="button" class="btn btn-success"
 						onClick="ValidarNuevo();"><i class="material-icons">&#xe161;</i><span>Guardar</span></button>
  					</div>
@@ -215,7 +221,7 @@
 					 <select id="cbxCategoria" name="cbxCategoria" class="form-control">
 						 <option value="">Seleccione...</option>
 						 <?php
-						 foreach ( $DatosCategorias as $FilaCategoria ) {
+						 foreach ( $DatosCategoria_Servicio as $FilaCategoria ) {
 						 ?>
 			 			<option value="<?php echo $FilaCategoria['id_categoria']; ?>"><?php echo
 						$FilaCategoria['nombre_categoria']; ?></option>
@@ -236,8 +242,11 @@
 		 else if ( !document.getElementById('txtDetalles').value ) {
 		 alert('Ingrese detalles del servicio');
 		 }
+		 else if (!document.getElementById('cbxCategoria').value) {
+			 alert('Seleccione categoría de servicio')
+		 }
 		 else {
-		 document.forms.frmNuevo.action = 'index.php?mod=serv&form=ag';
+		 document.forms.frmNuevo.action = 'index.php?mod=ser&form=ag';
 		 document.forms.frmNuevo.submit();
 		 }
 	}

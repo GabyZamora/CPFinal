@@ -32,7 +32,7 @@ $DatosServicios = $Obj_Servicios->ListarTodoCombos();
 
 		}
 		.sidebar{
-			position: fixed;
+			position: absolute;
 			width: 250px;
 			height: 100%;
 			left: 0;

@@ -9,11 +9,11 @@
 	if( $Obj_Servicios->Eliminar( $_GET['id'] ) ) {
 	 //Si se ejecuta, redireccionamos al formulario de listar con mensaje success
 	echo
-	"<script>location.replace('index.php?mod=serv&form=li&m=delete');</script>";
+	"<script>location.replace('index.php?mod=ser&form=li&m=delete');</script>";
 	}
 	else {
 	 //Si no se ejecuta, redireccionamos al formulario de listar con mensaje de error
 	echo
-	"<script>location.replace('index.php?mod=serv&form=li&m=error');</script>";
+	"<script>location.replace('index.php?mod=ser&form=li&m=error');</script>";
 	}
 ?>

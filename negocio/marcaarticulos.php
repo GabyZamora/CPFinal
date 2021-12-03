@@ -2,26 +2,24 @@
 class Marcas_Articulos extends Datos {
   //Atributos, corresponden a cada uno de los campos de la tabla de clientes
   public $nombreMarca;
-  public $fecIngreso_marca_art;
-  public $fechModificacion_marca_art;
-
+  public $estado;
 
 //Métodos
     public function ListarTodos( $paBuscar ) {
         $Cadena = "SELECT * FROM marca_art WHERE
-        (nombreMarca LIKE '%".$paBuscar."%' OR nombreMarca LIKE '%".$paBuscar."%')";
+        (nombreMarca LIKE '%".$paBuscar."%' OR nombreMarca LIKE '%".$paBuscar."%') AND estado = 'ACTIVO'";
         return $Cadena; 
     }
 
     public function CantTotalRegistros( $paBuscar ) {
         $Cadena = "SELECT COUNT(id_marca_art ) FROM marca_art  WHERE
-        (nombreMarca LIKE '%".$paBuscar."%' OR nombreMarca LIKE '%".$paBuscar."%')";
+        (nombreMarca LIKE '%".$paBuscar."%' OR nombreMarca LIKE '%".$paBuscar."%') AND estado = 'ACTIVO'";
         return mysqli_fetch_row($this->EjecutarQuery( $Cadena ));
 
     } //Retorna el número de filas que tiene la consulta
 
     public function ListarTodoReporte() {
-        $Cadena = "SELECT * FROM marca_art  WHERE";
+        $Cadena = "SELECT * FROM marca_art WHERE estado = 'ACTIVO'";
         return $this->EjecutarQuery( $Cadena );
     }
     public function BuscarPorId( $paId ) {
@@ -29,27 +27,32 @@ class Marcas_Articulos extends Datos {
         return $this->EjecutarQuery( $Cadena );
     }
         public function Agregar() {
-        $Cadena = "INSERT INTO marca_art  (
-                nombreMarca;
-                fecIngreso_marca_art;
-                fechModificacion_marca_art)
+        $Cadena = "INSERT INTO marca_art (
+                nombreMarca,
+                estado )
             VALUES (
-        '".addslashes($this->NombreMarca)."',
-        '".addslashes($this->Fecha_ingreso_Marca_de_articulos)."',
-        '".addslashes($this->Fecha_modificacion_Marca_de_articulos)."'";
+        '".addslashes($this->nombreMarca)."',
+        'ACTIVO')";
         return $this->EjecutarQuery( $Cadena );
     }
     public function Actualizar( $paId ) {
         $Cadena = "UPDATE marca_art SET
         nombreMarca = '".addslashes($this->NombreMarca)."',
-        fecIngreso_marca_art = '".addslashes($this->Fecha_ingreso_Marca_de_articulos)."',
-        fechModificacion_marca_art = '".addslashes($this->Fecha_modificacion_Marca_de_articulos)."'
+        estado = '".addslashes($this->estado)."'
         WHERE id_marca_art  = '".$paId."' ";
         return $this->EjecutarQuery( $Cadena );
     }
       public function Eliminar( $paId ) {
-        $Cadena = "UPDATE marca_art SET Estado = 'S' WHERE id_marca_art  =
+        $Cadena = "UPDATE marca_art SET Estado = 'INACTIVO' WHERE id_marca_art  =
         '".$paId."' ";
+        return $this->EjecutarQuery( $Cadena );
+    }
+
+    public function ListarTodoCombos() {
+        $Cadena = "SELECT * FROM marca_art
+        WHERE
+        estado = 'ACTIVO'
+        ORDER BY nombreMarca ASC";
         return $this->EjecutarQuery( $Cadena );
     }
  }
