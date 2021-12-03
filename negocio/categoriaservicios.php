@@ -54,7 +54,7 @@ class Categoria_Servicio extends datos {
     public function ListarTodoCombos() {
         $Cadena = "SELECT * FROM categorias_serv
         WHERE
-        estado = 'ACTIVO'
+        estado = 'INACTIVO'
         ORDER BY nombre_categoria ASC";
         return $this->EjecutarQuery( $Cadena );
     }
