@@ -3,6 +3,7 @@
 		//Atributos
 		public $NombreServicio;
 		public $Detalles;
+		public $NombreCategoria;
 		public $FechaIngreso;
 		public $FechaModificacion;
 		public $id_categoria;
@@ -12,7 +13,8 @@
 		$Cadena = "SELECT
 		servicios.nombre_servicio AS NombreServicio,
 		servicios.detalles AS Detalles,
-		servicios.id_categoria AS NombreCategoria,
+		servicios.id_categoria,
+		categorias_serv.nombre_categoria AS NombreCategoria,
 		servicios.estado 
 		FROM servicios 
 		INNER JOIN categorias_serv ON servicios.id_categoria = categorias_serv.id_categoria

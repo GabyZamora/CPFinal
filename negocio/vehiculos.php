@@ -77,28 +77,8 @@ class Vehiculos extends Datos {
     return $this->EjecutarQuery( $Cadena );
   }
   public function BuscarPorId( $paId ) {
-    $Cadena = "SELECT 
-    vehiculos.id_vehiculo,
-    vehiculos.id_cliente,
-    clientes.nombre_cliente AS NombreCliente,
-    vehiculos.id_marca,
-    marca_aut.nombre_marca AS NombreMarca,
-    vehiculos.id_modelo,
-    modelo_aut.nombre_modelo AS NombreModelo,
-    vehiculos.placa,
-    vehiculos.tipo_vehiculo,
-    vehiculos.estado_del_vehiculo,
-    vehiculos.color_vehiculo,
-    vehiculos.anio_vehiculo,
-    vehiculos.vin_vehiculo,
-    vehiculos.numero_motor_vehiculo,
-    vehiculos.observaciones_vehiculo
-    FROM vehiculos 
-    INNER JOIN clientes ON vehiculos.id_cliente = clientes.id_cliente
-    INNER JOIN marca_aut ON vehiculos.id_marca = marca_aut.id_marca
-    INNER JOIN modelo_aut ON vehiculos.id_modelo = modelo_aut.id_modelo
-    WHERE
-    vehiculos.id_vehiculo = '".$paId."' ";
+    $Cadena = "SELECT * FROM vehiculos WHERE id_vehiculo =
+		'".$paId."' ";
     return $this->EjecutarQuery( $Cadena );
     }
     public function Agregar() {

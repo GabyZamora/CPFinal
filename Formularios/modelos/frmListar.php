@@ -258,7 +258,6 @@ $Obj_Paginador->ConfPaginador();
                   <td><?php echo $Fila['NombreMarca']; ?></td>
                   <td><?php echo $Fila['estado']; ?></td>
                   <td>
-                    <a href="index.php?mod=model&form=de&id=<?php echo $Fila['id_modelo'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
                     <a href="index.php?mod=model&form=ed&id=<?php echo $Fila['id_modelo'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"
                       title="Editar">&#xE254;</i></a>
                       <a href="#" class="delete" onclick="Eliminar('<?php echo $Fila['id_modelo']; ?>');"><i class="material-icons" data-toggle="tooltip"

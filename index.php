@@ -32,9 +32,6 @@ switch( @$_GET["mod"] ){
   case 'veh':
     $Modulo = 'Formularios/vehiculos/index.php';
   break;
-  case 'estveh':
-    $Modulo = 'Formularios/estadovehiculo/index.php';
-  break;
   case 'ser':
     $Modulo = 'Formularios/servicios/index.php';
   break;

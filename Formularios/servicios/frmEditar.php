@@ -198,7 +198,7 @@
  					</div>
  					<div class="col-md-4">
 						 <button type="button" class="btn btn-danger"
-						onClick="location.replace('index.php?mod=usu&form=li');"><i class="materialicons">&#xe5c9;</i><span>Cancelar</span></button>
+						onClick="location.replace('index.php?mod=ser&form=li');"><i class="materialicons">&#xe5c9;</i><span>Cancelar</span></button>
 						 <button type="button" class="btn btn-success"
 						onClick="ValidarEditar();"><i class="materialicons">&#xe161;</i><span>Guardar</span></button>
 					 </div>

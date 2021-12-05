@@ -5,8 +5,12 @@
 	require_once 'negocio/paginador.php';
 	require_once 'negocio/servicios.php';
 	//Instanciamos las clases de la capa de negocio
+	require_once 'negocio/categoriaservicios.php';
+	$Obj_Categoria_Servicio= new Categoria_Servicio();
+	$DatosCategoria_Servicio = $Obj_Categoria_Servicio->ListarTodoCombos();
 	$Obj_Paginador = new Paginador();
 	$Obj_Servicios = new Servicios();
+	
 	//Asignamos los valores necesarios a los atributos de la clase del paginador ---
 	$Obj_Paginador->Cadena = $Obj_Servicios->ListarTodos( addslashes(
 	@$_POST['txtBuscar'] ) );

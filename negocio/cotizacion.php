@@ -43,10 +43,12 @@ class Cotizacion extends Datos {
   public function ListarTodoReporte() {
     $Cadena = "SELECT
     cotizacion.id_cotizacion,
-    cotizacion.id_servicio, servicios.nombre_servicio AS Servicio,
+    cotizacion.id_servicio, 
+    servicios.nombre_servicio AS Servicio,
     cotizacion.cantidad_se AS CantServicio,
     cotizacion.precio_se AS PrecioServicio,
-    cotizacion.id_articulo, articulos.nombre_articulo AS Articulo,
+    cotizacion.id_articulo, 
+    articulos.nombre_articulo AS Articulo,
     cotizacion.cantidad_ar AS CantidadArt,
     cotizacion.precio_ar AS PrecioArt
     FROM
@@ -60,10 +62,12 @@ class Cotizacion extends Datos {
   public function BuscarPorId( $paId ) {
     $Cadena = "SELECT
     cotizacion.id_cotizacion,
-    cotizacion.id_servicio, servicios.nombre_servicio AS Servicio,
+    cotizacion.id_servicio, 
+    servicios.nombre_servicio AS Servicio,
     cotizacion.cantidad_se AS CantServicio,
     cotizacion.precio_se AS PrecioServicio,
-    cotizacion.id_articulo, articulos.nombre_articulo AS Articulo,
+    cotizacion.id_articulo, 
+    articulos.nombre_articulo AS Articulo,
     cotizacion.cantidad_ar AS CantidadArt,
     cotizacion.precio_ar AS PrecioArt
     FROM

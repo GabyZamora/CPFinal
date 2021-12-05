@@ -11,7 +11,7 @@ $Obj_Cotizacion->CantServicio= $_POST['txtCantServicio'];
 $Obj_Cotizacion->PrecioServicio= $_POST['txtPrecioServicio'];
 $Obj_Cotizacion->Articulo= $_POST['cbxArticulo'];
 $Obj_Cotizacion->CantidadArt= $_POST['txtCantidadArt'];
-$Obj_Cotizacion->Estado= $_POST['cbxEstado'];
+$Obj_Cotizacion->PrecioArt= $_POST['txtPrecioArt'];
 //Ejecutamos el mantenimiento de actualizar
 if(	$Obj_Cotizacion->Agregar() ) {
 //Si se ejecuta, redireccionamos al formulario de listar con mensaje succes

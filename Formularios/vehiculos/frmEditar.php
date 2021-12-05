@@ -3,8 +3,17 @@
 require_once 'datos/datos.php';
 //Llamamos a la capa de negocio
 require_once 'negocio/vehiculos.php';
+require_once 'negocio/clientes.php';
+require_once 'negocio/marcasautos.php';
+require_once 'negocio/modelo.php';
 
-//Instanciamos las clases de la capa de negocio
+
+$Obj_Clientes = new Clientes();
+$DatosClientes = $Obj_Clientes->ListarTodoCombos();
+$Obj_Modelo = new Modelo();
+$Datos_Modelo = $Obj_Modelo->ListarTodoCombos();
+$Obj_Marcas_Autos = new Marcas_Autos();
+$Datos_Marcas_Autos = $Obj_Marcas_Autos->ListarTodoCombos();
 $Obj_Vehiculos = new Vehiculos();
 
 
@@ -261,8 +270,9 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
         </div>
 <div class="form-group col-md-8">
 <label>Placa: </label>
-<input type="text" class="form-control" id="txtPlaca" name="txtPlaca">
-</div>
+<input type="text" class="form-control" id="txtPlaca" name="txtPlaca"
+value="<?php echo $Fila['placa']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['placa']; ?>"></div>
 </div>
 <!-- -------------------------- Fila 3 -------------------------- -->
 <div class="form-row">
@@ -277,20 +287,23 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 </div>
 <div class="form-group col-md-4">
 <label>Año de Vehiculo: </label>
-<input type="text" class="form-control" id="txtAnio" name="txtAnio">
-</div>
+<input type="text" class="form-control" id="txtAnioVeh" name="txtAnioVeh"
+value="<?php echo $Fila['anio_vehiculo']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['anio_vehiculo']; ?>"></div>
 </div>
 
 <!-- --------------------------Fila 4 ----------------------------- -->
 <div class="form-row">
 <div class="form-group col-md-4">
 <label>Vin Vehiculo </label>
-<input type="text" class="form-control" id="txtVin" name="txtVin">
-</div>
+<input type="text" class="form-control" id="txtVin" name="txtVin"
+value="<?php echo $Fila['vin_vehiculo']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['vin_vehiculo']; ?>"></div>
 <div class="form-group col-md-4">
 <label>Número de Motor: </label>
-<input type="text" class="form-control" id="txtMotor" name="txtMotor">
-</div>
+<input type="text" class="form-control" id="txtMotor" name="txtMotor"
+value="<?php echo $Fila['numero_motor_vehiculo']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['numero_motor_vehiculo']; ?>"></div>
 
 </div>
 
@@ -298,8 +311,9 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <div class="form-row">
 <div class="form-group col-md-4">
 <label>Observaciones Vehiculo: </label>
-<input type="text" class="form-control" id="txtObservacion" name="txtObservacion">
-</div>
+<input type="text" class="form-control" id="txtObservacion" name="txtObservacion"
+value="<?php echo $Fila['observaciones_vehiculo']; ?>">
+					<input type="hidden" class="form-control" id="hidId" name="hidId" value="<?php echo $Fila['observaciones_vehiculo']; ?>"></div>
 <div class="form-group col-md-4">
 <label>Estado: </label>
 <select id="cbxEstado" name="cbxEstado" class="form-control">

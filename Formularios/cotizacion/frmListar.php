@@ -179,7 +179,7 @@ $Obj_Paginador->ConfPaginador();
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="ser-show">
-						<li><a href="#">Gestión de servicios</a></li>
+						<li><a href="index.php?mod=ser&form=li">Gestión de servicios</a></li>
 						<li><a href="index.php?mod=catse&form=li">Categorías</a></li>
 					</ul>
 				</li>
@@ -245,8 +245,6 @@ $Obj_Paginador->ConfPaginador();
                 <th>Artículo</th>
                 <th>Cantidad de Artículo</th>
                 <th>Precio de Artículo</th>
-                <th>Fecha de Ingreso</th>
-                <th>Fecha de Modificacion</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -261,8 +259,7 @@ $Obj_Paginador->ConfPaginador();
                   <td><?php echo $Fila['PrecioServicio']; ?></td>
                   <td><?php echo $Fila['Articulo']; ?></td>
                   <td><?php echo $Fila['CantidadArt']; ?></td>
-                  <td><?php echo $Fila['FechaIngreso']; ?></td>
-                  <td><?php echo $Fila['FechaModificacion']; ?></td>
+				  <td><?php echo $Fila['PrecioArt']; ?></td>
                   <td>
                     <a href="index.php?mod=cot&form=de&id=<?php echo $Fila['id_cotizacion'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
                     <a href="index.php?mod=cot&form=ed&id=<?php echo $Fila['id_cotizacion'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"

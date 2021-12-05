@@ -5,6 +5,18 @@ require_once('datos/datos.php');
 require_once('negocio/paginador.php');
 require_once('negocio/vehiculos.php');
 //Instanciamos las clases de la capa de negocio
+require_once ('negocio/clientes.php');
+require_once ('negocio/marcasautos.php');
+require_once ('negocio/modelo.php');
+
+
+$Obj_Clientes = new Clientes();
+$DatosClientes = $Obj_Clientes->ListarTodoCombos();
+$Obj_Modelo = new Modelo();
+$Datos_Modelo = $Obj_Modelo->ListarTodoCombos();
+$Obj_Marcas_Autos = new Marcas_Autos();
+$Datos_Marcas_Autos = $Obj_Marcas_Autos->ListarTodoCombos();
+
 $Obj_Paginador = new Paginador();
 $Obj_Vehiculos = new Vehiculos();
 
@@ -12,7 +24,7 @@ $Obj_Vehiculos = new Vehiculos();
 $Obj_Paginador->Cadena = $Obj_Vehiculos->ListarTodos( addslashes( @$_POST['txtBuscar'] ) );
 $Obj_Paginador->CantTotalReg = $Obj_Vehiculos->CantTotalRegistros( addslashes( @$_POST['txtBuscar']
 ) );
-$Obj_Paginador->FilasPorPagina = 5; 
+$Obj_Paginador->FilasPorPagina = 30; 
 $Obj_Paginador->NumPagina = @$_GET['np']; 
 $Obj_Paginador->EnlaceListar = "mod=veh&form=li"; 
 $Obj_Paginador->ConfPaginador();
@@ -262,10 +274,10 @@ $Obj_Paginador->ConfPaginador();
                   <td><?php echo $Fila['tipo_vehiculo']; ?></td>
 				  <td><?php echo $Fila['estado_del_vehiculo']; ?></td>
                   <td>
-                    <a href="index.php?mod=veh&form=de&id=<?php echo $Fila['id_vehiculo'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
+				  <a href="index.php?mod=veh&form=de&id=<?php echo $Fila['id_vehiculo'];?>" class="view" title="Detalles"><i class="material-icons">&#xE417;</i></a>
                     <a href="index.php?mod=veh&form=ed&id=<?php echo $Fila['id_vehiculo'];?>" class="edit"><i class="material-icons" data-toggle="tooltip"
-                      title="Editar">&#xE254;</i></a>
-                      <a href="#" class="delete" onclick="Eliminar('<?php echo $Fila['id_vehiculo']; ?>');"><i class="material-icons" data-toggle="tooltip"
+                      title="Editar">&#xE254;</i></a>                      
+					  <a href="#" class="delete" onclick="Eliminar('<?php echo $Fila['id_vehiculo'];?>');"><i class="material-icons" data-toggle="tooltip"
                         title="Eliminar">&#xE872;</i></a>
                       </td>
                     </tr>

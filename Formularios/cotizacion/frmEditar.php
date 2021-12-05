@@ -38,7 +38,7 @@ $DatosCotizacion = $Fila;
 
 		}
 		.sidebar{
-			position: fixed;
+			position: absolute;
 			width: 250px;
 			height: 100%;
 			left: 0;
@@ -152,7 +152,7 @@ $DatosCotizacion = $Fila;
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="vehi-show">
-						<li><a href="#">Gestión de Vehículos</a></li>
+						<li><a href="index.php?mod=ser&form=li">Gestión de Vehículos</a></li>
 						<li><a href="index.php?mod=model&form=li">Modelos</a></li>
 						<li><a href="index.php?mod=marc&form=li">Marcas</a></li>
 					</ul>
@@ -268,13 +268,13 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 			</div>
 
 			<div class="form-group col-md-8">
-<label>Estado: </label>
-<select id="cbxEstado" name="cbxEstado" class="form-control">
-<option value="">Seleccione...</option>
-<option value="">ACTIVO</option>
-<option value="">INACTIVO</option>
-</select>
-</div>
+				<label>Estado: </label>
+				<select id="cbxEstado" name="cbxEstado" class="form-control">
+				<option value="">Seleccione...</option>
+				<option value="">ACTIVO</option>
+				<option value="">INACTIVO</option>
+				</select>
+			</div>
 		</div>
     </div> <!-- Cierre del Div table-wrapper ---->
   </div> <!-- Cierre del Div container -->

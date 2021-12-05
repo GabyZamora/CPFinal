@@ -169,7 +169,7 @@ $DatosServicios = $Obj_Servicios->ListarTodoCombos();
 						<span class="fas fa-caret-down first"></span>
 					</a>
 					<ul class="ser-show">
-						<li><a href="#">Gestión de servicios</a></li>
+						<li><a href="index.php?mod=ser&form=li">Gestión de servicios</a></li>
 						<li><a href="index.php?mod=catse&form=li">Categorías</a></li>
 					</ul>
 				</li>
@@ -279,7 +279,7 @@ alert('Seleccione Servicio');
 else if ( !document.getElementById('txtCantServicio').value ) {
 alert('Ingrese cantidad de servicio');
 }
-else if ( !document.getElementById('txtRecioServicio').value ) {
+else if ( !document.getElementById('txtPrecioServicio').value ) {
 alert('Ingrese precio de servicio');
 }
 else if ( !document.getElementById('cbxArticulo').value ) {
@@ -290,9 +290,6 @@ alert('Ingrese cantidad de articulos');
 }
 else if ( !document.getElementById('txtPrecioArt').value ) {
 alert('Ingrese precio de articulo');
-}
-else if ( !document.getElementById('cbxEstado').value ) {
-alert('Seleccione estado');
 }
 else {
 document.forms.frmNuevo.action = 'index.php?mod=cot&form=ag';

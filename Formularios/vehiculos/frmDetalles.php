@@ -209,17 +209,17 @@ foreach ( $DatosVehiculos as $Fila ) {
 			<div class="form-group col-md-8">
 				<label>Nombre: </label>
 				<input class="form-control" id="cbxCliente" name="cbxCliente" readonly 
-				value="<?php echo $Fila['nombre_cliente']; ?>">
+				value="<?php echo $Fila['NombreCliente']; ?>">
 			</div>
 			<div class="form-group col-md-6">
 				<label>Marca: </label>
 				<input class="form-control" id="cbxMarca" name="cbxMarca" readonly 
-				value="<?php echo $Fila['nombre_marca']; ?>">
+				value="<?php echo $Fila['NombreMarca']; ?>">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Modelo: </label>
 				<input  class="form-control" id="cbxModelo" name="cbxModelo" readonly 
-				value="<?php echo $Fila['nombre_modelo']; ?>">
+				value="<?php echo $Fila['NombreModelo']; ?>">
 			</div>
 		</div>
 <!-- -------------------------- Fila 2 -------------------------- -->
