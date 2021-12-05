@@ -3,21 +3,15 @@
 require_once 'datos/datos.php';
 //Llamamos a la capa de negocio
 require_once 'negocio/vehiculos.php';
-require_once 'negocio/clientes.php';
-require_once 'negocio/marcasautos.php';
-require_once 'negocio/modelo.php';
+
 //Instanciamos las clases de la capa de negocio
 $Obj_Vehiculos = new Vehiculos();
-$Obj_Clientes = new Clientes();
-$Obj_Modelo = new Modelo();
-$Obj_Marcas_Autos = new Marcas_Autos();
+
 
 //Cargamos el registro solicitado
 $DatosVehiculos = $Obj_Vehiculos->BuscarPorId( $_GET['id'] );
 
-$DatosClientes = $Obj_Clientes->ListarTodoCombos();
-$Datos_Modelo = $Obj_Modelo->ListarTodoCombos();
-$Datos_Marcas_Autos = $Obj_Marcas_Autos->ListarTodoCombos();
+
 //Recuperamos el registro obtenido en una variable fila
 foreach ( $DatosVehiculos as $Fila ) {
 	$DatosVehiculos = $Fila;
