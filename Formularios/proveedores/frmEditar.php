@@ -137,12 +137,6 @@ $DatosProveedor = $Fila;
 		else if ( !document.getElementById('txtTelefono1').value ) {
 		alert('Ingrese el numero de telefono  del proveedor');
 		}
-		else if ( !document.getElementById('txtTelefono2').value ) {
-		alert('Ingrese el numero de telefono  del proveedor');
-		}
-		else if ( !document.getElementById('txtTelefono3').value ) {
-		alert('Ingrese el numero de telefono  del proveedor');
-		}
 		else if ( !document.getElementById('cbxEstado').value ) {
 		alert('Seleccione estado');
 		}
