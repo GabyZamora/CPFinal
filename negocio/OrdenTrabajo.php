@@ -7,7 +7,7 @@ class Clientes extends Datos {
   public $fechaIngreso_orden_trabajo;
   public $fechaModificacion_orden_trabajo;
   public $id_cliente;
-  public $id_estado_del_vehiculo;
+  public $id_vehiculo;
   public $id_cotizacion;
   public $id_servicio;
   public $estado;
@@ -20,8 +20,11 @@ class Clientes extends Datos {
     orden_trabajo.falla_de_vehiculo AS FallaVehiculo,
     orden_trabajo.fechaIngreso_orden_trabajo AS FechaIngreso,
     orden_trabajo.fechaModificacion_orden_trabajo AS FechaModificacion,
-    orden_trabajo.id_cliente, clientes.nombre_cliente AS NombreCliente,
-    orden_trabajo.id_estado_del_vehiculo, estado_del_vehiculo.ingresado AS Ingresado,
+    orden_trabajo.id_cliente,
+    clientes.nombre_cliente AS NombreCliente,
+    orden_trabajo.id_vehiculo, 
+    vehiculos.placa AS placa,
+    vehiculos.estado_del_vehiculo AS EstadoVehiculo,
     orden_trabajo.id_cotizacion, cotizacion.id_cotizacion AS Cotizacion,
     orden_trabajo.id_servicio, servicios.nombre_servicio AS Servicio,
     orden_trabajo.estado AS Estado
@@ -29,7 +32,7 @@ class Clientes extends Datos {
     orden_trabajo
     INNER JOIN clientes ON orden_trabajo.id_cliente = clientes.id_cliente
     INNER JOIN cotizacion ON orden_trabajo.cotizacion = cotizacion.id_cotizacion
-    INNER JOIN estado_del_vehiculo ON orden_trabajo.id_estado_del_vehiculo = estado_del_vehiculo.id_estado_del_vehiculo
+    INNER JOIN vehiculos ON orden_trabajo.id_vehiculo = vehiculos.id_vehiculo
     INNER JOIN servicios ON orden_trabajo.id_servicio = servicios.id_servicio
     WHERE
     (orden_trabajo.id_orden_trabajo LIKE '%".$paBuscar."%' )
@@ -40,7 +43,7 @@ class Clientes extends Datos {
     $Cadena = "SELECT COUNT(id_orden_trabajo) FROM orden_trabajo
     INNER JOIN clientes ON orden_trabajo.id_cliente = clientes.id_cliente
     INNER JOIN cotizacion ON orden_trabajo.cotizacion = cotizacion.id_cotizacion
-    INNER JOIN estado_del_vehiculo ON orden_trabajo.id_estado_del_vehiculo = estado_del_vehiculo.id_estado_del_vehiculo
+    INNER JOIN vehiculos ON orden_trabajo.id_vehiculo = vehiculos.id_vehiculo
     INNER JOIN servicios ON orden_trabajo.id_servicio = servicios.id_servicio
     WHERE
     (orden_trabajo.lista_de_verificacion LIKE '%".$paBuscar."%' )
@@ -55,16 +58,21 @@ class Clientes extends Datos {
     orden_trabajo.falla_de_vehiculo AS FallaVehiculo,
     orden_trabajo.fechaIngreso_orden_trabajo AS FechaIngreso,
     orden_trabajo.fechaModificacion_orden_trabajo AS FechaModificacion,
-    orden_trabajo.id_cliente, clientes.nombre_cliente AS NombreCliente,
-    orden_trabajo.id_estado_del_vehiculo, estado_del_vehiculo.ingresado AS Ingresado,
-    orden_trabajo.id_cotizacion, cotizacion.id_cotizacion AS Cotizacion,
-    orden_trabajo.id_servicio, servicios.nombre_servicio AS Servicio,
+    orden_trabajo.id_cliente, 
+    clientes.nombre_cliente AS NombreCliente,
+    orden_trabajo.id_vehiculo, 
+    vehiculos.placa AS placa,
+    vehiculos.estado_del_vehiculo AS EstadoVehiculo,
+    orden_trabajo.id_cotizacion, 
+    cotizacion.id_cotizacion AS Cotizacion,
+    orden_trabajo.id_servicio, 
+    servicios.nombre_servicio AS Servicio,
     orden_trabajo.estado AS Estado
     FROM
     orden_trabajo
     INNER JOIN clientes ON orden_trabajo.id_cliente = clientes.id_cliente
     INNER JOIN cotizacion ON orden_trabajo.cotizacion = cotizacion.id_cotizacion
-    INNER JOIN estado_del_vehiculo ON orden_trabajo.id_estado_del_vehiculo = estado_del_vehiculo.id_estado_del_vehiculo
+    INNER JOIN vehiculos ON orden_trabajo.id_vehiculo = vehiculos.id_vehiculo
     INNER JOIN servicios ON orden_trabajo.id_servicio = servicios.id_servicio
     WHERE
     orden_trabajo.estado = 'ACTIVO'";
@@ -77,16 +85,21 @@ class Clientes extends Datos {
     orden_trabajo.falla_de_vehiculo AS FallaVehiculo,
     orden_trabajo.fechaIngreso_orden_trabajo AS FechaIngreso,
     orden_trabajo.fechaModificacion_orden_trabajo AS FechaModificacion,
-    orden_trabajo.id_cliente, clientes.nombre_cliente AS NombreCliente,
-    orden_trabajo.id_estado_del_vehiculo, estado_del_vehiculo.ingresado AS Ingresado,
-    orden_trabajo.id_cotizacion, cotizacion.id_cotizacion AS Cotizacion,
-    orden_trabajo.id_servicio, servicios.nombre_servicio AS Servicio,
+    orden_trabajo.id_cliente, 
+    clientes.nombre_cliente AS NombreCliente,
+    orden_trabajo.id_vehiculo, 
+    vehiculos.placa AS placa,
+    vehiculos.estado_del_vehiculo AS EstadoVehiculo,
+    orden_trabajo.id_cotizacion, 
+    cotizacion.id_cotizacion AS Cotizacion,
+    orden_trabajo.id_servicio, 
+    servicios.nombre_servicio AS Servicio,
     orden_trabajo.estado AS Estado
     FROM
     orden_trabajo
     INNER JOIN clientes ON orden_trabajo.id_cliente = clientes.id_cliente
     INNER JOIN cotizacion ON orden_trabajo.cotizacion = cotizacion.id_cotizacion
-    INNER JOIN estado_del_vehiculo ON orden_trabajo.id_estado_del_vehiculo = estado_del_vehiculo.id_estado_del_vehiculo
+    INNER JOIN vehiculos ON orden_trabajo.id_vehiculo = vehiculos.id_vehiculo
     INNER JOIN servicios ON orden_trabajo.id_servicio = servicios.id_servicio
     WHERE 
     orden_trabajo.id_orden_trabajo = '".$paId."' ";
@@ -97,7 +110,7 @@ class Clientes extends Datos {
           lista_de_verificacion,
           falla_de_vehiculo,
           id_cliente,
-          id_estado_del_vehiculo,
+          id_vehiculo,
           id_cotizacion,
           id_servicio,
           estado )
@@ -105,7 +118,7 @@ class Clientes extends Datos {
         '".addslashes($this->ListaVerificacion)."',
         '".addslashes($this->FallaVehiculo)."',
         '".addslashes($this->NombreCliente)."',
-        '".addslashes($this->Ingresado)."',
+        '".addslashes($this->placa)."',
         '".addslashes($this->Cotizacion)."',
         '".addslashes($this->Servicio)."',
         'ACTIVO' )";
@@ -116,7 +129,7 @@ class Clientes extends Datos {
         lista_de_verificacion='".addslashes($this->ListaVerificacion)."',
         falla_de_vehiculo='".addslashes($this->FallaVehiculo)."',
         id_cliente='".addslashes($this->NombreCliente)."',
-        id_estado_del_vehiculo='".addslashes($this->Ingresado)."',
+        id_vehiculo='".addslashes($this->placa)."',
         id_cotizacion='".addslashes($this->Cotizacion)."',
         id_servicio='".addslashes($this->Servicio)."'
            WHERE id_cliente  = '".$paId."' ";

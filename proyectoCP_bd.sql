@@ -1,7 +1,4 @@
-
 CREATE DATABASE autos_cp;
-DROP DATABASE autos_cp;
-
 USE autos_cp;
 CREATE TABLE usuarios(
 id_usuario INT UNSIGNED AUTO_INCREMENT NOT NULL, 

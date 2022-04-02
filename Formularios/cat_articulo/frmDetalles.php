@@ -3,6 +3,8 @@
 require_once 'datos/datos.php';
 //Llamamos a la capa de negocio
 require_once 'negocio/cat_articulo.php';
+include('presentacion/menu.php');
+
 //Instanciamos las clases de la capa de negocio
 $Obj_Cat_Articulo = new Cat_Articulo();
 //Cargamos el registro solicitado

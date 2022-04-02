@@ -41,6 +41,9 @@ switch( @$_GET["mod"] ){
   case 'art':
     $Modulo = 'Formularios/articulos/index.php';
   break;
+  case 'ord':
+    $Modulo = 'Formularios/ordendetrabajo/index.php';
+    break;
   default:
   $Modulo = 'login.php';
   break;
