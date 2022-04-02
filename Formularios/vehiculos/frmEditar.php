@@ -63,14 +63,14 @@ class="material-icons">&#xe161;</i><span>Guardar</span></button>
 <select id="cbxClientes" name="cbxClientes" class="form-control">
 <option value="<?php echo $Fila['id_cliente']; ?>"><?php echo
             $Fila['NombreCliente']; ?></option>
-              <?php
-              foreach ( $DatosClientes as $FilaCliente ) {
+			<?php
+			foreach ( $DatosClientes as $FilaCliente ) {
                 ?>
                 <option value="<?php echo $FilaCliente['id_cliente']; ?>"><?php echo
                 $FilaCliente['nombre_cliente']; ?></option>
                 <?php
-              }
-              ?>
+			}
+			?>
 </select>
 </div>
 <div class="form-group col-md-6">
